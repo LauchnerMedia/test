@@ -593,14 +593,23 @@ def get_reef_html(jsx_path):
       outcome: "/api/reef/outcome",
     }};
   </script>
-  <script type="text/babel" data-presets="react">
+  <script type="text/babel" data-presets="env,react">
 """)
     parts.append(hooks_shim)
     parts.append(jsx_code)
     parts.append(f"""
 
+    class ErrorBoundary extends React.Component {{
+      constructor(props) {{ super(props); this.state = {{ error: null }}; }}
+      componentDidCatch(error, info) {{ this.setState({{ error: error.toString() + '\\n' + (info.componentStack || '') }}); }}
+      render() {{
+        if (this.state.error) return React.createElement('pre', {{ style: {{ color: '#ff4444', background: '#0a0a0a', padding: 40, fontFamily: 'monospace', fontSize: 14, whiteSpace: 'pre-wrap' }} }}, '❌ Dashboard Error:\\n\\n' + this.state.error);
+        return this.props.children;
+      }}
+    }}
+
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(React.createElement({component_name}));
+    root.render(React.createElement(ErrorBoundary, null, React.createElement({component_name})));
   </script>
 </body>
 </html>""")
