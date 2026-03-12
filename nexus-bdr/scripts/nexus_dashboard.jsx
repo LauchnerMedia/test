@@ -605,9 +605,9 @@ function NexusDashboard() {
         <div style={{ fontSize:36, fontWeight:800, background:`linear-gradient(135deg, ${C.gold}, #e8c55a)`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:8, letterSpacing:6 }}>NEXUS</div>
         <div style={{ fontSize:13, color:C.dim, marginBottom:32, letterSpacing:2 }}>BDR INTELLIGENCE SYSTEM</div>
         <div style={{ maxWidth:640, width:"100%" }}>
-          {bootLines.map((line, i) => (
-            <div key={i} style={{ color:line.color, fontSize:13, padding:"3px 0", opacity:0, animation:"fadeIn 0.3s forwards", animationDelay:`${i*0.05}s` }}>
-              <span style={{ color:C.muted, marginRight:8 }}>[{String(i).padStart(2,"0")}]</span>{line.text}
+          {bootLines.filter(Boolean).map((line, i) => (
+            <div key={i} style={{ color:line.color || C.text, fontSize:13, padding:"3px 0", opacity:0, animation:"fadeIn 0.3s forwards", animationDelay:`${i*0.05}s` }}>
+              <span style={{ color:C.muted, marginRight:8 }}>[{String(i).padStart(2,"0")}]</span>{line.text || ""}
             </div>
           ))}
         </div>
