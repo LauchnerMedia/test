@@ -556,12 +556,14 @@ def get_reef_html(jsx_path):
             component_name = m.group(1)
             break
 
-    # Strip ES module syntax for browser Babel
+    # Strip ES module syntax and existing React destructuring for browser Babel
     jsx_code = re.sub(r'^import\s+.*$', '', jsx_code, flags=re.MULTILINE)
     jsx_code = re.sub(r'^.*from\s+["\']react["\'].*$', '', jsx_code, flags=re.MULTILINE)
     jsx_code = re.sub(r'^.*from\s+["\']react-dom["\'].*$', '', jsx_code, flags=re.MULTILINE)
     jsx_code = re.sub(r'export\s+default\s+function\s+', 'function ', jsx_code)
     jsx_code = jsx_code.replace("export default ", "var _default_export = ")
+    # Remove any existing React hooks destructuring (server injects its own shim)
+    jsx_code = re.sub(r'^const\s*\{[^}]*\}\s*=\s*React\s*;?\s*$', '', jsx_code, flags=re.MULTILINE)
 
     hooks_shim = "const { useState, useEffect, useCallback, useMemo, useRef, useReducer } = React;\n\n"
 
