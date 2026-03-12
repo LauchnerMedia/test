@@ -5,3 +5,4 @@
 {"id": "c28c5b84df5d", "type": "SnapshotRequested", "timestamp": "2026-03-04T18:33:13.114566", "data": {}}
 {"id": "68632c6eace0", "type": "JobStarted", "timestamp": "2026-03-04T18:33:19.156438", "data": {"command": "daily", "company": ""}}
 {"id": "f90bbfee469f", "type": "SnapshotRequested", "timestamp": "2026-03-04T18:33:20.171065", "data": {}}
+{"id": "d495f6203fa1", "type": "ServerStarted", "timestamp": "2026-03-12T22:30:20.155274", "data": {"port": 3142, "output_dir": "/home/user/test/nexus-bdr/scripts/outputs"}}
