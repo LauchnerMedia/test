@@ -548,8 +548,9 @@ function NexusDashboard() {
     let i = 0;
     const timer = setInterval(() => {
       if (i < BOOT_LINES.length) {
-        setBootLines(prev => [...prev, BOOT_LINES[i]]);
+        const line = BOOT_LINES[i];
         i++;
+        setBootLines(prev => [...prev, line]);
       } else {
         clearInterval(timer);
         setTimeout(() => setBooted(true), 500);
