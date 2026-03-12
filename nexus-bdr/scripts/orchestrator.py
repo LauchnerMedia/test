@@ -110,25 +110,29 @@ def run_script(script_name: str, args: list) -> str:
             cmd,
             capture_output=True,
             text=True,
-            timeout=180,
+            timeout=300,
             env={**os.environ},
             cwd=str(SKILL_DIR),
         )
         output = result.stdout
-        if result.stderr and "Warning" not in result.stderr:
-            output += f"\nSTDERR: {result.stderr[-300:]}"
-        
+        if result.returncode != 0:
+            output += f"\n⚠️  Exit code: {result.returncode}"
+            if result.stderr:
+                output += f"\nSTDERR:\n{result.stderr[-500:]}"
+        elif result.stderr and "Warning" not in result.stderr and "Traceback" in result.stderr:
+            output += f"\nSTDERR: {result.stderr[-500:]}"
+
         # Print the sub-agent output
         for line in output.strip().split("\n"):
             print(f"  {line}")
         print(f"  {'─'*50}")
-        
+
         return output
 
     except subprocess.TimeoutExpired:
-        return "ERROR: Script timed out after 180 seconds."
+        return "ERROR: Script timed out after 300 seconds. Try running directly."
     except Exception as e:
-        return f"ERROR: {e}"
+        return f"ERROR running {script_name}: {e}"
 
 
 def get_latest_file(prefix: str, ext: str = ".json"):

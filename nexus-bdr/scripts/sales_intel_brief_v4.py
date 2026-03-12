@@ -274,7 +274,10 @@ def phase_1_recon(company, domain, state, existing):
         f'Research "{company}" ({domain or "find their website"}) {f"in {state}" if state else ""}.\n{ctx}\n\nSearch: 1) "{company}" overview 2) "{domain or company}" website 3) "{company} about team leadership" 4) "{company} products" 5) "{company} news 2025 2026"\n\nReturn JSON:\n{{"company_name":"{company}","domain":"","verified":true,"description":"3-4 detailed sentences","founded":"","headquarters":"","business_model":"","company_type":"","size_estimate":{{"employees":"","revenue_estimate":"","production_scale":"","evidence":""}},"markets":{{"segments":[],"states_active":[],"multi_state":false,"distribution_channels":[]}},"brand_positioning":"","key_products":[],"recent_news":[{{"headline":"","date":"","significance":""}}],"growth_signals":[],"social_media":{{"instagram":"","linkedin":""}},"terpene_relevance":"HIGH|MEDIUM|LOW","key_questions":[]}}',
         use_search=True
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 1 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 def phase_2_products(company, domain, p1):
     text, _, _ = call_anthropic(
@@ -282,7 +285,10 @@ def phase_2_products(company, domain, p1):
         f'Phase 1:\n{json.dumps(p1, indent=2, default=str)[:3000]}\n\nSearch products for "{company}". Check their website, reviews, COAs.\n\nReturn JSON:\n{{"product_catalog":[{{"name":"","type":"","terpene_relevance":"HIGH|MED|LOW"}}],"production_profile":{{"extraction_methods":[],"facility":"","capacity":""}},"terpene_analysis":{{"current_usage":"","terpene_type":"Botanical|CDT|Synthetic|Mix|Unknown","supplier_clues":[],"products_needing_terpenes":[],"volume_estimate_liters_monthly":0}},"consumer_feedback":{{"flavor_mentions":"","quality_issues":"","opportunities":""}},"product_matches":[{{"their_product":"","our_match":"TBF or DFT profile","rationale":""}}]}}',
         use_search=True
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 2 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 def phase_3_people(company, domain, p1, p2):
     text, _, _ = call_anthropic(
@@ -290,7 +296,10 @@ def phase_3_people(company, domain, p1, p2):
         f'Company: {p1.get("company_name", company)} | Domain: {p1.get("domain", domain)} | Type: {p1.get("company_type", "?")}\n\nSearch for leadership and purchasing decision makers.\n\nReturn JSON:\n{{"decision_makers":[{{"name":"","title":"","role_in_purchase":"","seniority":"","linkedin_url":"","email_guess":"","personalization_hooks":[]}}],"email_pattern":{{"pattern":"","confidence":"HIGH|MED|LOW"}},"org_dynamics":{{"decision_process":"","buying_committee":""}}}}',
         use_search=True
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 3 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 def phase_4_competitive(company, domain, p1, p2):
     clues = json.dumps(p2.get("terpene_analysis", {}).get("supplier_clues", []), default=str) if p2 else "[]"
@@ -300,7 +309,10 @@ def phase_4_competitive(company, domain, p1, p2):
         f'Target: {p1.get("company_name", company)} ({p1.get("domain", domain)})\nTerpene usage: {usage}\nSupplier clues: {clues}\n\nSearch for their terpene sourcing.\n\nReturn JSON:\n{{"current_supplier":{{"most_likely":"","evidence":[],"satisfaction":{{"positive":[],"negative":[]}},"switching_barriers":[],"switching_triggers":[]}},"displacement":{{"primary_angle":"","supporting_angles":[],"sample_strategy":"","risk_reversal":""}},"pricing":{{"their_likely_cost_per_liter":"","our_price":"","savings":"","value_justification":""}}}}',
         use_search=True
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 4 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 def phase_5_financial(company, p1, p2, p4):
     """Financial modeling — NO web search needed. Uses OpenRouter for cost savings."""
@@ -314,7 +326,10 @@ def phase_5_financial(company, p1, p2, p4):
         f'Build deal model for: {p1.get("company_name", company) if p1 else company}\nSize: {size}\nVolume: {vol} L/mo\nMatches: {matches}\nPricing: {pricing}\nGrowth: {json.dumps(p1.get("growth_signals", []) if p1 else [], default=str)}\n\nReturn JSON:\n{{"deal_model":{{"conservative":{{"desc":"","initial_liters":0,"initial_value":"$","monthly_value":"$","annual_value":"$"}},"likely":{{"desc":"","initial_liters":0,"initial_value":"$","monthly_value":"$","annual_value":"$"}},"upside":{{"desc":"","initial_liters":0,"initial_value":"$","monthly_value":"$","annual_value":"$"}},"weighted_annual":"$"}},"sales_cycle":{{"days_to_close":0,"stages":[],"accelerators":[]}},"expansion_path":{{"year_1":"","year_2":"","year_3":"","ltv_3yr":"$"}}}}',
         max_tokens=4096
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 5 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 def phase_6_synthesis(company, phases):
     """Strategy synthesis — Anthropic WITHOUT web search. Pure synthesis from data."""
@@ -324,7 +339,10 @@ def phase_6_synthesis(company, phases):
         max_tokens=6000,
         use_search=False  # KEY: No search needed for synthesis
     )
-    return parse_json(text) or {}
+    result = parse_json(text)
+    if not result:
+        print(f"    ⚠️  Phase 6 returned no parseable JSON ({len(text)} chars raw)")
+    return result or {}
 
 
 # ── MAIN PIPELINE ──

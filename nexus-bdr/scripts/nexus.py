@@ -101,7 +101,7 @@ def check_status():
     agents = [
         ("free_intel_sources.py", "Free Intel Harvester"),
         ("model_router.py", "Model Router"),
-        ("sales_intel_brief_v3.py", "Sales Intel Brief v3"),
+        ("sales_intel_brief_v4.py", "Sales Intel Brief v4"),
         ("heygen_scripts.py", "HeyGen Script Generator"),
         ("trigger_monitor.py", "Trigger Monitor"),
         ("social_intel_engine_v2.py", "Social Intel Engine v2"),
@@ -226,7 +226,7 @@ def show_pipeline():
     if unbriefed_hot:
         print(f"  1. Run briefs on {len(unbriefed_hot)} hot accounts without intel:")
         for n, d in unbriefed_hot[:5]:
-            print(f"     → python3 sales_intel_brief_v3.py --company \"{n}\" --domain \"{d['domain']}\"")
+            print(f"     → python3 sales_intel_brief_v4.py --company \"{n}\" --domain \"{d['domain']}\"")
 
     no_email_hot = [(n, d) for n, d in hot if d["emails_verified"] == 0]
     if no_email_hot:
@@ -332,18 +332,27 @@ def demo_mode():
         ("DAILY BRIEFING", "Synthesized action plan for the sales team", lambda: _demo_daily()),
     ]
 
+    interactive = sys.stdin.isatty()
+
     for i, (name, desc, fn) in enumerate(steps, 1):
         print(f"\n{'─'*60}")
         print(f"  STEP {i}/{len(steps)}: {name}")
         print(f"  {desc}")
         print(f"{'─'*60}")
-        input(f"\n  Press Enter to run step {i}...")
-        fn()
+        if interactive:
+            input(f"\n  Press Enter to run step {i}...")
+        else:
+            print(f"\n  Running step {i}...")
+            time.sleep(1)
+        try:
+            fn()
+        except Exception as e:
+            print(f"  ⚠️  Step error: {e}")
 
     print(f"\n{'═'*60}")
     print(f"  DEMO COMPLETE")
     print(f"  This system is ready to operate for TBF/DFT.")
-    print(f"  Monthly retainer: $2,995/mo — fractional BDR function.")
+    print(f"  Full AI-powered BDR function — 15 specialized agents.")
     print(f"{'═'*60}\n")
 
 
@@ -382,9 +391,9 @@ def _demo_brief():
         supplier = p4.get("current_supplier_assessment", p4.get("current_supplier", {}))
         if supplier:
             print(f"  Supplier: {supplier.get('most_likely_supplier', supplier.get('most_likely', '?'))}")
-        print(f"\n  To generate new: python3 sales_intel_brief_v3.py --company \"Company Name\"")
+        print(f"\n  To generate new: python3 sales_intel_brief_v4.py --company \"Company Name\"")
     else:
-        print(f"\n  No briefs found. Run: python3 sales_intel_brief_v3.py --company \"Mellow Fellow\"")
+        print(f"\n  No briefs found. Run: python3 sales_intel_brief_v4.py --company \"Mellow Fellow\"")
 
 
 def _demo_heygen():
@@ -451,21 +460,35 @@ Commands:
 
     elif cmd == "sweep":
         sys.path.insert(0, str(SCRIPT_DIR))
-        from free_intel_sources import run_all_scans
-        run_all_scans()
+        try:
+            from free_intel_sources import run_all_scans
+            run_all_scans()
+        except ImportError as e:
+            print(f"  ⚠️  Could not load free_intel_sources: {e}")
+        except Exception as e:
+            print(f"  ⚠️  Sweep error: {e}")
 
     elif cmd == "brief":
         if not args.target:
             print("  Usage: python3 nexus.py brief \"Company Name\" --domain example.com")
             return
-        # Import and run brief v3
         sys.path.insert(0, str(SCRIPT_DIR))
-        from sales_intel_brief_v3 import generate_brief
-        generate_brief(args.target, args.domain, args.state)
+        try:
+            from sales_intel_brief_v4 import generate_brief
+            generate_brief(args.target, args.domain, args.state)
+        except ImportError:
+            try:
+                from sales_intel_brief_v3 import generate_brief
+                print("  (Using v3 brief engine — v4 not available)")
+                generate_brief(args.target, args.domain, args.state)
+            except ImportError as e:
+                print(f"  ⚠️  Could not load brief engine: {e}")
+        except Exception as e:
+            print(f"  ⚠️  Brief error: {e}")
 
     elif cmd in ("brief-batch", "batch"):
         sys.path.insert(0, str(SCRIPT_DIR))
-        from sales_intel_brief_v3 import generate_brief
+        from sales_intel_brief_v4 import generate_brief
         # Find latest scored file
         scored = sorted(OUTPUT_DIR.glob("scored_apollo_*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
         if not scored:
@@ -508,8 +531,13 @@ Commands:
 
     elif cmd == "triggers":
         sys.path.insert(0, str(SCRIPT_DIR))
-        from trigger_monitor import scan_all
-        scan_all()
+        try:
+            from trigger_monitor import scan_all
+            scan_all()
+        except ImportError as e:
+            print(f"  ⚠️  Could not load trigger_monitor: {e}")
+        except Exception as e:
+            print(f"  ⚠️  Trigger scan error: {e}")
 
     elif cmd == "daily":
         daily_briefing()

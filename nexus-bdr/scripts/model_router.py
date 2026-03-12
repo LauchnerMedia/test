@@ -279,7 +279,9 @@ def routed_call(phase, system_prompt, user_prompt, max_tokens=None, tools=None, 
                 text, in_tok, out_tok = call_openrouter(model_config["model"], system_prompt, user_prompt, mt, tools=tools)
 
             duration = time.time() - start
-            cost = (in_tok * model_config["cost_per_1m_in"] + out_tok * model_config["cost_per_1m_in"] * 4) / 1_000_000
+            # Use actual output pricing: Anthropic=$15/1M out, others ~4x input
+            out_rate = 15.0 if model_config["provider"] == "anthropic" else model_config["cost_per_1m_in"] * 4
+            cost = (in_tok * model_config["cost_per_1m_in"] + out_tok * out_rate) / 1_000_000
             tracker.log(tier, model_config["model"], in_tok, out_tok, cost, duration, True)
 
             print(f"    ✓ {model_config['label']} | {in_tok+out_tok:,} tok | ${cost:.4f} | {duration:.0f}s")
@@ -316,9 +318,11 @@ def routed_call(phase, system_prompt, user_prompt, max_tokens=None, tools=None, 
                 except:
                     pass
 
-            print(f"    ❌ {model_config['label']}: {str(e)[:100]}")
+            print(f"    ❌ {model_config['label']}: {str(e)[:150]}")
+            print(f"    ❌ All retries and fallbacks exhausted for tier '{tier}'")
             return ""
 
+    print(f"    ❌ Route failed: no response after {retries+1} attempts")
     return ""
 
 

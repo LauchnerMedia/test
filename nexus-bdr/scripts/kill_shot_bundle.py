@@ -35,20 +35,26 @@ SCRIPT_DIR = Path(__file__).parent.resolve()
 OUTPUT_DIR = SCRIPT_DIR / "outputs" if (SCRIPT_DIR / "outputs").exists() else SCRIPT_DIR.parent / "outputs"
 DEMO_ROOT = SCRIPT_DIR / "demo_bundle"
 
-# ── Import War Room v2 ──
-# Try v2 first, fall back to v1
+# ── Import War Room ──
+sys.path.insert(0, str(SCRIPT_DIR))
+KnowledgeGraph = None
+WR_OUTPUT = OUTPUT_DIR
+WR_VERSION = None
 try:
-    sys.path.insert(0, str(SCRIPT_DIR))
-    from war_room_v2 import KnowledgeGraph, OUTPUT_DIR as WR_OUTPUT
-    WR_VERSION = "v2"
+    from war_room import KnowledgeGraph, OUTPUT_DIR as WR_OUTPUT
+    WR_VERSION = "v1"
 except ImportError:
+    pass
+
+if not KnowledgeGraph:
     try:
-        from war_room import KnowledgeGraph, OUTPUT_DIR as WR_OUTPUT
-        WR_VERSION = "v1"
+        from war_room_v2 import KnowledgeGraph, OUTPUT_DIR as WR_OUTPUT
+        WR_VERSION = "v2"
     except ImportError:
-        print("ERROR: Cannot import war_room_v2.py or war_room.py")
-        print("Make sure this script is in the same directory as war_room_v2.py")
-        sys.exit(1)
+        pass
+
+if not KnowledgeGraph:
+    print("  ⚠️  War Room not available — bundle will generate without knowledge graph integration")
 
 
 def find_company(graph, query):
@@ -372,29 +378,30 @@ Talk soon.
     # ══════════════════════════════════════════════
 
     # Log action in War Room with proper attribution
-    if WR_VERSION == "v2":
-        action_id = graph.create_action(
-            action_type="kill_shot_bundle",
-            target_entity=company_key,
-            action_data={
-                "company": company_name,
-                "bundle_path": str(bundle_dir),
-                "signals_used": len(trigger_signal_ids),
-                "angle": "supplier_displacement" if supplier else "value_proposition",
-            },
-            trigger_signal_ids=trigger_signal_ids,
-            top_features=[f"score:{score}", f"tier:{tier}", f"supplier:{supplier}" if supplier else "no_supplier"],
-        )
-    else:
-        # v1 fallback
-        action_id = graph.record_action(
-            "kill_shot_bundle",
-            company_key,
-            {"company": company_name, "signals_used": len(trigger_signal_ids)},
-            trigger_signal_ids=trigger_signal_ids if hasattr(graph, '_v2') else None,
-        )
-
-    graph.save()
+    action_id = f"ks_{stamp}"
+    try:
+        if hasattr(graph, 'create_action'):
+            action_id = graph.create_action(
+                action_type="kill_shot_bundle",
+                target_entity=company_key,
+                action_data={
+                    "company": company_name,
+                    "bundle_path": str(bundle_dir),
+                    "signals_used": len(trigger_signal_ids),
+                    "angle": "supplier_displacement" if supplier else "value_proposition",
+                },
+                trigger_signal_ids=trigger_signal_ids,
+                top_features=[f"score:{score}", f"tier:{tier}", f"supplier:{supplier}" if supplier else "no_supplier"],
+            )
+        elif hasattr(graph, 'record_action'):
+            action_id = graph.record_action(
+                "kill_shot_bundle",
+                company_key,
+                {"company": company_name, "signals_used": len(trigger_signal_ids)},
+            )
+        graph.save()
+    except Exception as e:
+        print(f"  ⚠️  War Room attribution error (bundle still created): {e}")
 
     attribution = {
         "run_id": stamp,
@@ -421,6 +428,11 @@ def main():
     print(f"  KILL SHOT BUNDLE GENERATOR")
     print(f"  War Room: {WR_VERSION}")
     print(f"{'═'*60}\n")
+
+    if not KnowledgeGraph:
+        print("  ⚠️  War Room not available. Cannot generate bundle without knowledge graph.")
+        print("  Make sure war_room.py is in the same directory.")
+        sys.exit(1)
 
     graph = KnowledgeGraph()
     company_key, company = find_company(graph, args.company)
