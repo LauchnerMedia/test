@@ -528,12 +528,14 @@ AGENT_REGISTRY = [
 # ═══════════════════════════════════════════════════════════
 
 def find_reef_jsx():
-    """Find reef_mode.jsx."""
+    """Find the dashboard JSX file (prefer unified nexus_dashboard)."""
     candidates = [
+        SCRIPT_DIR / "nexus_dashboard.jsx",
         SCRIPT_DIR / "reef_mode.jsx",
         SCRIPT_DIR / "reef_mode_v5.jsx",
         SCRIPT_DIR / "reef_mode_v4.jsx",
         SCRIPT_DIR / "reef_mode_v3.jsx",
+        SCRIPT_DIR.parent / "scripts" / "nexus_dashboard.jsx",
         SCRIPT_DIR.parent / "scripts" / "reef_mode.jsx",
     ]
     for c in candidates:
@@ -543,29 +545,37 @@ def find_reef_jsx():
 
 
 def get_reef_html(jsx_path):
-    """Serve reef_mode.jsx as a self-contained HTML page."""
+    """Serve JSX dashboard as a self-contained HTML page."""
     jsx_code = jsx_path.read_text(encoding="utf-8")
+
+    # Detect root component name
+    component_name = "ReefMode"  # default
+    for pattern in [r'function\s+(Nexus\w+)\s*\(', r'function\s+(ReefMode)\s*\(']:
+        m = re.search(pattern, jsx_code)
+        if m:
+            component_name = m.group(1)
+            break
 
     # Strip ES module syntax for browser Babel
     jsx_code = re.sub(r'^import\s+.*$', '', jsx_code, flags=re.MULTILINE)
     jsx_code = re.sub(r'^.*from\s+["\']react["\'].*$', '', jsx_code, flags=re.MULTILINE)
     jsx_code = re.sub(r'^.*from\s+["\']react-dom["\'].*$', '', jsx_code, flags=re.MULTILINE)
-    jsx_code = jsx_code.replace("export default function ReefMode", "function ReefMode")
+    jsx_code = re.sub(r'export\s+default\s+function\s+', 'function ', jsx_code)
     jsx_code = jsx_code.replace("export default ", "var _default_export = ")
 
     hooks_shim = "const { useState, useEffect, useCallback, useMemo, useRef, useReducer } = React;\n\n"
 
     parts = []
-    parts.append("""<!DOCTYPE html>
+    parts.append(f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS — Reef Mode</title>
+  <title>NEXUS — BDR Intelligence</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🔱</text></svg>">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0A0A0A; overflow-x: hidden; }
+    * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+    body {{ background: #06060d; overflow-x: hidden; }}
   </style>
 </head>
 <body>
@@ -574,21 +584,21 @@ def get_reef_html(jsx_path):
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
-    window.__REEF_API__ = {
+    window.__REEF_API__ = {{
       snapshot: "/api/reef/snapshot",
       run: "/api/reef/run",
       job: "/api/reef/job",
       outcome: "/api/reef/outcome",
-    };
+    }};
   </script>
   <script type="text/babel" data-presets="react">
 """)
     parts.append(hooks_shim)
     parts.append(jsx_code)
-    parts.append("""
+    parts.append(f"""
 
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(React.createElement(ReefMode));
+    root.render(React.createElement({component_name}));
   </script>
 </body>
 </html>""")
