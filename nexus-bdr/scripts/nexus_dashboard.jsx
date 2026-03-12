@@ -18,6 +18,64 @@ const C = {
 
 const FONT = { display: "'JetBrains Mono', monospace", body: "'Outfit', sans-serif" };
 
+// ─── BRAND DEFINITIONS ───
+const BRANDS = {
+  nexus: {
+    id: "nexus",
+    name: "Nexus Agriscience",
+    short: "NEXUS",
+    tagline: "Parent Orchestration · Cross-Brand Intelligence",
+    accent: "#C5A55A",
+    accentDim: "#9a7d3a",
+    accentGlow: "rgba(197,165,90,0.15)",
+    gradient: "linear-gradient(135deg, #C5A55A, #e8c55a)",
+    position: "Parent company overseeing all brands. Cross-brand learning, shared War Room intelligence, unified pipeline visibility.",
+    targets: "All brands' targets unified — coalition-level view",
+    icp: "Multi-brand operators, distributors, enterprise accounts",
+  },
+  tbf: {
+    id: "tbf",
+    name: "Terpene Belt Farms",
+    short: "TBF",
+    tagline: "Premium · Enterprise · Science-Led",
+    accent: "#C5A55A",
+    accentDim: "#9a7d3a",
+    accentGlow: "rgba(197,165,90,0.15)",
+    gradient: "linear-gradient(135deg, #C5A55A, #d4b86a)",
+    position: "Premium CDT supplier for enterprise and pharma-adjacent clients. White-glove service, full COA documentation, custom profiles.",
+    targets: "Enterprise manufacturers, pharma-adjacent, premium brands",
+    icp: "Companies spending $50K+/yr on terpenes, quality-first buyers, R&D teams",
+  },
+  dft: {
+    id: "dft",
+    name: "Duty Free Terpenes",
+    short: "DFT",
+    tagline: "Rebellious · Craft · Margin Maximizer",
+    accent: "#ff3333",
+    accentDim: "#cc2222",
+    accentGlow: "rgba(255,51,51,0.15)",
+    gradient: "linear-gradient(135deg, #ff3333, #ff6644)",
+    position: "Botanical terpene disruptor. 25-100x cheaper than CDT for non-vape applications. The margin play for smart operators.",
+    targets: "Mellow Fellow, Urb, Zombi, Pushin P's, craft brands",
+    icp: "Brands making edibles/beverages/topicals where CDT is overkill, cost-conscious operators",
+  },
+  neubag: {
+    id: "neubag",
+    name: "NEU Bag",
+    short: "NEU",
+    tagline: "Next-Gen · Innovation · Direct-to-Brand",
+    accent: "#7c4dff",
+    accentDim: "#5c3dcc",
+    accentGlow: "rgba(124,77,255,0.15)",
+    gradient: "linear-gradient(135deg, #7c4dff, #a07cff)",
+    position: "Innovation lab and emerging brand incubator. Novel formulations, nano-emulsions, next-gen delivery systems.",
+    targets: "Emerging brands, beverage companies, wellness startups",
+    icp: "New market entrants, innovation-forward brands, non-traditional cannabis/hemp companies",
+  },
+};
+
+const BRAND_ORDER = ["nexus", "tbf", "dft", "neubag"];
+
 // ─── DEMO DATA (fallback when API unavailable) ───
 const DEMO_COMPANIES = [
   { name:"Mellow Fellow", contacts:25, score:96, brand:"DFT", region:"FL", domain:"mellowfellow.fun", topPerson:"JJ Coombs (PharmD)", topTitle:"CEO", emails:3, products:"Vapes · Edibles · THCa · Beverages", intel:"#1 target. Pharmacist-founded. Self-extracts CDT at Arvida Labs. 40+ states. 3.0/5 Trustpilot = quality issues. Federal THC ban = existential threat. Good Fellows coalition (Urb, Zombi, Pushin P's) = 4 accounts.", briefStatus:"complete", tier:"hot", currentSupplier:"True Terpenes" },
@@ -107,6 +165,58 @@ const TICKER_ITEMS = [
   "HeyGen: 1 recording → 50+ personalized video outreach",
   "Signal learning: weights adjust based on real deal outcomes",
 ];
+
+// ─── BRAND SELECTOR ───
+
+function BrandSelector({ activeBrand, onChange }) {
+  const [open, setOpen] = useState(false);
+  const brand = BRANDS[activeBrand];
+  return (
+    <div style={{ position:"relative" }}>
+      <button onClick={() => setOpen(!open)} style={{
+        display:"flex", alignItems:"center", gap:8, padding:"5px 14px",
+        background:`${brand.accent}12`, border:`1px solid ${brand.accent}40`,
+        borderRadius:20, cursor:"pointer", transition:"all 0.2s",
+      }}>
+        <span style={{ width:8, height:8, borderRadius:"50%", background:brand.accent }} />
+        <span style={{ fontSize:12, fontWeight:700, color:brand.accent, fontFamily:FONT.display, letterSpacing:1 }}>{brand.short}</span>
+        <span style={{ fontSize:10, color:C.dim }}>{open ? "▲" : "▼"}</span>
+      </button>
+      {open && (
+        <div style={{
+          position:"absolute", top:"100%", left:0, marginTop:6, zIndex:100,
+          background:C.surface, border:`1px solid ${C.border}`, borderRadius:12,
+          padding:8, minWidth:280, boxShadow:"0 8px 32px rgba(0,0,0,0.6)",
+        }}>
+          {BRAND_ORDER.map(bId => {
+            const b = BRANDS[bId];
+            const isActive = bId === activeBrand;
+            return (
+              <button key={bId} onClick={() => { onChange(bId); setOpen(false); }} style={{
+                display:"flex", alignItems:"center", gap:12, width:"100%", padding:"10px 14px",
+                background: isActive ? `${b.accent}15` : "transparent",
+                border: isActive ? `1px solid ${b.accent}30` : "1px solid transparent",
+                borderRadius:8, cursor:"pointer", textAlign:"left", transition:"all 0.2s",
+              }}>
+                <span style={{ width:10, height:10, borderRadius:"50%", background:b.accent, flexShrink:0 }} />
+                <div>
+                  <div style={{ fontSize:13, fontWeight:700, color: isActive ? b.accent : C.text }}>{b.name}</div>
+                  <div style={{ fontSize:10, color:C.dim, marginTop:1 }}>{b.tagline}</div>
+                </div>
+                {isActive && <span style={{ marginLeft:"auto", fontSize:10, color:b.accent }}>●</span>}
+              </button>
+            );
+          })}
+          <div style={{ margin:"8px 14px 4px", padding:"8px 0", borderTop:`1px solid ${C.border}` }}>
+            <div style={{ fontSize:10, color:C.dim, lineHeight:1.5 }}>
+              Cross-brand intelligence is always active. Signals and learnings propagate across all brands automatically.
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ─── UTILITY COMPONENTS ───
 
@@ -566,10 +676,19 @@ const EXAMPLE_COMMANDS = [
   "What does our terpene research say about Myrcene for pain?",
 ];
 
-function CommandTab() {
+function CommandTab({ activeBrand }) {
+  const brand = BRANDS[activeBrand || "nexus"];
+  const brandIntro = activeBrand === "nexus"
+    ? "NEXUS Command Center online. I'm the orchestration layer — tell me what you need and I'll delegate to the right agents across all brands.\n\nI manage 15 specialized agents covering research, prospecting, competitive intel, outreach generation, and CRM sync. Cross-brand intelligence is always active.\n\nTry: \"Research [company]\" · \"Generate a Kill Shot Bundle for [target]\" · \"What signals have we picked up?\" · \"Draft outreach for [person]\""
+    : activeBrand === "tbf"
+    ? `${brand.name} Command Center online. Operating in premium/enterprise mode.\n\nAll 15 agents are contextualized for TBF's premium positioning — CDT supplier, full COA documentation, white-glove service.\n\nICP: Enterprise manufacturers, pharma-adjacent clients, $50K+/yr terpene buyers.\n\nTry: \"Research [enterprise target]\" · \"What's our premium pipeline?\" · \"Generate enterprise outreach for [company]\"`
+    : activeBrand === "dft"
+    ? `${brand.name} Command Center online. Operating in disruptor mode.\n\nAll 15 agents are contextualized for DFT's botanical terpene play — margin maximizer, craft brand focus, CDT displacement.\n\nICP: Brands making edibles/beverages/topicals, cost-conscious operators, Good Fellows coalition.\n\nTry: \"Mellow Fellow briefing\" · \"Coalition pipeline status\" · \"Competitor vulnerabilities\" · \"Generate Kill Shot Bundle\"`
+    : `${brand.name} Command Center online. Operating in innovation mode.\n\nAll 15 agents are contextualized for NEU's next-gen positioning — novel formulations, nano-emulsions, emerging brand partnerships.\n\nICP: Beverage companies, wellness startups, innovation-forward brands.\n\nTry: \"Research [emerging brand]\" · \"What nano-emulsion trends are we tracking?\" · \"Innovation pipeline status\"`;
+
   const [messages, setMessages] = useState([{
     role: "system",
-    content: "NEXUS Command Center online. I'm the orchestration layer — tell me what you need and I'll delegate to the right agents.\n\nI manage 15 specialized agents covering research, prospecting, competitive intel, outreach generation, and CRM sync.\n\nTry: \"Research [company]\" · \"Generate a Kill Shot Bundle for [target]\" · \"What signals have we picked up?\" · \"Draft outreach for [person]\"",
+    content: brandIntro,
     agents: [],
     timestamp: new Date().toISOString(),
   }]);
@@ -577,6 +696,16 @@ function CommandTab() {
   const [loading, setLoading] = useState(false);
   const [activeAgents, setActiveAgents] = useState([]);
   const messagesEndRef = useRef(null);
+
+  // Reset messages when brand changes
+  useEffect(() => {
+    setMessages([{
+      role: "system",
+      content: brandIntro,
+      agents: [],
+      timestamp: new Date().toISOString(),
+    }]);
+  }, [activeBrand]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -595,7 +724,7 @@ function CommandTab() {
       const resp = await fetch("/api/reef/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg.content, history: messages.slice(-10) }),
+        body: JSON.stringify({ message: userMsg.content, history: messages.slice(-10), brand: activeBrand || "nexus" }),
       });
       const data = await resp.json();
 
@@ -759,6 +888,7 @@ function NexusDashboard() {
   const [bootLines, setBootLines] = useState([]);
   const [activeTab, setActiveTab] = useState("COMMAND");
   const [snapshot, setSnapshot] = useState(null);
+  const [activeBrand, setActiveBrand] = useState("nexus");
 
   // Boot sequence
   useEffect(() => {
@@ -834,6 +964,8 @@ function NexusDashboard() {
   }
 
   const TABS = ["COMMAND", "DASHBOARD", "PIPELINE", "BUNDLES", "RESEARCH", "AGENTS"];
+  const brand = BRANDS[activeBrand];
+  const accent = brand.accent;
 
   // ── Main Interface ──
   return (
@@ -845,7 +977,7 @@ function NexusDashboard() {
         <div style={{ display:"flex", gap:48, whiteSpace:"nowrap", animation:"ticker 60s linear infinite", paddingLeft:"100%" }}>
           {[...TICKER_ITEMS, ...TICKER_ITEMS].map((text, i) => (
             <span key={i} style={{ fontSize:11, fontFamily:FONT.display }}>
-              <span style={{ color:C.gold, marginRight:6 }}>●</span>
+              <span style={{ color:accent, marginRight:6 }}>●</span>
               <span style={{ color:C.dim }}>{text}</span>
             </span>
           ))}
@@ -855,17 +987,18 @@ function NexusDashboard() {
       {/* Header */}
       <div style={{ padding:"10px 24px", display:"flex", justifyContent:"space-between", alignItems:"center", borderBottom:`1px solid ${C.border}`, background:C.void }}>
         <div style={{ display:"flex", alignItems:"center", gap:14 }}>
-          <span style={{ fontSize:22, fontWeight:800, background:`linear-gradient(135deg, ${C.gold}, #e8c55a)`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:4, fontFamily:FONT.display }}>NEXUS</span>
-          <span style={{ color:C.dim, fontSize:12, letterSpacing:1 }}>BDR Intelligence System v5.0</span>
+          <span style={{ fontSize:22, fontWeight:800, background:brand.gradient, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", letterSpacing:4, fontFamily:FONT.display }}>{brand.short}</span>
+          <BrandSelector activeBrand={activeBrand} onChange={setActiveBrand} />
           {snapshot && <Badge color={C.green}>LIVE</Badge>}
           {!snapshot && <Badge color={C.warm}>DEMO</Badge>}
+          {activeBrand !== "nexus" && <Badge color={accent}>{brand.tagline.split("·")[0].trim()}</Badge>}
         </div>
         <div style={{ display:"flex", gap:3 }}>
           {TABS.map(t => (
             <button key={t} onClick={() => setActiveTab(t)} style={{
-              background: activeTab === t ? C.gold : "transparent",
+              background: activeTab === t ? accent : "transparent",
               color: activeTab === t ? C.void : C.dim,
-              border:`1px solid ${activeTab === t ? C.gold : C.border}`,
+              border:`1px solid ${activeTab === t ? accent : C.border}`,
               padding:"7px 18px", borderRadius:5, fontSize:11, fontWeight:700,
               cursor:"pointer", fontFamily:FONT.display, letterSpacing:1, transition:"all 0.2s"
             }}>{t}</button>
@@ -873,9 +1006,24 @@ function NexusDashboard() {
         </div>
       </div>
 
+      {/* Brand Context Bar */}
+      {activeBrand !== "nexus" && (
+        <div style={{ padding:"6px 24px", background:`${accent}08`, borderBottom:`1px solid ${accent}20`, display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+            <span style={{ fontSize:11, color:accent, fontWeight:700, fontFamily:FONT.display }}>{brand.name}</span>
+            <span style={{ fontSize:11, color:C.dim }}>|</span>
+            <span style={{ fontSize:11, color:C.dim }}>{brand.position.substring(0, 100)}</span>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+            <span style={{ fontSize:10, color:C.dim, fontFamily:FONT.display }}>CROSS-BRAND INTEL</span>
+            <span style={{ width:6, height:6, borderRadius:"50%", background:C.green, display:"inline-block" }} />
+          </div>
+        </div>
+      )}
+
       {/* Content */}
-      <div style={{ height:"calc(100vh - 70px)", overflow:"hidden" }}>
-        {activeTab === "COMMAND" && <CommandTab />}
+      <div style={{ height: activeBrand !== "nexus" ? "calc(100vh - 100px)" : "calc(100vh - 70px)", overflow:"hidden" }}>
+        {activeTab === "COMMAND" && <CommandTab activeBrand={activeBrand} />}
         {activeTab === "DASHBOARD" && <DashboardTab companies={companies} pipeline={pipeline} competitors={competitors} snapshot={snapshot} />}
         {activeTab === "PIPELINE" && <PipelineTab companies={companies} />}
         {activeTab === "BUNDLES" && <BundlesTab />}
@@ -888,7 +1036,7 @@ function NexusDashboard() {
         ::-webkit-scrollbar { width:6px }
         ::-webkit-scrollbar-track { background:${C.void} }
         ::-webkit-scrollbar-thumb { background:${C.border}; border-radius:3px }
-        ::-webkit-scrollbar-thumb:hover { background:${C.gold}40 }
+        ::-webkit-scrollbar-thumb:hover { background:${accent}40 }
         * { margin:0; padding:0; box-sizing:border-box; }
       `}</style>
     </div>

@@ -535,7 +535,30 @@ AGENT_REGISTRY = [
 ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
-NEXUS_SYSTEM_PROMPT = """You are NEXUS, an AI-powered BDR (Business Development Representative) orchestration system for Nexus Agriscience's terpene brands: TBF (Terpene Belt Farms — premium/enterprise) and DFT (Duty Free Terpenes — rebellious/craft).
+BRAND_CONTEXT = {
+    "nexus": {
+        "name": "Nexus Agriscience",
+        "role": "You are operating as the PARENT ORCHESTRATION layer. You have visibility across ALL brands (TBF, DFT, NEU Bag). Cross-brand learnings are active — signals from one brand inform strategies for others. When discussing targets, note which brand is the best fit.",
+        "icp": "All brands' targets unified — coalition-level view, multi-brand operators, distributors",
+    },
+    "tbf": {
+        "name": "Terpene Belt Farms",
+        "role": "You are operating in TBF (Terpene Belt Farms) mode — PREMIUM / ENTERPRISE positioning. Focus on CDT quality, full COA documentation, white-glove service, pharma-grade standards. Price is NOT the lead — quality, consistency, and science are. Target enterprise buyers spending $50K+/yr.",
+        "icp": "Enterprise manufacturers, pharma-adjacent companies, premium brands, R&D teams needing custom profiles",
+    },
+    "dft": {
+        "name": "Duty Free Terpenes",
+        "role": "You are operating in DFT (Duty Free Terpenes) mode — DISRUPTOR / MARGIN MAXIMIZER positioning. Lead with the economics: botanical terpenes at $45-80/L vs CDT at $5,000-8,000/L. For non-vape products (edibles, beverages, topicals), consumers cannot distinguish CDT from botanical. The pitch is 90%+ margin reclaim.",
+        "icp": "Craft brands, edible/beverage/topical manufacturers, cost-conscious operators, Good Fellows coalition targets",
+    },
+    "neubag": {
+        "name": "NEU Bag",
+        "role": "You are operating in NEU Bag mode — INNOVATION / NEXT-GEN positioning. Focus on novel formulations, nano-emulsions, next-gen delivery systems, beverage-ready terpene solutions. Target emerging brands and non-traditional cannabis/hemp companies entering the space.",
+        "icp": "Emerging brands, beverage companies, wellness startups, innovation-forward operators, non-traditional market entrants",
+    },
+}
+
+NEXUS_SYSTEM_PROMPT = """You are NEXUS, an AI-powered BDR (Business Development Representative) orchestration system for Nexus Agriscience's terpene brands: TBF (Terpene Belt Farms — premium/enterprise), DFT (Duty Free Terpenes — rebellious/craft), and NEU Bag (innovation/next-gen).
 
 You manage 15 specialized agents:
 - Sales Intel Brief v4: 6-phase AI research pipeline for target companies
@@ -574,7 +597,7 @@ IMPORTANT: In your response, include a JSON block at the very end with this form
 ```"""
 
 
-def _call_claude_chat(message, history=None):
+def _call_claude_chat(message, history=None, brand="nexus"):
     """Call Claude API for command center chat."""
     if not ANTHROPIC_KEY and not OPENROUTER_KEY:
         return None, []
@@ -588,7 +611,10 @@ def _call_claude_chat(message, history=None):
 
     # Build context from current data
     snapshot = build_snapshot()
-    context = f"\n\nCURRENT SYSTEM STATE:\n"
+    brand_ctx = BRAND_CONTEXT.get(brand, BRAND_CONTEXT["nexus"])
+    context = f"\n\nACTIVE BRAND: {brand_ctx['name']}\n{brand_ctx['role']}\nICP: {brand_ctx['icp']}\n"
+    context += f"\nCROSS-BRAND INTELLIGENCE: Always active. Insights from any brand's agents inform all other brands. When relevant, mention cross-brand opportunities.\n"
+    context += f"\nCURRENT SYSTEM STATE:\n"
     context += f"- Entities tracked: {snapshot['systemStatus']['entitiesTracked']}\n"
     context += f"- Signals today: {snapshot['systemStatus']['signalsToday']}\n"
     context += f"- Competitors tracked: {snapshot['systemStatus']['competitorsTracked']}\n"
@@ -671,23 +697,25 @@ def _parse_agents_from_response(text):
     return agents
 
 
-def handle_chat(message, history=None):
+def handle_chat(message, history=None, brand="nexus"):
     """Process a chat message through the command center."""
-    emit_event("ChatMessage", {"message": message[:200]})
+    emit_event("ChatMessage", {"message": message[:200], "brand": brand})
 
     # Try Claude API first
-    response, agents = _call_claude_chat(message, history)
+    response, agents = _call_claude_chat(message, history, brand)
     if response:
         return {"response": response, "agents_activated": agents}
 
     # Fallback: intelligent keyword routing without API
-    return _fallback_chat(message)
+    return _fallback_chat(message, brand)
 
 
-def _fallback_chat(message):
+def _fallback_chat(message, brand="nexus"):
     """Keyword-based fallback when no API keys available."""
     msg = message.lower()
     snapshot = build_snapshot()
+    brand_ctx = BRAND_CONTEXT.get(brand, BRAND_CONTEXT["nexus"])
+    brand_prefix = f"**[{brand_ctx['name']}]** " if brand != "nexus" else ""
 
     if any(w in msg for w in ["pipeline", "status", "how many", "accounts"]):
         s = snapshot["systemStatus"]
@@ -1072,12 +1100,13 @@ class PlatformHandler(BaseHTTPRequestHandler):
         elif path == "/api/reef/chat":
             message = body.get("message", "")
             history = body.get("history", [])
+            brand = body.get("brand", "nexus")
             if not message:
                 self._json({"error": "No message provided"}, 400)
                 return
-            print(f"  💬 Chat: {message[:80]}...")
+            print(f"  💬 [{brand.upper()}] Chat: {message[:80]}...")
             try:
-                result = handle_chat(message, history)
+                result = handle_chat(message, history, brand)
                 self._json(result)
             except Exception as e:
                 print(f"  ⚠️ Chat error: {e}")
