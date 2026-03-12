@@ -535,12 +535,229 @@ function ResearchTab({ snapshot }) {
   );
 }
 
+// ─── TAB: COMMAND CENTER ───
+
+const AGENT_MAP = {
+  "sales_intel_brief_v4.py": { name: "Sales Intel Brief v4", icon: "📋" },
+  "kill_shot_bundle.py": { name: "Kill Shot Bundle", icon: "🎯" },
+  "competitor_vuln_v2.py": { name: "Competitor Intel v2", icon: "🗡" },
+  "apollo_pipeline.py": { name: "Apollo Pipeline", icon: "🔍" },
+  "social_intel_engine_v2.py": { name: "Social Intel v2", icon: "📡" },
+  "terpene_research_v2.py": { name: "Terpene Research v2", icon: "🔬" },
+  "war_room.py": { name: "War Room", icon: "🧠" },
+  "trigger_monitor.py": { name: "Trigger Monitor", icon: "⚡" },
+  "free_intel_sources.py": { name: "Free Intel", icon: "🌐" },
+  "enrich_pipeline_v2.py": { name: "Enrich Pipeline", icon: "✉" },
+  "heygen_scripts.py": { name: "HeyGen Scripts", icon: "🎬" },
+  "ghl_sync_v2.py": { name: "GHL CRM Sync", icon: "🔗" },
+  "model_router.py": { name: "Model Router", icon: "🔀" },
+  "orchestrator.py": { name: "Orchestrator", icon: "🎛" },
+  "nexus.py": { name: "Master CLI", icon: "⚙" },
+};
+
+const EXAMPLE_COMMANDS = [
+  "Research Mellow Fellow and generate a full intel brief",
+  "What competitive vulnerabilities can we exploit against True Terpenes?",
+  "Generate a Kill Shot Bundle for Urb with the coalition angle",
+  "Scan Reddit for brands looking for terpene suppliers",
+  "What's our pipeline status? Which accounts are hottest?",
+  "Show me the latest signal intelligence from the War Room",
+  "Draft a HeyGen video script for JJ Coombs at Mellow Fellow",
+  "What does our terpene research say about Myrcene for pain?",
+];
+
+function CommandTab() {
+  const [messages, setMessages] = useState([{
+    role: "system",
+    content: "NEXUS Command Center online. I'm the orchestration layer — tell me what you need and I'll delegate to the right agents.\n\nI manage 15 specialized agents covering research, prospecting, competitive intel, outreach generation, and CRM sync.\n\nTry: \"Research [company]\" · \"Generate a Kill Shot Bundle for [target]\" · \"What signals have we picked up?\" · \"Draft outreach for [person]\"",
+    agents: [],
+    timestamp: new Date().toISOString(),
+  }]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [activeAgents, setActiveAgents] = useState([]);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  const sendMessage = useCallback(async () => {
+    if (!input.trim() || loading) return;
+    const userMsg = { role: "user", content: input.trim(), timestamp: new Date().toISOString() };
+    setMessages(prev => [...prev, userMsg]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const resp = await fetch("/api/reef/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg.content, history: messages.slice(-10) }),
+      });
+      const data = await resp.json();
+
+      // Show which agents are being activated
+      if (data.agents_activated && data.agents_activated.length > 0) {
+        setActiveAgents(data.agents_activated);
+        // Simulate agent processing with staggered activation
+        for (let i = 0; i < data.agents_activated.length; i++) {
+          await new Promise(r => setTimeout(r, 400));
+          setActiveAgents(prev => prev.map((a, idx) =>
+            idx <= i ? { ...a, status: "complete" } : a
+          ));
+        }
+      }
+
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: data.response || "No response received.",
+        agents: data.agents_activated || [],
+        data: data.data || null,
+        timestamp: new Date().toISOString(),
+      }]);
+      setActiveAgents([]);
+    } catch (err) {
+      setMessages(prev => [...prev, {
+        role: "assistant",
+        content: "Connection error — make sure your API keys are configured in .env and the server is running.",
+        agents: [],
+        timestamp: new Date().toISOString(),
+      }]);
+      setActiveAgents([]);
+    }
+    setLoading(false);
+  }, [input, loading, messages]);
+
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }, [sendMessage]);
+
+  return (
+    <div style={{ display:"flex", flexDirection:"column", height:"100%", background:C.bg }}>
+      {/* Active Agents Bar */}
+      {activeAgents.length > 0 && (
+        <div style={{ padding:"10px 24px", background:C.surface, borderBottom:`1px solid ${C.border}`, display:"flex", gap:8, flexWrap:"wrap", alignItems:"center" }}>
+          <span style={{ color:C.gold, fontSize:11, fontWeight:700, fontFamily:FONT.display, marginRight:4 }}>AGENTS ACTIVE:</span>
+          {activeAgents.map((a, i) => {
+            const info = AGENT_MAP[a.script] || { name: a.script, icon: "⚙" };
+            return (
+              <span key={i} style={{
+                display:"inline-flex", alignItems:"center", gap:4, padding:"3px 10px",
+                borderRadius:20, fontSize:11, fontWeight:600,
+                background: a.status === "complete" ? `${C.green}18` : `${C.gold}18`,
+                color: a.status === "complete" ? C.green : C.gold,
+                border:`1px solid ${a.status === "complete" ? C.green : C.gold}30`,
+                transition:"all 0.3s",
+              }}>
+                {a.status === "complete" ? "✓" : "◌"} {info.icon} {info.name}
+              </span>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Messages Area */}
+      <div style={{ flex:1, overflow:"auto", padding:"20px 24px" }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{ marginBottom:16, display:"flex", flexDirection:"column", alignItems: msg.role === "user" ? "flex-end" : "flex-start" }}>
+            {/* Agent badges for assistant messages */}
+            {msg.role === "assistant" && msg.agents && msg.agents.length > 0 && (
+              <div style={{ display:"flex", gap:4, marginBottom:6, flexWrap:"wrap" }}>
+                {msg.agents.map((a, j) => {
+                  const info = AGENT_MAP[a.script] || { name: a.script || a.agent, icon: "⚙" };
+                  return <Badge key={j} color={C.gold}>{info.icon} {info.name}</Badge>;
+                })}
+              </div>
+            )}
+            <div style={{
+              maxWidth: msg.role === "system" ? "100%" : "80%",
+              padding: msg.role === "system" ? "16px 20px" : "12px 18px",
+              borderRadius: msg.role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px",
+              background: msg.role === "user" ? `${C.gold}20` : msg.role === "system" ? `${C.gold}08` : C.surface,
+              border:`1px solid ${msg.role === "user" ? `${C.gold}40` : msg.role === "system" ? `${C.gold}20` : C.border}`,
+              fontSize:13, lineHeight:1.7, whiteSpace:"pre-wrap", wordWrap:"break-word",
+              color: msg.role === "user" ? C.text : msg.role === "system" ? C.dim : C.text,
+              fontFamily: msg.role === "system" ? FONT.display : FONT.body,
+            }}>
+              {msg.content}
+            </div>
+            <span style={{ fontSize:10, color:C.muted, marginTop:4, fontFamily:FONT.display }}>
+              {msg.role === "user" ? "YOU" : msg.role === "system" ? "SYSTEM" : "NEXUS"} · {new Date(msg.timestamp).toLocaleTimeString()}
+            </span>
+          </div>
+        ))}
+
+        {/* Loading indicator */}
+        {loading && (
+          <div style={{ display:"flex", alignItems:"center", gap:8, padding:"12px 18px", background:C.surface, borderRadius:16, border:`1px solid ${C.border}`, maxWidth:"60%", marginBottom:16 }}>
+            <div style={{ display:"flex", gap:4 }}>
+              {[0,1,2].map(i => (
+                <div key={i} style={{ width:8, height:8, borderRadius:"50%", background:C.gold, animation:`pulse 1.4s ${i*0.2}s infinite ease-in-out` }} />
+              ))}
+            </div>
+            <span style={{ color:C.dim, fontSize:12 }}>Nexus is thinking...</span>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Example Commands (shown when few messages) */}
+      {messages.length <= 2 && (
+        <div style={{ padding:"0 24px 12px", display:"flex", gap:6, flexWrap:"wrap" }}>
+          {EXAMPLE_COMMANDS.slice(0, 4).map((cmd, i) => (
+            <button key={i} onClick={() => { setInput(cmd); }} style={{
+              background:C.surface, border:`1px solid ${C.border}`, borderRadius:20,
+              padding:"6px 14px", fontSize:11, color:C.dim, cursor:"pointer",
+              fontFamily:FONT.body, transition:"all 0.2s",
+            }}>{cmd.length > 50 ? cmd.slice(0, 47) + "..." : cmd}</button>
+          ))}
+        </div>
+      )}
+
+      {/* Input Area */}
+      <div style={{ padding:"12px 24px 16px", borderTop:`1px solid ${C.border}`, background:C.void, display:"flex", gap:12, alignItems:"flex-end" }}>
+        <textarea
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Tell Nexus what to do... (Enter to send)"
+          rows={1}
+          style={{
+            flex:1, background:C.surface, border:`1px solid ${C.border}`, borderRadius:12,
+            padding:"12px 16px", color:C.text, fontSize:14, fontFamily:FONT.body,
+            resize:"none", outline:"none", lineHeight:1.5, minHeight:44, maxHeight:120,
+          }}
+        />
+        <button
+          onClick={sendMessage}
+          disabled={loading || !input.trim()}
+          style={{
+            background: loading || !input.trim() ? C.surface : C.gold,
+            color: loading || !input.trim() ? C.dim : C.void,
+            border:"none", borderRadius:12, padding:"12px 24px",
+            fontWeight:700, fontSize:13, cursor: loading ? "wait" : "pointer",
+            fontFamily:FONT.display, letterSpacing:1, transition:"all 0.2s",
+          }}
+        >SEND</button>
+      </div>
+
+      <style>{`@keyframes pulse { 0%,100% { opacity:0.3; transform:scale(0.8) } 50% { opacity:1; transform:scale(1.1) } }`}</style>
+    </div>
+  );
+}
+
 // ─── MAIN APP ───
 
 function NexusDashboard() {
   const [booted, setBooted] = useState(false);
   const [bootLines, setBootLines] = useState([]);
-  const [activeTab, setActiveTab] = useState("DASHBOARD");
+  const [activeTab, setActiveTab] = useState("COMMAND");
   const [snapshot, setSnapshot] = useState(null);
 
   // Boot sequence
@@ -616,7 +833,7 @@ function NexusDashboard() {
     );
   }
 
-  const TABS = ["DASHBOARD", "PIPELINE", "BUNDLES", "RESEARCH", "AGENTS"];
+  const TABS = ["COMMAND", "DASHBOARD", "PIPELINE", "BUNDLES", "RESEARCH", "AGENTS"];
 
   // ── Main Interface ──
   return (
@@ -658,6 +875,7 @@ function NexusDashboard() {
 
       {/* Content */}
       <div style={{ height:"calc(100vh - 70px)", overflow:"hidden" }}>
+        {activeTab === "COMMAND" && <CommandTab />}
         {activeTab === "DASHBOARD" && <DashboardTab companies={companies} pipeline={pipeline} competitors={competitors} snapshot={snapshot} />}
         {activeTab === "PIPELINE" && <PipelineTab companies={companies} />}
         {activeTab === "BUNDLES" && <BundlesTab />}

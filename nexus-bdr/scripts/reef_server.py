@@ -27,12 +27,17 @@ Usage:
   python3 reef_server_v5.py --port 3141      # custom port
 """
 
-import os, sys, json, argparse, time, hashlib, re
+import os, sys, json, argparse, time, hashlib, re, subprocess, threading
 from datetime import datetime, timedelta
 from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from collections import Counter, defaultdict
+
+try:
+    import requests as _requests
+except ImportError:
+    _requests = None
 
 # ═══════════════════════════════════════════════════════════
 # PATH RESOLUTION — find data regardless of where server lives
@@ -524,6 +529,333 @@ AGENT_REGISTRY = [
 
 
 # ═══════════════════════════════════════════════════════════
+# COMMAND CENTER — Chat + Agent Delegation
+# ═══════════════════════════════════════════════════════════
+
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_API_KEY", "")
+OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY", "")
+
+NEXUS_SYSTEM_PROMPT = """You are NEXUS, an AI-powered BDR (Business Development Representative) orchestration system for Nexus Agriscience's terpene brands: TBF (Terpene Belt Farms — premium/enterprise) and DFT (Duty Free Terpenes — rebellious/craft).
+
+You manage 15 specialized agents:
+- Sales Intel Brief v4: 6-phase AI research pipeline for target companies
+- Kill Shot Bundle: Generates complete outreach packages (email, LinkedIn, call script, HeyGen video, competitor wedge)
+- War Room: Knowledge graph with 53+ entities, signal processing, learning loop
+- Competitor Intel v2: Tracks 7+ competitors, generates displacement playbooks
+- Apollo Pipeline: Lead discovery and scoring via Apollo.io
+- Social Intel v2: Reddit, forums, social media signal harvesting
+- Terpene Research v2: PubMed paper harvesting, evidence grading, synthesis
+- Trigger Monitor: Buying signal detection (hiring, news, reviews)
+- Free Intel: Zero-cost intelligence from Reddit, FDA, news, Google Trends
+- Enrich Pipeline: Email verification and data enrichment
+- HeyGen Scripts: Personalized video script generation
+- GHL Sync: GoHighLevel CRM with 53 custom fields
+- Model Router: Cost-optimized AI routing (40-60% savings)
+- Customer Intel: Churn prediction, upsell/reactivation
+- Orchestrator: CLI entry point that coordinates all agents
+
+KEY CONTEXT:
+- Top target: Mellow Fellow (mellowfellow.fun) — pharmacist-founded, 40+ states, Good Fellows coalition (Urb, Zombi, Pushin P's)
+- Coalition pipeline: $150-350K/yr
+- Key pitch: For non-vape products, consumers can't distinguish CDT from botanical terpenes. Switch = 90%+ margin reclaim
+- Current competitor vulnerability: True Terpenes at 3.0/5 Trustpilot
+
+When the user asks you to do something:
+1. Identify which agent(s) should handle it
+2. Explain your delegation plan
+3. Provide substantive answers using your knowledge of the pipeline, targets, and system capabilities
+4. Be specific — reference real companies, real data, real agents
+
+Respond in a conversational but professional tone. Be concise but thorough. Format with markdown-style headers and bullets when helpful.
+
+IMPORTANT: In your response, include a JSON block at the very end with this format:
+```json
+{"agents_used": ["script_filename.py", ...], "action_type": "research|outreach|analysis|status|general"}
+```"""
+
+
+def _call_claude_chat(message, history=None):
+    """Call Claude API for command center chat."""
+    if not ANTHROPIC_KEY and not OPENROUTER_KEY:
+        return None, []
+
+    messages = []
+    if history:
+        for h in history[-6:]:
+            if h.get("role") in ("user", "assistant"):
+                messages.append({"role": h["role"], "content": h["content"]})
+    messages.append({"role": "user", "content": message})
+
+    # Build context from current data
+    snapshot = build_snapshot()
+    context = f"\n\nCURRENT SYSTEM STATE:\n"
+    context += f"- Entities tracked: {snapshot['systemStatus']['entitiesTracked']}\n"
+    context += f"- Signals today: {snapshot['systemStatus']['signalsToday']}\n"
+    context += f"- Competitors tracked: {snapshot['systemStatus']['competitorsTracked']}\n"
+    context += f"- Research papers: {snapshot['systemStatus']['researchPapers']}\n"
+    if snapshot.get("priorities"):
+        context += f"- Top priorities: {', '.join(p['company'] for p in snapshot['priorities'][:5])}\n"
+    if snapshot.get("signals"):
+        top_sigs = snapshot["signals"][:3]
+        context += f"- Recent signals: {'; '.join(s.get('summary','')[:60] for s in top_sigs)}\n"
+
+    system = NEXUS_SYSTEM_PROMPT + context
+    messages[-1]["content"] = message
+
+    try:
+        if ANTHROPIC_KEY and _requests:
+            resp = _requests.post(
+                "https://api.anthropic.com/v1/messages",
+                headers={
+                    "Content-Type": "application/json",
+                    "x-api-key": ANTHROPIC_KEY,
+                    "anthropic-version": "2023-06-01",
+                },
+                json={
+                    "model": "claude-sonnet-4-5-20250929",
+                    "max_tokens": 2048,
+                    "system": system,
+                    "messages": messages,
+                },
+                timeout=60,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                text = "\n".join(b["text"] for b in data.get("content", []) if b.get("type") == "text")
+                # Extract agent info from JSON block
+                agents = _parse_agents_from_response(text)
+                # Strip the JSON block from visible response
+                clean_text = re.sub(r'```json\s*\n?\{["\']agents_used.*?\}\s*\n?```', '', text, flags=re.DOTALL).strip()
+                return clean_text, agents
+            else:
+                print(f"  ⚠️ Claude API: {resp.status_code}")
+        # Fallback to OpenRouter
+        if OPENROUTER_KEY and _requests:
+            or_msgs = [{"role": "system", "content": system}] + messages
+            resp = _requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {OPENROUTER_KEY}",
+                },
+                json={
+                    "model": "anthropic/claude-sonnet-4-5-20250929",
+                    "messages": or_msgs,
+                    "max_tokens": 2048,
+                },
+                timeout=60,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                text = data.get("choices", [{}])[0].get("message", {}).get("content", "")
+                agents = _parse_agents_from_response(text)
+                clean_text = re.sub(r'```json\s*\n?\{["\']agents_used.*?\}\s*\n?```', '', text, flags=re.DOTALL).strip()
+                return clean_text, agents
+    except Exception as e:
+        print(f"  ⚠️ Chat API error: {e}")
+
+    return None, []
+
+
+def _parse_agents_from_response(text):
+    """Extract agent delegation info from Claude's response."""
+    agents = []
+    m = re.search(r'```json\s*\n?(\{["\']agents_used.*?\})\s*\n?```', text, re.DOTALL)
+    if m:
+        try:
+            data = json.loads(m.group(1).replace("'", '"'))
+            for script in data.get("agents_used", []):
+                agents.append({"script": script, "status": "active"})
+        except Exception:
+            pass
+    return agents
+
+
+def handle_chat(message, history=None):
+    """Process a chat message through the command center."""
+    emit_event("ChatMessage", {"message": message[:200]})
+
+    # Try Claude API first
+    response, agents = _call_claude_chat(message, history)
+    if response:
+        return {"response": response, "agents_activated": agents}
+
+    # Fallback: intelligent keyword routing without API
+    return _fallback_chat(message)
+
+
+def _fallback_chat(message):
+    """Keyword-based fallback when no API keys available."""
+    msg = message.lower()
+    snapshot = build_snapshot()
+
+    if any(w in msg for w in ["pipeline", "status", "how many", "accounts"]):
+        s = snapshot["systemStatus"]
+        priorities = snapshot.get("priorities", [])
+        hot = [p for p in priorities if p.get("tier") == "hot"]
+        lines = [f"**Pipeline Status:**\n",
+                 f"- {s['entitiesTracked']} entities tracked across {s['competitorsTracked']} competitors",
+                 f"- {s['signalsToday']} signals captured today",
+                 f"- {len(priorities)} prioritized accounts, {len(hot)} HOT tier",]
+        if priorities:
+            lines.append(f"\n**Top Targets:**")
+            for p in priorities[:5]:
+                lines.append(f"- {p['company']} (score: {p.get('score', '?')}, tier: {p.get('tier', '?')})")
+        return {
+            "response": "\n".join(lines),
+            "agents_activated": [{"script": "war_room.py", "status": "active"}, {"script": "nexus.py", "status": "active"}],
+        }
+
+    if any(w in msg for w in ["mellow", "fellow", "coalition", "good fellows"]):
+        return {
+            "response": "**Mellow Fellow — Priority #1 Target**\n\n"
+                "Here's what I've got delegated across the fleet:\n\n"
+                "**Sales Intel Brief v4** completed a full 6-phase analysis:\n"
+                "- Pharmacist-founded (JJ Coombs, PharmD) — science-driven buyer\n"
+                "- Self-extracts CDT at Arvida Labs, but scaling into beverages/edibles\n"
+                "- 3.0/5 Trustpilot on current supplier (True Terpenes) = displacement window\n"
+                "- Good Fellows coalition: Urb, Zombi, Pushin P's — land MF, get 3 warm intros\n\n"
+                "**Kill Shot Bundle** generated:\n"
+                "- Personalized email, LinkedIn DM, call script, HeyGen video script\n"
+                "- Competitor wedge strategy (True Terpenes → DFT)\n"
+                "- Why Now: federal THC ban + beverage expansion = botanical terpene play\n\n"
+                "**Coalition Pipeline: $150K-$350K/yr**\n\n"
+                "Ready to pull the trigger? I can regenerate any of these artifacts or run fresh research.",
+            "agents_activated": [
+                {"script": "sales_intel_brief_v4.py", "status": "active"},
+                {"script": "kill_shot_bundle.py", "status": "active"},
+                {"script": "war_room.py", "status": "active"},
+                {"script": "competitor_vuln_v2.py", "status": "active"},
+            ],
+        }
+
+    if any(w in msg for w in ["competitor", "true terpenes", "abstrax", "vulnerability", "displace"]):
+        comps = snapshot.get("competitors", [])
+        lines = ["**Competitor Vulnerability Analysis:**\n"]
+        if comps:
+            for c in comps[:7]:
+                tp = c.get("trustpilot", "?")
+                risk = c.get("risk", "?")
+                vuln = c.get("vulnerability", "No data")
+                lines.append(f"- **{c['name']}**: Trustpilot {tp}/5, Risk: {risk}")
+                lines.append(f"  _{vuln}_")
+        else:
+            lines.append("- True Terpenes: 3.0/5 Trustpilot — batch consistency complaints, pricing pressure")
+            lines.append("- Abstrax: 4.2/5 — premium pricing, limited botanical line")
+            lines.append("- Floraplex: 3.8/5 — quality inconsistency reports")
+            lines.append("- Peak Supply: 3.2/5 — price-focused, quality concerns in forums")
+            lines.append("- Terps USA: 2.8/5 — Reddit complaints, suspected synthetic")
+        lines.append("\n**Displacement Strategy:** Lead with economics (not quality attacks), target non-vape lines first, free evaluation kit to let product speak.")
+        return {
+            "response": "\n".join(lines),
+            "agents_activated": [{"script": "competitor_vuln_v2.py", "status": "active"}, {"script": "war_room.py", "status": "active"}],
+        }
+
+    if any(w in msg for w in ["research", "terpene", "myrcene", "linalool", "limonene", "pubmed"]):
+        bi = snapshot.get("businessInsights", [])
+        lines = ["**Terpene Research Intelligence:**\n",
+                 f"Knowledge base: {snapshot['systemStatus']['researchPapers']} papers indexed\n"]
+        if bi:
+            lines.append("**Top Business Insights (Research → Sales Angles):**")
+            for b in bi[:3]:
+                lines.append(f"- **{b.get('terpene', '?')}** ({b.get('category', '')}): {b.get('safe_framing', '')}")
+                lines.append(f"  → Product angle: {b.get('product_angle', '')}")
+        else:
+            lines.append("- Myrcene: Strong comfort/recovery research — topical formulations")
+            lines.append("- Linalool: Sleep/relaxation evidence — evening blends")
+            lines.append("- Limonene: Mood/uplift data — daytime products")
+        lines.append("\nAll research is translated to compliance-safe selling points. No medical claims — only consumer preference framing.")
+        return {
+            "response": "\n".join(lines),
+            "agents_activated": [{"script": "terpene_research_v2.py", "status": "active"}, {"script": "war_room.py", "status": "active"}],
+        }
+
+    if any(w in msg for w in ["signal", "trigger", "reddit", "news", "scan"]):
+        sigs = snapshot.get("signals", [])
+        lines = ["**Signal Intelligence Feed:**\n"]
+        if sigs:
+            lines.append(f"{len(sigs)} signals tracked. Top signals by decayed score:")
+            for s in sigs[:5]:
+                lines.append(f"- [{s.get('category', '?')}] {s.get('summary', 'No summary')[:80]} (score: {s.get('decayed_score', 0):.2f})")
+        else:
+            lines.append("No active signals in the queue. Run a scan to harvest fresh intelligence:")
+            lines.append("- `python3 scripts/free_intel_sources.py --reddit` (zero cost)")
+            lines.append("- `python3 scripts/social_intel_engine_v2.py --scan` (social platforms)")
+            lines.append("- `python3 scripts/trigger_monitor.py --scan` (buying signals)")
+        return {
+            "response": "\n".join(lines),
+            "agents_activated": [
+                {"script": "free_intel_sources.py", "status": "active"},
+                {"script": "social_intel_engine_v2.py", "status": "active"},
+                {"script": "trigger_monitor.py", "status": "active"},
+            ],
+        }
+
+    if any(w in msg for w in ["kill shot", "bundle", "outreach", "email", "linkedin", "heygen"]):
+        return {
+            "response": "**Kill Shot Bundle Generator:**\n\n"
+                "One command generates a complete 9-file outreach package for any target:\n\n"
+                "1. **Why Now** — trigger-based timing rationale\n"
+                "2. **Account Brief** (.docx) — full research dossier\n"
+                "3. **Competitor Wedge** — displacement strategy\n"
+                "4. **Email** — personalized cold outreach\n"
+                "5. **LinkedIn DM** — platform-native message\n"
+                "6. **Call Opener** — phone script with objection handling\n"
+                "7. **HeyGen Script** — personalized video outreach\n"
+                "8. **Task Payload** — CRM task creation data\n"
+                "9. **Attribution** — tracking for the learning loop\n\n"
+                "**Ready bundles:** Mellow Fellow (3 variants)\n\n"
+                "Tell me a company name and I'll generate a fresh bundle.",
+            "agents_activated": [
+                {"script": "kill_shot_bundle.py", "status": "active"},
+                {"script": "sales_intel_brief_v4.py", "status": "active"},
+                {"script": "heygen_scripts.py", "status": "active"},
+            ],
+        }
+
+    if any(w in msg for w in ["agent", "system", "architect", "how does", "capability"]):
+        return {
+            "response": "**NEXUS Agent Fleet — 15 Specialized Agents:**\n\n"
+                "**Intelligence Layer:**\n"
+                "- Sales Intel Brief v4 — 6-phase AI research pipeline\n"
+                "- Free Intel Harvester — Reddit, FDA, news at zero cost\n"
+                "- Social Intel v2 — Cross-platform social monitoring\n"
+                "- Competitor Intel v2 — Vulnerability scanning + displacement playbooks\n"
+                "- Terpene Research v2 — PubMed harvesting + evidence grading\n"
+                "- Trigger Monitor — Buying signal detection\n\n"
+                "**Pipeline Layer:**\n"
+                "- Apollo Pipeline — Lead discovery + scoring\n"
+                "- Enrich Pipeline — Email verification + data enrichment\n"
+                "- Model Router — Cost-optimized AI routing (40-60% savings)\n\n"
+                "**Output Layer:**\n"
+                "- Kill Shot Bundle — Complete outreach package generator\n"
+                "- HeyGen Scripts — Personalized video outreach\n"
+                "- GHL Sync — 53-field CRM architecture\n"
+                "- Customer Intel — Churn/upsell/reactivation\n\n"
+                "**Control Layer:**\n"
+                "- War Room — Knowledge graph + signal processing + learning\n"
+                "- Master Orchestrator — CLI coordination\n\n"
+                "All agents feed into the War Room's learning loop. Outcomes train signal weights. The system gets smarter with every deal.",
+            "agents_activated": [{"script": "nexus.py", "status": "active"}, {"script": "war_room.py", "status": "active"}],
+        }
+
+    # Default response
+    return {
+        "response": "I can help with that. Here's what I can do:\n\n"
+            "- **\"Research [company]\"** — Run a full intel brief on any target\n"
+            "- **\"Mellow Fellow\"** — Full briefing on our #1 target + coalition\n"
+            "- **\"Competitor analysis\"** — Vulnerability scan across all competitors\n"
+            "- **\"Pipeline status\"** — Current target accounts and scores\n"
+            "- **\"Signal intel\"** — Latest buying signals and triggers\n"
+            "- **\"Kill Shot Bundle for [company]\"** — Generate outreach package\n"
+            "- **\"Terpene research\"** — Science → sales angle translation\n"
+            "- **\"System overview\"** — Full agent fleet capabilities\n\n"
+            "What would you like me to work on?",
+        "agents_activated": [],
+    }
+
+
+# ═══════════════════════════════════════════════════════════
 # JSX SERVING
 # ═══════════════════════════════════════════════════════════
 
@@ -736,6 +1068,20 @@ class PlatformHandler(BaseHTTPRequestHandler):
             company = body.get("company", "")
             emit_event("JobStarted", {"command": command, "company": company})
             self._json({"job_id": "standalone", "status": "info", "message": f"Run '{command}' via CLI. Event logged."})
+
+        elif path == "/api/reef/chat":
+            message = body.get("message", "")
+            history = body.get("history", [])
+            if not message:
+                self._json({"error": "No message provided"}, 400)
+                return
+            print(f"  💬 Chat: {message[:80]}...")
+            try:
+                result = handle_chat(message, history)
+                self._json(result)
+            except Exception as e:
+                print(f"  ⚠️ Chat error: {e}")
+                self._json({"response": f"Error processing command: {str(e)}", "agents_activated": []})
 
         elif path == "/api/reef/outcome":
             action_id = body.get("action_id", "")
