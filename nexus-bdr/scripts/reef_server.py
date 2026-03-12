@@ -64,6 +64,9 @@ def _find_outputs():
     return SCRIPT_DIR / "outputs"
 
 OUTPUT_DIR = _find_outputs()
+# ROOT_OUTPUT_DIR covers the second data location (nexus-bdr/outputs/)
+# where enriched contacts, raw Apollo imports, social intel, and briefs live
+ROOT_OUTPUT_DIR = SCRIPT_DIR.parent / "outputs" if (SCRIPT_DIR.parent / "outputs").exists() else OUTPUT_DIR
 RESEARCH_DIR = OUTPUT_DIR / "terpene_research"
 KB_DIR = RESEARCH_DIR / "knowledge_base"
 INSIGHTS_DIR = RESEARCH_DIR / "insights"
@@ -72,6 +75,7 @@ WAR_ROOM_DIR = OUTPUT_DIR / "war_room"
 EVENTS_DIR = OUTPUT_DIR / "events"
 EVENTS_DIR.mkdir(parents=True, exist_ok=True)
 EVENTS_FILE = EVENTS_DIR / "events.jsonl"
+DEMO_BUNDLE_DIR = SCRIPT_DIR / "demo_bundle"
 
 SCHEMA_VERSION = "5.0"
 
@@ -306,6 +310,21 @@ def build_snapshot():
     # ── Pipeline Stats from scored Apollo data ──
     _load_pipeline_stats(snapshot)
 
+    # ── Enrichment stats ──
+    _load_enrichment_stats(snapshot)
+
+    # ── Social intel ──
+    _load_social_intel(snapshot)
+
+    # ── Activity log ──
+    _load_activity_log(snapshot)
+
+    # ── Demo bundles ──
+    _load_demo_bundles(snapshot)
+
+    # ── Brief files ──
+    _load_briefs(snapshot)
+
     # ── Event count ──
     if EVENTS_FILE.exists():
         try:
@@ -319,10 +338,11 @@ def build_snapshot():
 
 def _load_pipeline_stats(snapshot):
     """Load pipeline contact stats from scored Apollo data files."""
-    scored_dir = OUTPUT_DIR.parent / "outputs"  # nexus-bdr/outputs/
-    if not scored_dir.exists():
-        scored_dir = OUTPUT_DIR  # fallback to scripts/outputs/
-    scored_files = sorted(scored_dir.glob("scored_apollo_*.json"), key=lambda x: x.stat().st_mtime, reverse=True)
+    # Search both output directories for scored files
+    scored_files = []
+    for d in [OUTPUT_DIR, ROOT_OUTPUT_DIR]:
+        scored_files.extend(d.glob("scored_apollo_*.json"))
+    scored_files = sorted(set(scored_files), key=lambda x: x.stat().st_mtime, reverse=True)
     if not scored_files:
         return
 
@@ -352,6 +372,109 @@ def _load_pipeline_stats(snapshot):
         }
     except Exception as e:
         print(f"  Warning: pipeline stats load failed: {e}")
+
+
+def _load_enrichment_stats(snapshot):
+    """Load enrichment stats from enriched contact files."""
+    enriched_files = []
+    for d in [OUTPUT_DIR, ROOT_OUTPUT_DIR]:
+        enriched_files.extend(d.glob("enriched_*.json"))
+    enriched_files = sorted(set(enriched_files), key=lambda x: x.stat().st_mtime, reverse=True)
+
+    enrichment = {"files": len(enriched_files), "total_contacts": 0, "verified": 0, "catchall": 0, "invalid": 0}
+    if enriched_files:
+        try:
+            data = json.loads(enriched_files[0].read_text())
+            contacts = data if isinstance(data, list) else data.get("leads", data.get("contacts", []))
+            enrichment["total_contacts"] = len(contacts)
+            for c in contacts:
+                status = c.get("hunter_status", c.get("verification_status", ""))
+                if status == "valid":
+                    enrichment["verified"] += 1
+                elif status == "accept_all":
+                    enrichment["catchall"] += 1
+                elif status == "invalid":
+                    enrichment["invalid"] += 1
+        except Exception:
+            pass
+    snapshot["enrichment"] = enrichment
+
+
+def _load_social_intel(snapshot):
+    """Load social intel scan data."""
+    social_dirs = [OUTPUT_DIR / "social_intel", ROOT_OUTPUT_DIR / "social_intel"]
+    scans = []
+    for d in social_dirs:
+        if d.exists():
+            scans.extend(d.glob("*.json"))
+    scans = sorted(set(scans), key=lambda x: x.stat().st_mtime, reverse=True)
+
+    social = {"scans": len(scans), "signals": []}
+    if scans:
+        try:
+            data = json.loads(scans[0].read_text())
+            signals = data.get("signals", data.get("results", []))
+            if isinstance(signals, list):
+                social["signals"] = signals[:20]
+                social["total_signals"] = len(signals)
+        except Exception:
+            pass
+    snapshot["socialIntel"] = social
+
+
+def _load_activity_log(snapshot):
+    """Load activity log from outputs."""
+    for d in [ROOT_OUTPUT_DIR, OUTPUT_DIR]:
+        log_path = d / "activity-log.json"
+        if log_path.exists():
+            try:
+                data = json.loads(log_path.read_text())
+                entries = data if isinstance(data, list) else data.get("entries", data.get("log", []))
+                snapshot["activityLog"] = entries[-50:] if isinstance(entries, list) else []
+                return
+            except Exception:
+                pass
+    snapshot["activityLog"] = []
+
+
+def _load_demo_bundles(snapshot):
+    """Load Kill Shot demo bundle metadata."""
+    bundles = []
+    if DEMO_BUNDLE_DIR.exists():
+        for bundle_dir in sorted(DEMO_BUNDLE_DIR.iterdir()):
+            if not bundle_dir.is_dir():
+                continue
+            bundle = {"name": bundle_dir.name, "artifacts": []}
+            for f in sorted(bundle_dir.iterdir()):
+                bundle["artifacts"].append({"file": f.name, "size": f.stat().st_size, "type": f.suffix})
+            bundles.append(bundle)
+    snapshot["demoBundles"] = bundles
+
+
+def _load_briefs(snapshot):
+    """Load brief file metadata from both output dirs."""
+    brief_files = {}
+    for d in [OUTPUT_DIR / "briefs", ROOT_OUTPUT_DIR / "briefs"]:
+        if d.exists():
+            for f in d.glob("brief_*.json"):
+                brief_files[f.name] = f  # dedup by filename
+    brief_files = sorted(brief_files.values(), key=lambda x: x.stat().st_mtime, reverse=True)
+
+    briefs = []
+    for bf in brief_files[:10]:
+        try:
+            data = json.loads(bf.read_text())
+            briefs.append({
+                "file": bf.name,
+                "company": data.get("company", data.get("target_company", bf.stem)),
+                "generated_at": data.get("generated_at", data.get("timestamp", "")),
+                "phases_completed": data.get("phases_completed", len(data.get("phases", []))),
+                "cost": data.get("total_cost", data.get("cost", 0)),
+                "size_kb": round(bf.stat().st_size / 1024, 1),
+            })
+        except Exception:
+            briefs.append({"file": bf.name, "size_kb": round(bf.stat().st_size / 1024, 1)})
+    snapshot["briefs"] = briefs
 
 
 def _load_research_into_snapshot(snapshot):
@@ -1162,6 +1285,32 @@ class PlatformHandler(BaseHTTPRequestHandler):
         elif path == "/api/agents":
             self._json({"agents": AGENT_REGISTRY})
 
+        # ── Data Map — shows all accessible data files ──
+        elif path == "/api/reef/data-map":
+            data_map = {"primary_dir": str(OUTPUT_DIR), "secondary_dir": str(ROOT_OUTPUT_DIR), "files": {}}
+            for label, d in [("primary", OUTPUT_DIR), ("secondary", ROOT_OUTPUT_DIR)]:
+                if not d.exists():
+                    continue
+                files = []
+                for f in sorted(d.rglob("*")):
+                    if f.is_file():
+                        files.append({
+                            "path": str(f.relative_to(d)),
+                            "size_kb": round(f.stat().st_size / 1024, 1),
+                            "modified": datetime.fromtimestamp(f.stat().st_mtime).isoformat(),
+                        })
+                data_map["files"][label] = files
+            if DEMO_BUNDLE_DIR.exists():
+                bundles = []
+                for f in sorted(DEMO_BUNDLE_DIR.rglob("*")):
+                    if f.is_file():
+                        bundles.append({
+                            "path": str(f.relative_to(DEMO_BUNDLE_DIR)),
+                            "size_kb": round(f.stat().st_size / 1024, 1),
+                        })
+                data_map["files"]["bundles"] = bundles
+            self._json(data_map)
+
         # ── Job status ──
         elif path == "/api/reef/job":
             job_id = (qs.get("job_id") or [""])[0]
@@ -1170,15 +1319,30 @@ class PlatformHandler(BaseHTTPRequestHandler):
         # ── Health ──
         elif path == "/health":
             jsx = find_reef_jsx()
+            # Count data files across both output dirs
+            enriched_count = len(list(OUTPUT_DIR.glob("enriched_*.json")) + list(ROOT_OUTPUT_DIR.glob("enriched_*.json")))
+            scored_count = len(list(OUTPUT_DIR.glob("scored_apollo_*.json")) + list(ROOT_OUTPUT_DIR.glob("scored_apollo_*.json")))
+            brief_count = len(list((OUTPUT_DIR / "briefs").glob("brief_*.json")) if (OUTPUT_DIR / "briefs").exists() else [])
+            bundle_count = len(list(DEMO_BUNDLE_DIR.iterdir())) if DEMO_BUNDLE_DIR.exists() else 0
             self._json({
                 "status": "ok",
                 "schema_version": SCHEMA_VERSION,
                 "output_dir": str(OUTPUT_DIR),
+                "root_output_dir": str(ROOT_OUTPUT_DIR),
                 "research_dir_exists": RESEARCH_DIR.exists(),
                 "kb_exists": (KB_DIR / "kb.json").exists(),
                 "war_room_exists": (WAR_ROOM_DIR / "knowledge_graph" / "war_room_graph.json").exists(),
                 "jsx_found": str(jsx) if jsx else None,
                 "events_count": sum(1 for _ in open(EVENTS_FILE)) if EVENTS_FILE.exists() else 0,
+                "data_coverage": {
+                    "scored_apollo_files": scored_count,
+                    "enriched_files": enriched_count,
+                    "brief_files": brief_count,
+                    "demo_bundles": bundle_count,
+                    "social_intel_dir": (OUTPUT_DIR / "social_intel").exists() or (ROOT_OUTPUT_DIR / "social_intel").exists(),
+                    "competitor_intel_dir": (OUTPUT_DIR / "competitor_intel").exists(),
+                    "activity_log": (ROOT_OUTPUT_DIR / "activity-log.json").exists(),
+                },
             })
 
         else:
@@ -1291,16 +1455,29 @@ def main():
     print(f"  Events:   http://localhost:{args.port}/api/events")
     print(f"  Agents:   http://localhost:{args.port}/api/agents")
     print(f"  Health:   http://localhost:{args.port}/health")
+    # Count additional data
+    scored_count = len(list(OUTPUT_DIR.glob("scored_apollo_*.json")) + list(ROOT_OUTPUT_DIR.glob("scored_apollo_*.json")))
+    enriched_count = len(list(OUTPUT_DIR.glob("enriched_*.json")) + list(ROOT_OUTPUT_DIR.glob("enriched_*.json")))
+    bundle_count = len(list(DEMO_BUNDLE_DIR.iterdir())) if DEMO_BUNDLE_DIR.exists() else 0
+    brief_count = len(list((OUTPUT_DIR / "briefs").glob("brief_*.json"))) if (OUTPUT_DIR / "briefs").exists() else 0
+
     print(f"{'='*55}")
-    print(f"  Data:")
-    print(f"    Output dir:  {OUTPUT_DIR}")
-    print(f"    Research KB: {kb_papers} papers")
-    print(f"    War Room:    {graph_entities} entities")
-    print(f"    JSX:         {jsx or 'NOT FOUND'}")
+    print(f"  Data Directories:")
+    print(f"    Primary:   {OUTPUT_DIR}")
+    print(f"    Secondary: {ROOT_OUTPUT_DIR}")
+    print(f"    Bundles:   {DEMO_BUNDLE_DIR}")
+    print(f"  Data Coverage:")
+    print(f"    Research KB:     {kb_papers} papers")
+    print(f"    War Room:        {graph_entities} entities")
+    print(f"    Scored Apollo:   {scored_count} files")
+    print(f"    Enriched:        {enriched_count} files")
+    print(f"    Briefs:          {brief_count} files")
+    print(f"    Kill Shot:       {bundle_count} bundles")
+    print(f"    JSX:             {jsx or 'NOT FOUND'}")
     print(f"{'='*55}\n")
 
     if kb_papers == 0:
-        print("  ⚠️  No research papers. Run:")
+        print("  No research papers. Run:")
         print("     python3 scripts/terpene_research_v2.py --full --days 90\n")
 
     server = HTTPServer(("0.0.0.0", args.port), PlatformHandler)
