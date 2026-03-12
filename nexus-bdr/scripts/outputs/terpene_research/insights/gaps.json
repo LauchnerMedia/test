@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-03-04T09:12:09.928004",
+  "underweighted_by_tbf": [
+    {
+      "terpene": "linalool",
+      "evidence_count": 8,
+      "focus_units": 2,
+      "gap_score": 0.2089
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "evidence_count": 5,
+      "focus_units": 2,
+      "gap_score": 0.0889
+    },
+    {
+      "terpene": "alpha-pinene",
+      "evidence_count": 3,
+      "focus_units": 1,
+      "gap_score": 0.0644
+    },
+    {
+      "terpene": "limonene",
+      "evidence_count": 3,
+      "focus_units": 1,
+      "gap_score": 0.0644
+    },
+    {
+      "terpene": "caryophyllene oxide",
+      "evidence_count": 1,
+      "focus_units": 0,
+      "gap_score": 0.04
+    },
+    {
+      "terpene": "ocimene",
+      "evidence_count": 2,
+      "focus_units": 1,
+      "gap_score": 0.0244
+    },
+    {
+      "terpene": "beta-pinene",
+      "evidence_count": 2,
+      "focus_units": 1,
+      "gap_score": 0.0244
+    },
+    {
+      "terpene": "alpha-terpineol",
+      "evidence_count": 1,
+      "focus_units": 1,
+      "gap_score": -0.0156
+    }
+  ],
+  "overweighted_by_tbf": [
+    {
+      "terpene": "alpha-terpineol",
+      "evidence_count": 1,
+      "focus_units": 1,
+      "gap_score": -0.0156
+    },
+    {
+      "terpene": "ocimene",
+      "evidence_count": 2,
+      "focus_units": 1,
+      "gap_score": 0.0244
+    },
+    {
+      "terpene": "beta-pinene",
+      "evidence_count": 2,
+      "focus_units": 1,
+      "gap_score": 0.0244
+    },
+    {
+      "terpene": "caryophyllene oxide",
+      "evidence_count": 1,
+      "focus_units": 0,
+      "gap_score": 0.04
+    },
+    {
+      "terpene": "alpha-pinene",
+      "evidence_count": 3,
+      "focus_units": 1,
+      "gap_score": 0.0644
+    },
+    {
+      "terpene": "limonene",
+      "evidence_count": 3,
+      "focus_units": 1,
+      "gap_score": 0.0644
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "evidence_count": 5,
+      "focus_units": 2,
+      "gap_score": 0.0889
+    },
+    {
+      "terpene": "linalool",
+      "evidence_count": 8,
+      "focus_units": 2,
+      "gap_score": 0.2089
+    }
+  ]
+}

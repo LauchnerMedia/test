@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-03-04T05:28:05.147644",
+  "summary": {
+    "total_entities": 53,
+    "total_signals": 35,
+    "recent_signals": 35,
+    "companies_ranked": 40,
+    "reddit_opportunities": 4,
+    "research_angles": 0,
+    "competitor_vulnerabilities": 2
+  },
+  "priority_companies": [
+    {
+      "entity_key": "company:mellow_fellow",
+      "company": "Mellow Fellow",
+      "score": 52.6,
+      "reasons": [
+        "Brief completed \u2014 ready for outreach",
+        "Signal: brief_completed (weight: 3)",
+        "Signal: brief_completed (weight: 3)"
+      ],
+      "tier": "hot",
+      "brief": true,
+      "contacts": 28,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:cannvital___1",
+      "company": "Cannvital - 1",
+      "score": 26.8,
+      "reasons": [],
+      "tier": "hot",
+      "brief": false,
+      "contacts": 4,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:phytograde___1",
+      "company": "Phytograde - 1",
+      "score": 26.6,
+      "reasons": [],
+      "tier": "hot",
+      "brief": false,
+      "contacts": 4,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:cbd_alchemy",
+      "company": "CBD Alchemy",
+      "score": 26.5,
+      "reasons": [],
+      "tier": "hot",
+      "brief": false,
+      "contacts": 11,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:canatura___1",
+      "company": "Canatura - 1",
+      "score": 26.3,
+      "reasons": [],
+      "tier": "hot",
+      "brief": false,
+      "contacts": 5,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:deli_hemp",
+      "company": "Deli Hemp",
+      "score": 23.6,
+      "reasons": [],
+      "tier": "warm",
+      "brief": false,
+      "contacts": 9,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:canna_capital_group___1",
+      "company": "Canna Capital Group - 1",
+      "score": 22.5,
+      "reasons": [],
+      "tier": "warm",
+      "brief": false,
+      "contacts": 2,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:a_sense",
+      "company": "A-Sense",
+      "score": 21.9,
+      "reasons": [],
+      "tier": "warm",
+      "brief": false,
+      "contacts": 22,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:alplant",
+      "company": "Alplant",
+      "score": 21.4,
+      "reasons": [],
+      "tier": "warm",
+      "brief": false,
+      "contacts": 4,
+      "emails": 0,
+      "top_contact": ""
+    },
+    {
+      "entity_key": "company:euphoria___1",
+      "company": "Euphoria - 1",
+      "score": 21.2,
+      "reasons": [],
+      "tier": "warm",
+      "brief": false,
+      "contacts": 3,
+      "emails": 0,
+      "top_contact": ""
+    }
+  ],
+  "reddit_actions": [
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "Looking for Hash Recommendations",
+      "subreddit": "TheOCS",
+      "url": "https://reddit.com/r/TheOCS/comments/1rk0ih0/looking_for_hash_recommendations/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "Anxiety &amp; Sensitivity to THC",
+      "subreddit": "hempflowers",
+      "url": "https://reddit.com/r/hempflowers/comments/1rjqy27/anxiety_sensitivity_to_thc/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "what to actually look for in COA\u2019s",
+      "subreddit": "FLMedicalTrees",
+      "url": "https://reddit.com/r/FLMedicalTrees/comments/1rk5car/what_to_actually_look_for_in_coas/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "HUT - Dual Z (RS11 &amp; Souffle) 28g",
+      "subreddit": "TheOCS",
+      "url": "https://reddit.com/r/TheOCS/comments/1rk2jxh/hut_dual_z_rs11_souffle_28g/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    }
+  ],
+  "research_angles": [],
+  "competitor_actions": [
+    {
+      "competitor": "True Terpenes",
+      "vulnerability": "Trustpilot 3.0/5",
+      "affected_prospects": [],
+      "suggested_action": "Reach out to prospects using True Terpenes \u2014 lead with quality consistency"
+    },
+    {
+      "competitor": "Peak Supply Co",
+      "vulnerability": "Trustpilot 3.7/5",
+      "affected_prospects": [],
+      "suggested_action": "Reach out to prospects using Peak Supply Co \u2014 lead with quality consistency"
+    }
+  ]
+}

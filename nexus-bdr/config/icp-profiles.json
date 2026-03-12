@@ -1,0 +1,246 @@
+{
+  "icp_profiles": {
+    "tbf_cannabis_manufacturers": {
+      "brand": "Terpene Belt Farms",
+      "description": "Licensed cannabis product manufacturers who buy terpenes in bulk for formulation",
+      "apollo_params": {
+        "person_titles": [
+          "VP of Manufacturing", "Director of Manufacturing", "Head of Production",
+          "VP of Product Development", "Director of R&D", "Chief Science Officer",
+          "VP of Operations", "Director of Extraction", "Head of Formulation",
+          "Master Extractor", "Director of Product", "COO", "CEO", "Founder"
+        ],
+        "employee_ranges": ["11,20", "21,50", "51,100", "101,200", "201,500"],
+        "industries": ["cannabis", "marijuana", "hemp"],
+        "keywords": [
+          "cannabis manufacturer", "extraction", "concentrates",
+          "edibles", "vape", "THC", "formulation", "infused products"
+        ],
+        "locations": [
+          "California", "Colorado", "Oregon", "Washington", "Michigan",
+          "Illinois", "Massachusetts", "Nevada", "Arizona", "Oklahoma",
+          "New York", "New Jersey", "Missouri", "Maryland", "Ohio",
+          "Florida", "Pennsylvania", "Connecticut", "Virginia", "New Mexico"
+        ]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["VP", "Director", "Head of", "Chief", "Master Extractor"],
+        "size_ideal_range": [20, 500],
+        "must_have_keywords": ["extraction", "manufacturing", "formulation", "concentrates"],
+        "nice_to_have_keywords": ["terpene", "botanical", "flavor", "strain-specific"]
+      },
+      "outreach_template": "tbf_consultative",
+      "per_page": 25,
+      "max_pages": 4
+    },
+
+    "tbf_cpg_food_bev": {
+      "brand": "Terpene Belt Farms",
+      "description": "Food, beverage, and flavor companies exploring botanical terpenes as natural flavor/aroma ingredients",
+      "apollo_params": {
+        "person_titles": [
+          "VP of R&D", "Director of Flavor Development", "Head of Innovation",
+          "Chief Flavorist", "Director of Product Development", "VP of Innovation",
+          "Director of Ingredients", "Procurement Manager", "Head of Natural Products",
+          "VP of Operations", "CEO", "Founder"
+        ],
+        "employee_ranges": ["21,50", "51,100", "101,200", "201,500", "501,1000"],
+        "industries": [
+          "food and beverage", "consumer goods", "natural products",
+          "flavors and fragrances", "nutraceuticals"
+        ],
+        "keywords": [
+          "natural flavors", "botanical extract", "essential oils",
+          "flavor house", "functional beverage", "wellness drink",
+          "natural ingredients", "plant-based", "terpene"
+        ],
+        "locations": ["United States"]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["VP", "Director", "Flavorist", "Innovation", "Procurement"],
+        "size_ideal_range": [50, 1000],
+        "must_have_keywords": ["flavor", "natural", "botanical", "ingredient"],
+        "nice_to_have_keywords": ["terpene", "cannabis-adjacent", "hemp", "functional"]
+      },
+      "outreach_template": "tbf_new_market_education",
+      "per_page": 25,
+      "max_pages": 3
+    },
+
+    "tbf_cosmetics_pharma": {
+      "brand": "Terpene Belt Farms",
+      "description": "Cosmetics, skincare, and pharmaceutical companies using botanical terpenes for fragrance, therapeutic, or functional ingredients",
+      "apollo_params": {
+        "person_titles": [
+          "VP of R&D", "Director of Formulation", "Head of Product Development",
+          "Chief Science Officer", "Director of Ingredients", "Procurement Director",
+          "VP of Innovation", "Director of Cosmetic Chemistry", "CEO", "Founder"
+        ],
+        "employee_ranges": ["21,50", "51,100", "101,200", "201,500", "501,1000"],
+        "industries": [
+          "cosmetics", "skincare", "personal care", "pharmaceutical",
+          "aromatherapy", "wellness"
+        ],
+        "keywords": [
+          "botanical", "essential oil", "natural fragrance", "terpene",
+          "plant-derived", "aromatherapy", "topical", "formulation"
+        ],
+        "locations": ["United States"]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["VP", "Director", "Formulation", "Science", "Procurement"],
+        "size_ideal_range": [20, 500],
+        "must_have_keywords": ["formulation", "botanical", "natural", "ingredient"],
+        "nice_to_have_keywords": ["terpene", "cannabis", "therapeutic", "aroma"]
+      },
+      "outreach_template": "tbf_new_market_education",
+      "per_page": 25,
+      "max_pages": 3
+    },
+
+    "tbf_enterprise": {
+      "brand": "Terpene Belt Farms",
+      "description": "Large MSOs and national cannabis brands with high-volume terpene needs",
+      "apollo_params": {
+        "person_titles": [
+          "CEO", "COO", "Chief Science Officer", "VP of Manufacturing",
+          "VP of Product", "SVP of Operations", "Chief Product Officer",
+          "VP of Supply Chain", "Director of Procurement"
+        ],
+        "employee_ranges": ["201,500", "501,1000", "1001,2000", "2001,5000"],
+        "industries": ["cannabis"],
+        "keywords": [
+          "MSO", "multi-state operator", "cannabis brand", "national brand",
+          "vertically integrated", "publicly traded cannabis"
+        ],
+        "locations": ["United States"]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["CEO", "COO", "SVP", "VP", "Chief"],
+        "size_ideal_range": [200, 5000],
+        "must_have_keywords": ["MSO", "multi-state", "vertically integrated"],
+        "nice_to_have_keywords": ["publicly traded", "national distribution"]
+      },
+      "outreach_template": "tbf_enterprise",
+      "per_page": 25,
+      "max_pages": 2
+    },
+
+    "dft_extract_artists": {
+      "brand": "Duty Free Terpenes",
+      "description": "Small-batch cannabis extractors and concentrate makers who buy terpenes for reintroduction",
+      "apollo_params": {
+        "person_titles": [
+          "Owner", "Founder", "CEO", "Head Extractor", "Master Extractor",
+          "Director of Extraction", "Production Manager", "Lab Director"
+        ],
+        "employee_ranges": ["1,10", "11,20", "21,50"],
+        "industries": ["cannabis", "hemp"],
+        "keywords": [
+          "extraction", "concentrates", "live resin", "rosin", "distillate",
+          "BHO", "hydrocarbon extraction", "solventless", "dabs", "wax"
+        ],
+        "locations": [
+          "California", "Colorado", "Oregon", "Washington", "Michigan",
+          "Oklahoma", "Arizona", "Nevada", "Maine", "Montana"
+        ]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["Owner", "Founder", "Extractor", "Lab Director"],
+        "size_ideal_range": [1, 50],
+        "must_have_keywords": ["extraction", "concentrates", "solventless", "distillate"],
+        "nice_to_have_keywords": ["small batch", "craft", "artisan", "strain-specific"]
+      },
+      "outreach_template": "dft_creator",
+      "per_page": 25,
+      "max_pages": 4
+    },
+
+    "dft_vape_manufacturers": {
+      "brand": "Duty Free Terpenes",
+      "description": "Vape cartridge manufacturers and hardware brands using terpenes for flavor profiles",
+      "apollo_params": {
+        "person_titles": [
+          "CEO", "Founder", "Owner", "VP of Product",
+          "Director of Manufacturing", "Head of R&D", "Production Manager"
+        ],
+        "employee_ranges": ["1,10", "11,20", "21,50", "51,100"],
+        "industries": ["cannabis", "vape", "hemp"],
+        "keywords": [
+          "vape cartridge", "vape pen", "cannabis vape", "510 thread",
+          "pod system", "distillate cartridge", "live resin cart"
+        ],
+        "locations": [
+          "California", "Colorado", "Oregon", "Michigan",
+          "Arizona", "Nevada", "Oklahoma", "Washington"
+        ]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["Owner", "Founder", "CEO", "VP of Product"],
+        "size_ideal_range": [5, 100],
+        "must_have_keywords": ["vape", "cartridge", "510"],
+        "nice_to_have_keywords": ["terpene", "flavor", "strain-specific", "botanical"]
+      },
+      "outreach_template": "dft_creator",
+      "per_page": 25,
+      "max_pages": 3
+    },
+
+    "dft_hemp_producers": {
+      "brand": "Duty Free Terpenes",
+      "description": "Hemp-derived product companies (CBD, delta-8, THCa) — 50-state legal market",
+      "apollo_params": {
+        "person_titles": [
+          "CEO", "Founder", "Owner", "Director of Product",
+          "VP of Operations", "Production Manager", "Head of Formulation"
+        ],
+        "employee_ranges": ["1,10", "11,20", "21,50", "51,100"],
+        "industries": ["hemp", "CBD", "wellness"],
+        "keywords": [
+          "hemp", "CBD", "delta-8", "THCa", "hemp-derived",
+          "Farm Bill", "hemp extract", "hemp flower", "minor cannabinoids"
+        ],
+        "locations": ["United States"]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["Owner", "Founder", "CEO", "Director"],
+        "size_ideal_range": [1, 100],
+        "must_have_keywords": ["hemp", "CBD", "cannabinoid"],
+        "nice_to_have_keywords": ["terpene", "botanical", "full-spectrum", "entourage effect"]
+      },
+      "outreach_template": "dft_hemp_legal",
+      "per_page": 25,
+      "max_pages": 3
+    },
+
+    "new_market_expansion": {
+      "brand": "Both",
+      "description": "Non-cannabis verticals exploring botanical terpenes — aromatherapy, pet wellness, functional foods",
+      "apollo_params": {
+        "person_titles": [
+          "CEO", "Founder", "VP of R&D", "Director of Product Development",
+          "Head of Innovation", "Procurement Manager", "VP of Operations"
+        ],
+        "employee_ranges": ["11,20", "21,50", "51,100", "101,200"],
+        "industries": [
+          "aromatherapy", "pet wellness", "functional food",
+          "natural products", "essential oils", "supplements"
+        ],
+        "keywords": [
+          "botanical", "essential oil", "natural aroma", "plant extract",
+          "terpene", "aromatherapy", "functional ingredient"
+        ],
+        "locations": ["United States"]
+      },
+      "scoring_adjustments": {
+        "title_boost": ["VP", "Director", "Head of", "Founder"],
+        "size_ideal_range": [20, 200],
+        "must_have_keywords": ["botanical", "natural", "essential oil"],
+        "nice_to_have_keywords": ["terpene", "plant-derived", "wellness"]
+      },
+      "outreach_template": "tbf_new_market_education",
+      "per_page": 25,
+      "max_pages": 2
+    }
+  }
+}

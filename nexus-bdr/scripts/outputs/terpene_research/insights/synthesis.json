@@ -1,0 +1,580 @@
+{
+  "generated_at": "2026-03-04T09:12:09.926825",
+  "days_back": 60,
+  "insights": [
+    {
+      "terpene": "beta-caryophyllene",
+      "effect_category": "other",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 12,
+      "human_count": 8,
+      "positive": 12,
+      "negative": 0,
+      "confidence_1to6": 5,
+      "contradiction": false,
+      "statement": "beta-caryophyllene shows other signals via antioxidant pathway across 12 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41167414",
+          "title": "\u03b2-Caryophyllene prevents cognitive impairment in mice following acute sleep deprivation by alleviating hippocampal structural and functional alterations.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41167414/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41167414",
+          "title": "\u03b2-Caryophyllene prevents cognitive impairment in mice following acute sleep deprivation by alleviating hippocampal structural and functional alterations.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41167414/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "effect_category": "pain_inflammation",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 3,
+      "human_count": 2,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 5,
+      "contradiction": false,
+      "statement": "beta-caryophyllene shows pain inflammation signals via antioxidant pathway across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41167414",
+          "title": "\u03b2-Caryophyllene prevents cognitive impairment in mice following acute sleep deprivation by alleviating hippocampal structural and functional alterations.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41167414/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41170699",
+          "title": "Improving the oral bioavailability and anti-inflammatory potential of clove oil-derived \u03b2-caryophyllene with a self-nanoemulsifying drug delivery system.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41170699/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "beta-pinene",
+      "effect_category": "other",
+      "mechanism": "microbiome_modulation",
+      "paper_count": 4,
+      "human_count": 4,
+      "positive": 4,
+      "negative": 0,
+      "confidence_1to6": 4,
+      "contradiction": false,
+      "statement": "beta-pinene shows other signals via microbiome modulation across 4 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41620541",
+          "title": "Microbial Mediators of Pine Defense Resistance: Stage-Specific Gut Symbionts Enable Acantholyda posticalis to Overcome Terpenoid Barriers.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41620541/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41620541",
+          "title": "Microbial Mediators of Pine Defense Resistance: Stage-Specific Gut Symbionts Enable Acantholyda posticalis to Overcome Terpenoid Barriers.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41620541/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41620541",
+          "title": "Microbial Mediators of Pine Defense Resistance: Stage-Specific Gut Symbionts Enable Acantholyda posticalis to Overcome Terpenoid Barriers.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41620541/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41620541",
+          "title": "Microbial Mediators of Pine Defense Resistance: Stage-Specific Gut Symbionts Enable Acantholyda posticalis to Overcome Terpenoid Barriers.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41620541/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "alpha-pinene",
+      "effect_category": "other",
+      "mechanism": "NF-kB_suppression",
+      "paper_count": 3,
+      "human_count": 3,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 4,
+      "contradiction": false,
+      "statement": "alpha-pinene shows other signals via NF-kB suppression across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41202988",
+          "title": "Alpha-pinene attenuates neuroinflammatory responses in the rat hippocampus and improves spatial working memory deficits associated with morphine dependence and withdrawal.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41202988/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41202988",
+          "title": "Alpha-pinene attenuates neuroinflammatory responses in the rat hippocampus and improves spatial working memory deficits associated with morphine dependence and withdrawal.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41202988/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41202988",
+          "title": "Alpha-pinene attenuates neuroinflammatory responses in the rat hippocampus and improves spatial working memory deficits associated with morphine dependence and withdrawal.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41202988/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "alpha-terpineol",
+      "effect_category": "other",
+      "mechanism": "unknown_mechanism",
+      "paper_count": 3,
+      "human_count": 3,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 4,
+      "contradiction": false,
+      "statement": "alpha-terpineol shows other signals via unknown mechanism across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41423068",
+          "title": "Dietary administration of \u03b1-terpineol to Sprague-Dawley rats for 90\u00a0days.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41423068/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41423068",
+          "title": "Dietary administration of \u03b1-terpineol to Sprague-Dawley rats for 90\u00a0days.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41423068/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41423068",
+          "title": "Dietary administration of \u03b1-terpineol to Sprague-Dawley rats for 90\u00a0days.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41423068/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "linalool",
+      "effect_category": "sleep_relaxation",
+      "mechanism": "unknown_mechanism",
+      "paper_count": 3,
+      "human_count": 0,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 4,
+      "contradiction": false,
+      "statement": "linalool shows sleep relaxation signals via unknown mechanism across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41735175",
+          "title": "Exploring Linalool-Based Phytotherapy for Excitatory/Inhibitory Imbalance in Alzheimer's Disease: A Review of Lavender and Cannabis Therapeutic Effects on Sleep, Seizures, and Cognition.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41735175/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41735175",
+          "title": "Exploring Linalool-Based Phytotherapy for Excitatory/Inhibitory Imbalance in Alzheimer's Disease: A Review of Lavender and Cannabis Therapeutic Effects on Sleep, Seizures, and Cognition.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41735175/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41260387",
+          "title": "Different effects of two types of Chimonanthus praecox scents on anxiety: \u03b2-Ocimene might be the key component causing the differences.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41260387/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "linalool",
+      "effect_category": "other",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 15,
+      "human_count": 10,
+      "positive": 15,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "linalool shows other signals via antioxidant pathway across 15 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:40260493",
+          "title": "Do Linalool-Loaded Solid Lipid Nanoparticles Improve the Quality of Naval Medical Research Institute\u00a0Mouse Sperm During Freezing/Thawing and Handling Processes?",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40260493/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:40260493",
+          "title": "Do Linalool-Loaded Solid Lipid Nanoparticles Improve the Quality of Naval Medical Research Institute\u00a0Mouse Sperm During Freezing/Thawing and Handling Processes?",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40260493/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:40260493",
+          "title": "Do Linalool-Loaded Solid Lipid Nanoparticles Improve the Quality of Naval Medical Research Institute\u00a0Mouse Sperm During Freezing/Thawing and Handling Processes?",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40260493/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "effect_category": "other",
+      "mechanism": "CB2_activation",
+      "paper_count": 4,
+      "human_count": 4,
+      "positive": 4,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "beta-caryophyllene shows other signals via CB2 activation across 4 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "effect_category": "other",
+      "mechanism": "apoptosis_induction",
+      "paper_count": 4,
+      "human_count": 4,
+      "positive": 4,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "beta-caryophyllene shows other signals via apoptosis induction across 4 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41655682",
+          "title": "Therapeutic potential and pharmacological mechanisms of cannabinoids in alleviating chemotherapy-induced organ toxicity and adverse effects.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "linalool",
+      "effect_category": "other",
+      "mechanism": "NF-kB_suppression",
+      "paper_count": 4,
+      "human_count": 4,
+      "positive": 4,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "linalool shows other signals via NF-kB suppression across 4 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41603104",
+          "title": "Unveiling the Therapeutic Potential of \"Taikong Blue\" Lavender Essential Oil and Its Key Compounds in Skin Problems via Network Pharmacology and In\u00a0Vitro Validation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41603104/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41603104",
+          "title": "Unveiling the Therapeutic Potential of \"Taikong Blue\" Lavender Essential Oil and Its Key Compounds in Skin Problems via Network Pharmacology and In\u00a0Vitro Validation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41603104/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41603104",
+          "title": "Unveiling the Therapeutic Potential of \"Taikong Blue\" Lavender Essential Oil and Its Key Compounds in Skin Problems via Network Pharmacology and In\u00a0Vitro Validation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41603104/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41603104",
+          "title": "Unveiling the Therapeutic Potential of \"Taikong Blue\" Lavender Essential Oil and Its Key Compounds in Skin Problems via Network Pharmacology and In\u00a0Vitro Validation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41603104/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "linalool",
+      "effect_category": "formulation",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 3,
+      "human_count": 2,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "linalool shows formulation signals via antioxidant pathway across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:40260493",
+          "title": "Do Linalool-Loaded Solid Lipid Nanoparticles Improve the Quality of Naval Medical Research Institute\u00a0Mouse Sperm During Freezing/Thawing and Handling Processes?",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40260493/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41603104",
+          "title": "Unveiling the Therapeutic Potential of \"Taikong Blue\" Lavender Essential Oil and Its Key Compounds in Skin Problems via Network Pharmacology and In\u00a0Vitro Validation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41603104/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "effect_category": "formulation",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 2,
+      "human_count": 1,
+      "positive": 2,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "beta-caryophyllene shows formulation signals via antioxidant pathway across 2 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41170699",
+          "title": "Improving the oral bioavailability and anti-inflammatory potential of clove oil-derived \u03b2-caryophyllene with a self-nanoemulsifying drug delivery system.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41170699/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41419158",
+          "title": "Sesquiterpenes from galangal essential oil as potent penetration enhancer: Effect on stratum corneum components and cutaneous TRPV4 ion channel.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41419158/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "alpha-pinene",
+      "effect_category": "other",
+      "mechanism": "antioxidant_pathway",
+      "paper_count": 2,
+      "human_count": 2,
+      "positive": 2,
+      "negative": 0,
+      "confidence_1to6": 3,
+      "contradiction": false,
+      "statement": "alpha-pinene shows other signals via antioxidant pathway across 2 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41711255",
+          "title": "Effects of Liposome-Encapsulated \u03b1-Pinene on In Vitro Oocyte Maturation and Embryo Development in Bovine Species.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41711255/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41711255",
+          "title": "Effects of Liposome-Encapsulated \u03b1-Pinene on In Vitro Oocyte Maturation and Embryo Development in Bovine Species.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41711255/",
+          "grade": "C"
+        }
+      ]
+    },
+    {
+      "terpene": "linalool",
+      "effect_category": "other",
+      "mechanism": "membrane_disruption",
+      "paper_count": 3,
+      "human_count": 0,
+      "positive": 3,
+      "negative": 0,
+      "confidence_1to6": 2,
+      "contradiction": false,
+      "statement": "linalool shows other signals via membrane disruption across 3 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41512720",
+          "title": "Chitosan-\u03b5-polylysine\u2011sodium tripolyphosphate based Pickering emulsions for co-encapsulation of cinnamaldehyde and linalool: An effective sustained-release system against toxigenic fungi.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41512720/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "alpha-pinene",
+      "effect_category": "other",
+      "mechanism": "unknown_mechanism",
+      "paper_count": 2,
+      "human_count": 2,
+      "positive": 2,
+      "negative": 0,
+      "confidence_1to6": 2,
+      "contradiction": false,
+      "statement": "alpha-pinene shows other signals via unknown mechanism across 2 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41468975",
+          "title": "Odorant receptor CaspOR39 underpinned cineole-mediated oviposition repellency in the rape stem weevil Ceutorhynchus asper.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41468975/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41468975",
+          "title": "Odorant receptor CaspOR39 underpinned cineole-mediated oviposition repellency in the rape stem weevil Ceutorhynchus asper.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41468975/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "ocimene",
+      "effect_category": "other",
+      "mechanism": "unknown_mechanism",
+      "paper_count": 2,
+      "human_count": 2,
+      "positive": 2,
+      "negative": 0,
+      "confidence_1to6": 2,
+      "contradiction": false,
+      "statement": "ocimene shows other signals via unknown mechanism across 2 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41468975",
+          "title": "Odorant receptor CaspOR39 underpinned cineole-mediated oviposition repellency in the rape stem weevil Ceutorhynchus asper.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41468975/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41468975",
+          "title": "Odorant receptor CaspOR39 underpinned cineole-mediated oviposition repellency in the rape stem weevil Ceutorhynchus asper.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41468975/",
+          "grade": "D"
+        }
+      ]
+    },
+    {
+      "terpene": "limonene",
+      "effect_category": "other",
+      "mechanism": "unknown_mechanism",
+      "paper_count": 2,
+      "human_count": 0,
+      "positive": 2,
+      "negative": 0,
+      "confidence_1to6": 1,
+      "contradiction": false,
+      "statement": "limonene shows other signals via unknown mechanism across 2 recent papers.",
+      "citations": [
+        {
+          "id": "pmid:41596832",
+          "title": "Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41596832/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41596832",
+          "title": "Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41596832/",
+          "grade": "D"
+        }
+      ]
+    }
+  ]
+}

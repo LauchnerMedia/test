@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-03-04T09:12:09.939948",
+  "top_terpenes": [
+    "linalool",
+    "beta-caryophyllene",
+    "alpha-pinene",
+    "limonene",
+    "ocimene",
+    "beta-pinene",
+    "alpha-terpineol",
+    "caryophyllene oxide"
+  ],
+  "top_effects": [
+    "hepatoprotective",
+    "antibacterial",
+    "antioxidant",
+    "anti-inflammatory",
+    "bioavailability",
+    "anticancer",
+    "neuroprotective",
+    "immunomodulatory",
+    "entourage_effect",
+    "gastroprotective"
+  ],
+  "matrix": [
+    {
+      "terpene": "linalool",
+      "hepatoprotective": 4,
+      "antibacterial": 3,
+      "antioxidant": 4,
+      "anti-inflammatory": 1,
+      "bioavailability": 2,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 1,
+      "entourage_effect": 1,
+      "gastroprotective": 0
+    },
+    {
+      "terpene": "beta-caryophyllene",
+      "hepatoprotective": 2,
+      "antibacterial": 2,
+      "antioxidant": 2,
+      "anti-inflammatory": 3,
+      "bioavailability": 1,
+      "anticancer": 1,
+      "neuroprotective": 1,
+      "immunomodulatory": 1,
+      "entourage_effect": 1,
+      "gastroprotective": 1
+    },
+    {
+      "terpene": "alpha-pinene",
+      "hepatoprotective": 3,
+      "antibacterial": 1,
+      "antioxidant": 1,
+      "anti-inflammatory": 1,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 1,
+      "immunomodulatory": 1,
+      "entourage_effect": 0,
+      "gastroprotective": 0
+    },
+    {
+      "terpene": "limonene",
+      "hepatoprotective": 0,
+      "antibacterial": 1,
+      "antioxidant": 1,
+      "anti-inflammatory": 0,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 0,
+      "entourage_effect": 0,
+      "gastroprotective": 0
+    },
+    {
+      "terpene": "ocimene",
+      "hepatoprotective": 1,
+      "antibacterial": 1,
+      "antioxidant": 0,
+      "anti-inflammatory": 0,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 0,
+      "entourage_effect": 0,
+      "gastroprotective": 0
+    },
+    {
+      "terpene": "beta-pinene",
+      "hepatoprotective": 0,
+      "antibacterial": 1,
+      "antioxidant": 1,
+      "anti-inflammatory": 0,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 0,
+      "entourage_effect": 0,
+      "gastroprotective": 1
+    },
+    {
+      "terpene": "alpha-terpineol",
+      "hepatoprotective": 0,
+      "antibacterial": 1,
+      "antioxidant": 1,
+      "anti-inflammatory": 0,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 0,
+      "entourage_effect": 0,
+      "gastroprotective": 0
+    },
+    {
+      "terpene": "caryophyllene oxide",
+      "hepatoprotective": 0,
+      "antibacterial": 0,
+      "antioxidant": 0,
+      "anti-inflammatory": 0,
+      "bioavailability": 0,
+      "anticancer": 0,
+      "neuroprotective": 0,
+      "immunomodulatory": 0,
+      "entourage_effect": 0,
+      "gastroprotective": 0
+    }
+  ]
+}

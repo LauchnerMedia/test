@@ -1,0 +1,647 @@
+{
+  "scan_date": "2026-03-04T05:12:00.543951",
+  "period_days": 30,
+  "competitors_scanned": 7,
+  "total_vulnerabilities": 0,
+  "total_actionable_leads": 0,
+  "competitors": {
+    "True Terpenes": {
+      "competitor": "True Terpenes",
+      "info": {
+        "domain": "trueterpenes.com",
+        "reddit_terms": [
+          "true terpenes",
+          "trueterpenes",
+          "true terps"
+        ],
+        "pricing_botanical": "$80-150/L",
+        "pricing_cdt": "$2,000-4,000/L",
+        "known_weaknesses": [
+          "slow custom orders (4-6 weeks)",
+          "quality complaints on recent batches",
+          "corporate feel",
+          "price increases 2024-2025"
+        ],
+        "market_position": "Market leader, premium botanical + CDT",
+        "tbf_angle": "TBF offers faster custom turnaround, better batch consistency, competitive pricing at scale",
+        "dft_angle": "DFT offers hype strains True Terpenes doesn't carry, faster shipping, no minimum BS"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "True Terpenes Unveils Modifiers a New Frontier in Cannabis Flavor Innovation - mg Magazine",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNQkJ4MXZNWTRoTVFfNUFmN19vOU56UmFfcEFxZlFDY0xUQUx1V2NiRVI2NGVDbWNrbnFvOHFsSlVzb0QxMUk4WjhNSHJtUmxlNHU4YXhKOURoaU5UV1Q4UmxCaU43MXZCeGFLY1BTY05PQWVYLXkwMnNDcFVXeVJnd3I0TDRPN08tVjNCYzZFYkdqVDdhcGdmUFZmYnRhZDJva3NsdTNPYmthakVGS3JIbzJmUGZlQQ?oc=5",
+          "date": "Thu, 19 Jun 2025 07:00:00 GMT",
+          "query": "\"True Terpenes\" terpene"
+        },
+        {
+          "title": "True Terpenes Launches Headstash\u2122: A Breakthrough in Compliant Cannabis Aroma Science - acrofan.com",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBhcWpJbjFCRDJtdV9lR21ub3M0WTgza2twbGZOUkVuNG8yQ1B4MzRFVjNBZUpiSFlJT0xXN1BpcGVBMi1nZTBxazZTUmFzai0tbWFmRHpaaDZWd2h3?oc=5",
+          "date": "Tue, 03 Feb 2026 12:00:00 GMT",
+          "query": "\"True Terpenes\" terpene"
+        },
+        {
+          "title": "THC Isn\u2019t the Whole Story. These Compounds Are What Make Cannabis, Well, Cannabis - Rolling Stone",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNZHpWVDdEb0FyNnVKZGN4aFExMDRfNEpVT1FXZVZpamlzc3RfbXU5a0puSHlwNnlSVnp1MHpXWlhHMVJ6emlEOUVRWUo3QUkwaURCWHBjNm03VTY0TTNITjYtS0RaU3NwOFdBU0Ffdzc4eXd6WUdQUUZ4dTdoRXNKVUNmTldUOU1tcUZCbTJVN1kxa0MzR2tKVjBpNDA0UU5pVF9FakxLZGV6dVl1T3loWnJ0bF9VNk50Qm1oVUVHalF1cXJqY29yN29B?oc=5",
+          "date": "Tue, 15 Jul 2025 07:00:00 GMT",
+          "query": "\"True Terpenes\" terpene"
+        },
+        {
+          "title": "Cannabis industry gets crafty with terpenes - C&amp;EN",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNTjlJTU8tUkp5aGsyNVVCSmwwME02VHBMeE9Lc0ZGb1FHbFRwbkhiVkIySEFpOU5NSG1LbFRiSlp0SjJ2QXFKenE0b2w0dzBPeG5tVTRDZy04ZUJtUnJJNTVOdWhJQnc3d0RwRkZ5WDZSLV8weW00ZFE5ZWp6TjZRaC1NTnlBdWx1VHdKMDN1aGpJbnRET1gwTVhGN3JWNGs?oc=5",
+          "date": "Sun, 21 Jul 2019 07:00:00 GMT",
+          "query": "\"True Terpenes\" terpene"
+        },
+        {
+          "title": "Cashing in on the Terpene Trend - MJBizDaily",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE02ZURkamdwQmJoUWtMTHdtXzZFVnJVZDc3S3RQckdxZlR3WmZmOFJ2bDNwV1lMWGdTRjZaTGJadTQ1Rnl2V3lOM2dHRktnVVFQWW1KMTJNbnQ2Q0s5blpSYVlXd0dQc3RTeHpsNUNUYU1XZGVuNXc?oc=5",
+          "date": "Wed, 01 Aug 2018 07:00:00 GMT",
+          "query": "\"True Terpenes\" terpene"
+        },
+        {
+          "title": "Oregon considers new safety system after cannabis vape products recall - Oregon Public Broadcasting - OPB",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQUmVyTkdGS3NRYkR2SE1CMHlQaDIxYlVxSEpHYTdwVkFYSWgxellGMkRkbU90TE5SMTd3UUlESFZrNmxmcUxtQmZTOHE2eDBuNmxOU2F5SXp3V0RKM3RFcU9OMGJYejBpUWE2bi1ZVGthVmZlSXBIWkdsU2RvT1NGYS1EZi0?oc=5",
+          "date": "Mon, 14 Dec 2020 08:00:00 GMT",
+          "query": "\"True Terpenes\" complaint OR recall OR warning"
+        },
+        {
+          "title": "Three Companies Subpoenaed in Weed Vape Illness Investigation - Rolling Stone",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTDJwdFVIdno4NE5LWWJFUGljY011aFBiTE85cGhBZ1BJTHNaOUhOQTF4ZVB6a1Jpdlk3YUxUZE5VUkNlX2xIbW5oaW1hREx0OXJLV0VBdGRtWFVaVEh2cmR6ZFlrX2VhSjB6aHJqcWluLVdBZl9yMGxLcGZNNWx6amJmUkRxdHJZakIzUmxBaVFVNXZZNE1lQ29kdHNiU1hOZGZnWF9BZXRhalRncmVZOGtVVGVkdXd5dUVjSg?oc=5",
+          "date": "Tue, 10 Sep 2019 07:00:00 GMT",
+          "query": "\"True Terpenes\" complaint OR recall OR warning"
+        },
+        {
+          "title": "Oregon cannabis regulators ban additives first seen in vaping crisis, require more disclosure - MJBizDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZTl2MTRJVzhpUndqeFloUlNqcXpFV01yQVA2aEVVRm5qTjVNSUpWT09pVmdNWVVZM2VrSUlwT3g2WGpfbHlmQ2RUQUtTcFRTclRkZjJXVk9yajJOWGxzaGFWWlRJbXplQ1g5LTRidWJUSkVkNFpSejNDZ1htVTBoQ3pFSzEzdW1mRERRLUFiVExlaTg5el9sQldzRVdjMTFNVi0yU0UtOA?oc=5",
+          "date": "Fri, 18 Dec 2020 08:00:00 GMT",
+          "query": "\"True Terpenes\" complaint OR recall OR warning"
+        },
+        {
+          "title": "Prohibited Additives Trigger Cannabis Vape Recall in Oregon - Cannabis Equipment News",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVE1BZ1VZRHI4amh4SVpEdGQzQUY1cjFsYXFRZ1ByQVBJV3VnSlRVQjMwanloTmE3WXVzalRPYTNOWEYxUUpwZjRQUkE1bHBNb29TNzkyRklRTGdTdUZHblpKSER6a3J2Ynh5WGFucGdMcE1OS1NjeTc3SldpbndZQ2hYWlRHNFV0bHZ0UzJCMDd2WV80Q0J5aFZqUmtqSWlIZ3FnQ202Y183X2ZEZW1ER3J3WjRRSDVPdEtzUUpFWQ?oc=5",
+          "date": "Fri, 13 Jan 2023 08:00:00 GMT",
+          "query": "\"True Terpenes\" complaint OR recall OR warning"
+        },
+        {
+          "title": "Tainted vapes recalled as Oregon regulators plan wider ban - Leafly",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5fZWFLcTlUeGVJaHoxWG5ycVpPREJEWElHSG9peWUwdS0zd2FmTE1IUXNRdVp1aExPZjFKT20wS19IUEx0dk1BMVlXYVpSTjY2N05pZHR0OGJ1UDd4M3dlYjBTWi1sX0ZpMW5uY0tRWQ?oc=5",
+          "date": "Fri, 18 Dec 2020 08:00:00 GMT",
+          "query": "\"True Terpenes\" complaint OR recall OR warning"
+        },
+        {
+          "title": "True Terpenes Review by Dr. Ethan Russo, Cannabis Pioneer - PRWeb",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOTFZsNkI3dkl3elRPTWRmb3JtZGh4ZjZEcU1id2IwbWs5bmhjR21IQ05PVmN1WHlZY09keUpQUU5kYWFheTdhcjZqNDdDVlJWWUxtcFNHaGZRSl9Qamp6SWU4VjZIVDNTdGRfYnA3SXl1ZDAza0hLU1JQMTRhYkRjSkluZFpkQXlPMTlNU0cwdVFLM0NwR3ZWSENNaHFXVklGYU53?oc=5",
+          "date": "Wed, 23 Jun 2021 07:00:00 GMT",
+          "query": "\"True Terpenes\" review"
+        },
+        {
+          "title": "Terpenes, Unlocked: The Aromatic Soul of Cannabis - Cannabis Now",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1VWnhFSzRyZDZUeTZ2X1Q5NnFxa052cDF2U1dVX3Y1SS0zMnlGY24wTm9rbGJEcGg1TEk1d2t5OC12UXVhSTQtWXpmSV9iN0M0bUJzQ2dJR2QyVmFkWWFTR1R0UENja2FIU1VCaWpXTDUxd3puRDlCWE81YzM?oc=5",
+          "date": "Sun, 25 Jan 2026 08:00:00 GMT",
+          "query": "\"True Terpenes\" review"
+        },
+        {
+          "title": "ASTM D37 Passes Standards for Cannabis Vape Ingredient Safety Based on Framework by True Terpenes Head of Research - PRWeb",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPMUdYdzJxSmllcEpqVFk3Ym1SMDNhQUd3UHk3NmVVdTd6TmMtaC03bExxOXhCcGtyYWlmeHhBTVVHWWp1SnFBajhaTGZ0aWJxaGNxUmxhODhCbnYzVERCd1RuQ0dSdFpJcVYxYlVMU0ZTM1h2dWhmUXQ4bVFEWlE4QUJMOVdnYU1XZzdnWHVtRmZyWkxMazUyWUpJZTFmVWE1Y0xSUGluTTZKdXJfWnRpU1YyZFVsYnB3LU16V3dsVEtJWXl1ZXFnMXVaSUlPYmJUUjF5cUJKallVRXNSNWx2NUVsckU5amJnV21tZlAzZEdyZw?oc=5",
+          "date": "Wed, 13 Nov 2024 08:00:00 GMT",
+          "query": "\"True Terpenes\" review"
+        },
+        {
+          "title": "The Cutting-Edge Ingredients Making IPAs More Pungent Than Ever - VinePair",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE93Z0hGV2FSY0xwVXpUSDRpTldNSGNJM3laLVlLTzc5UGJ2Yi0zNEJqWWNFeTdtVWNLSm01X2xITG9NMkI1QzZsbVpsZWhZU2czUUlLSUw4ZnBfQ2F6QzR0OEFPN1ZuQnhuemxlS3Noel9FRmp4a1E?oc=5",
+          "date": "Wed, 23 Apr 2025 07:00:00 GMT",
+          "query": "\"True Terpenes\" review"
+        }
+      ],
+      "reviews": {
+        "trustpilot": {
+          "rating": 3.0,
+          "review_count": 4,
+          "url": "https://www.trustpilot.com/review/trueterpenes.com"
+        },
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [
+          "$150",
+          "$8"
+        ],
+        "hiring": true,
+        "new_products": [],
+        "new_products_signals": true,
+        "careers_url": "https://trueterpenes.com/careers"
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 15,
+        "risk_level": "HIGH",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF offers faster custom turnaround, better batch consistency, competitive pricing at scale",
+        "dft_angle": "DFT offers hype strains True Terpenes doesn't carry, faster shipping, no minimum BS",
+        "actionable_leads": 0
+      }
+    },
+    "Abstrax Tech": {
+      "competitor": "Abstrax Tech",
+      "info": {
+        "domain": "abstraxtech.com",
+        "reddit_terms": [
+          "abstrax",
+          "abstrax tech",
+          "abstraxtech"
+        ],
+        "pricing_botanical": "$120-200/L",
+        "pricing_cdt": "$3,000-6,000/L",
+        "known_weaknesses": [
+          "expensive",
+          "complex ordering process",
+          "slow response times",
+          "overengineered for small operators"
+        ],
+        "market_position": "Science/R&D focused, premium CDT",
+        "tbf_angle": "TBF matches scientific rigor with simpler ordering and faster turnaround at better prices",
+        "dft_angle": "DFT is for operators who want great terps without the PhD-level ordering process"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "Winter Mint Plant Winter Mint Terpene Blend | Functional Flavors | Abstrax Tech Can Mint Survive Winter - bussmagasinet.no",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9rbmNVT2ZBYkFVQkswUkliOWtxZm5EUFQ0SVJGSTl3YmZBYmhtTHQxenlDTS1CT25VZ1ZDU3U1dXI3TVZuX1J5U1pSdEllMzhHYmpsUjFHTHhlUHVOOVhvZVgzc3RXNWt2SkpRbkw3Wms?oc=5",
+          "date": "Mon, 16 Feb 2026 12:55:07 GMT",
+          "query": "\"Abstrax Tech\" terpene"
+        },
+        {
+          "title": "Abstrax Brings Clarity to Misunderstood Cannabis Compounds in First New White Paper of 2025 - GlobeNewswire",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNOGQ3Tm1sYm5fTnh5dEYwcF9qb3loVnNyWnNLV1h0Mk5tbmw5ZFc3T1I3R0FCVldoUy1sdlFOSmxZSnM4cTI4Q3hiTm5WeWhaRU5VRnJ3ZEZpZ2VrSHItUjNRZTBLTzlSdXdGTW9PaGtNQ0hNU2U5YUV5VS1UVkRBQjN6T25YdlQtNFRYSkx1SGQyQmN3dXh6bzFKVXF1NThiTUs1ZWI1c3dpYmJ5TEFzOW5pdmJra0xWNHMySFFKMTN4SF8xZVpRc0dmeHp3dV9lemx5LXl3TnQ2ZVlXeG5HdWxtenhGVmE1Mzl3RF9EQ1FCQWN6bUE?oc=5",
+          "date": "Tue, 04 Feb 2025 08:00:00 GMT",
+          "query": "\"Abstrax Tech\" terpene"
+        },
+        {
+          "title": "The Importance Of Cannabis Terpenes Is Overemphasized, Study Suggests - Forbes",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPbDVrMktKcnJCQXZjRjI3QXpLQmtJZ3l2TWNWeElYV18wWVUwejRVTFZwYmZENVhMM3RTMXdSQkx3cm1leWRKWDZjdjZ5TU5aYy1IeFBtSzUtQmZTWUlJMFEzX1hqQUl4V2Q4YnJIcWZ5dGRiRGh2akU0REJoRmV5Wk80X3o0Mkl4dVRtUGlMLWlYaUE0SXdkaHNpTFBLNXhVZUQwd1Z4czVZSXN6UWVBZE85WXdXUjRaWjVEQ2VrMA?oc=5",
+          "date": "Tue, 31 Oct 2023 07:00:00 GMT",
+          "query": "\"Abstrax Tech\" terpene"
+        },
+        {
+          "title": "Abstrax Reveals New Formulation Designed to Prevent Vape Product Degradation - Cannabis Industry Journal",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQN0RITjFKTkdKZFNZYkVSS3VDR3pLSUQxS1JqMUdWWktVaUtPM1FSZXR4a01GS2EwMlBoU2lha1lwQkdmc2dobG14dG5GQjNkc3JxMDY5aS0tcnBEOGgyQXI5MEQyd3J1a2dZdU41a0VscnIyc2dTeElGeXdQSFpSTUh0d1RMWE4zVFJyWkl3SWM0SlZnaGtNa3NLWmFISjhrMnU5SlZMQXlpcFllaE83bHhBTmVoZmwwWFFNM3BmODRyeEdj0gHKAUFVX3lxTE9iblJDem8zbEhzZG5iMWFURmxhR29vYkZvX1BCRzFNS1dOamdNM21waHhrTGl1Ri1QREFQejg2d3Axb2tTOF9aX0N5eTZjVFpEQkpEM1VzS2JaV3hEYk04ZmdlWmNDRUd4TkVnaDFOZGgzc0h2cVJxbEhmZTc2a2M1LURSb3ZhYzE0ZFVUODEyQl9QR1NKSTRQV2Rka2w5dXAyLTZ5Unlpb21rZEppX0RCcnE4YkJubExmNU9fZ0dKTXRic0lVWTVrRHc?oc=5",
+          "date": "Wed, 21 Jan 2026 08:00:00 GMT",
+          "query": "\"Abstrax Tech\" terpene"
+        },
+        {
+          "title": "Abstrax Discovers New Exotic Flavor Compounds and Cannabis\u2019 Hidden Flavor Spectrum: Beyond Terpenes to a World of Sweet, Savory, Citrus, and Fruity Flavorants - Business Wire",
+          "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxQYndOandUNmVOZkkzN1lPamRlV2c2LVE4ZXVZVloxSkVkUTdjcms0ZGE0RWQtZmplZzg1WXZZcjZ1U1RUVnJBbkNWblk2RGVsOHYySF9CUzkwYkRwZEtFaWZ2MTRmWlBqdVF1UkpiSWlfaTdBbDZhYWk4ZXFacmF2S3FBeHdYMVItWnBaSGxiR3kwVE9fTVNYb2VrbkhTa2dxU3QzeFh3bG5fZW9JdlpHSDdpOXNxRVV1RGdXalNTalA3SmQwbGt3VFc2X1FwdU5YVnJEUHoxdHFERlRQd1Z6MnRkNDJBQ0dRR0hlUFZaVHVlY1prbFZPeW9HZEhwd1ZJdVh4UzhVNWpCVFdjWk9qdl9WSUc4Y0hTRk42TXVoNHhDVW9zMmhPWE9WbUIyQlEyaDV1aQ?oc=5",
+          "date": "Thu, 12 Oct 2023 07:00:00 GMT",
+          "query": "\"Abstrax Tech\" terpene"
+        },
+        {
+          "title": "The Gassiest Cannabis Ever Measured: Abstrax Adds Bacio Gelato to its Prestigious Signature Series - PRWeb",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxONGhGbUhEQ29WMERrWkhGbkdnR09RZEc3T2lZbmUxczh2NTlWeWRMaWdvRUdEQVFGMUtZRDh3ejByeF9pcnc4VGNwNkRGSXpRWnA3c3RaUk4ta0VOQlExR3FWVGZPSkctN1VYd2FRUVhzWWxPU3JOdFFtQ2dmMDExMzVRdUd2emFGWkZ2MmwxU0p4djdIVFlTXy1FdWVHTFJPMk03bVBjOEY1eUQ1QXdYd0pPXzhKM3owSDI1QU1DcnMyV2lFUmFUa1NhMTlxTUFfTWxyV18zSmFNM2s?oc=5",
+          "date": "Tue, 15 Oct 2024 07:00:00 GMT",
+          "query": "\"Abstrax Tech\" review"
+        },
+        {
+          "title": "Abstrax Unveils First Brewing-Focused White Paper, Tackles Sulfur Defects in Advanced Hop Products - Brewbound",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPYnBGN1VtNWdYSHp6Rk1ZOTItTER5RDhGUF9rb1BfR01KT1pxRXdyRnlueHlSb2dXeGNQaUdOaUxmb2hTYVowRjljcjRZM3BPdjNNbEk0QnczZnN1VWlyMTk5b2g1c2pWY2F2d1Rib2Y0MlNfWmppbkh4MmNkME1XT2hnbGFKYnNhVW53cEwtYXpYTTVXT3paWncxTFNpVGRRdWlJajBkT3p2bE1hWndHenlvQ1Q4SGtzbVo5c1ZPcmpwa3RJeFVqUXFsbXBJc3lMcUE?oc=5",
+          "date": "Fri, 08 Aug 2025 07:00:00 GMT",
+          "query": "\"Abstrax Tech\" review"
+        },
+        {
+          "title": "Impact of Water Activity on the Chemical Composition and Smoking Quality of Cannabis Flower: The Science of Smokability Phase I Results - Cannabis Science and Technology",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOWFJQTWhqaUZ0LUs2aklrN0RoWXZDaVNYdkFqRHF6RG81ZWd2M1R4dkVZV2dVY2ozTEE1dmtUSnR2bC1EVEpwSXdUekpocEw4OUg4UTFSMUdBdzdCMGpnQ3pXMEpHdjdJNUxuRE1NNkxOSkF5c0lHSThuaVR0dUZwNmNlRDFUOGFDZzZ1b19acndWTWtNYnNLOGVUSlNSamFfLVhPdmdmWHNMZHB2R19ld1Q4amN2bTV5VXY0VXFTSW1JenNQenI1bXoyZGJORC1BTTl2YW1iTnBpS0VIMHBfSHAtM1pkc1ZpNFZxWk9mclpyQk02Z1J5X0NWb19XMFNtT0VubFp3?oc=5",
+          "date": "Thu, 01 May 2025 20:15:42 GMT",
+          "query": "\"Abstrax Tech\" review"
+        },
+        {
+          "title": "Abstrax Hops Doubles Skyfarm Series Portfolio, Unveiling the Hottest Flavors for Summer 2025 - Brewbound",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQcmhyVjVqR1NCcFV1SVdRMXN2NVp6a0pCU0o1ckQxWkFVTEFjRFFNeFBQY29Yak9zN05IcmlxTWg5LU1iRjNZLWtQcW4za1FlaVRkNFJlaHdSY3VSUWl0ODlnV2F4b0VfVk1mOWJfeE9rQTk3dTdNeEdHdHA3Ti1paFQxS3hUUmt5M0UzUDhLWnlDbjJYdWJRQjRJRnBUNVVCZVdxdTlrY3RQXzBqemNoTjdrdXBCRFQ0V0hsZnJQVUx4dGdZcl9VYWR1aw?oc=5",
+          "date": "Thu, 26 Sep 2024 07:00:00 GMT",
+          "query": "\"Abstrax Tech\" review"
+        }
+      ],
+      "reviews": {
+        "trustpilot": {
+          "rating": 4.7,
+          "review_count": 517,
+          "url": "https://www.trustpilot.com/review/abstraxtech.com"
+        },
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [
+          "$2,999",
+          "$39",
+          "$127",
+          "$420",
+          "$100.",
+          "$0",
+          "$20",
+          "$278",
+          "$1,899"
+        ],
+        "hiring": true,
+        "new_products": [],
+        "new_products_signals": true,
+        "careers_url": "https://abstraxtech.com/careers"
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 5,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF matches scientific rigor with simpler ordering and faster turnaround at better prices",
+        "dft_angle": "DFT is for operators who want great terps without the PhD-level ordering process",
+        "actionable_leads": 0
+      }
+    },
+    "Floraplex": {
+      "competitor": "Floraplex",
+      "info": {
+        "domain": "floraplex.com",
+        "reddit_terms": [
+          "floraplex",
+          "flora plex"
+        ],
+        "pricing_botanical": "$40-80/L",
+        "pricing_cdt": "N/A",
+        "known_weaknesses": [
+          "inconsistent quality",
+          "synthetic undertones",
+          "batch variation",
+          "no custom blending",
+          "poor customer service"
+        ],
+        "market_position": "Budget botanical, 200+ strains",
+        "tbf_angle": "TBF delivers consistency Floraplex can't at competitive volume pricing",
+        "dft_angle": "DFT offers authentic strain profiles without the synthetic aftertaste at comparable pricing"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "Floraplex CEO Alec Riffle Talks Terpene Blends, Brewing, and More - Leafly",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQOTVYOEVfU3NBRjFjamF5WlZIM0pSMEJNbFNHVVlWWXdXcWVpajVXeE1RLWE5N2pDdGw5MVI0aUN2R2NEeE9JTzNoVEtLVjBEcElLNXhnN0l6azRxTUIwWWxTdklLdm1LTDk4YlFqR1dXTEo0enYyNHY3Z0lKS2pUZkVRajRvQ0xpY1pkcUFfVS13WEE4NGVEOHU4bG5aaksySnc?oc=5",
+          "date": "Tue, 28 Jul 2020 07:00:00 GMT",
+          "query": "\"Floraplex\" terpene"
+        },
+        {
+          "title": "Three Companies Subpoenaed in Weed Vape Illness Investigation - Rolling Stone",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTDJwdFVIdno4NE5LWWJFUGljY011aFBiTE85cGhBZ1BJTHNaOUhOQTF4ZVB6a1Jpdlk3YUxUZE5VUkNlX2xIbW5oaW1hREx0OXJLV0VBdGRtWFVaVEh2cmR6ZFlrX2VhSjB6aHJqcWluLVdBZl9yMGxLcGZNNWx6amJmUkRxdHJZakIzUmxBaVFVNXZZNE1lQ29kdHNiU1hOZGZnWF9BZXRhalRncmVZOGtVVGVkdXd5dUVjSg?oc=5",
+          "date": "Tue, 10 Sep 2019 07:00:00 GMT",
+          "query": "\"Floraplex\" terpene"
+        },
+        {
+          "title": "Terpenes Market Size, Share, Growth | CAGR of 7.5% - Market.us",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5zQ3VfT0VpWGlDcDJmTkwzUF9VRWFkYkVuWjV6RVNQRWZVRGphcE1QYjByVHVNbnZNeVhnZVpjOThFUUxqTDNTWGY1TWdQYWVEQVJz?oc=5",
+          "date": "Fri, 30 Nov 2018 17:13:52 GMT",
+          "query": "\"Floraplex\" terpene"
+        },
+        {
+          "title": "How Floraplex Crafts Rare Terpenes Like Hashishene in the Lab - Leafly",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNT0pmNVltUXZsVVhZM1JmNG5iY1dtbW1tOW9yWHdacEdVbHBhLWFPdldhWEF3UGxSajAzTkdLdkstRFFBR0k1aVlMY0t0MmdPY2ozV0FPY2RjdDk5OXlzTDdSdnMzZXZVbnB1YjN2dVVlalV6R21EbFNzQm5RbU5lN0wzT3VGYms0b0N6SUhhRjdrLWEyTWtuWVZka2l3X3dOSHRWLQ?oc=5",
+          "date": "Tue, 28 Jul 2020 07:00:00 GMT",
+          "query": "\"Floraplex\" terpene"
+        },
+        {
+          "title": "Amherst company faces subpoena in N.Y. vaping investigation - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOZkcweERLODlIcjRjSmdYWXl1TVdJem90VldCU2g0bld3RDFFYzhNckkyZjVOMUk1cDM0TnZCQmZMSXltU1RLS0VHTE9UR3g5bk5DUlVneW80Mm90bTl2RkFackhORWF6REJNMnhCN012NFQ2VHkwMWxfWHpXQVVrR2pLSmxnMTd6VHY2a1RjTmV5d2pKS25UMzZZVVIzemxFbXFObm1TMmVFU1kzbjBQMklHRmhoMF9sWkFxMWNIamJNS3VkTDdYT0FR?oc=5",
+          "date": "Wed, 11 Sep 2019 07:00:00 GMT",
+          "query": "\"Floraplex\" terpene"
+        },
+        {
+          "title": "New York State subpoenas Amherst company, Mass Terpenes, in vaping illness investigation; company pulls produ - MassLive.com",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNSjZHTUZSaldtLTI3VzFtcFgtRVVOcjhEZnZxTXFZVWVIT0dnakVUSzd2UWhyVm1hczlWNklFS2hWRHlFZ2E4TElid0VzMlA0dUo3S2tWM0dmbjkwRHcxdTdVb1lKa3h1dmd3ZWhFTmQ1Qk5EMnFrR1BuWG9mRGowVWtHVW9BbzlMSG1ka0toT01sSklINEtsLUZwckxPMEZ2R0pEaWNXc3lUNXlqN2ZWb3o0YnFXX0gzRHlIYmtGR1UwZkpYWGYxeTVCOEREUndYbkRfRWZVU1NXZ3g2a2Uzb2NsYnRha3hoclU2RU1DSFNFUUppbzl6LdIBjAJBVV95cUxPRElVNUt4RVU2ckYxVW1Tb29SUEdMaU1wV09YVlNHTWEtOGR5ZVV6Qy13ZS1obFptVzVqeW9NSWFEYVRSV0VfNzR2X3AtODByMG9EV1RncERadWlRZU1LOGxXRnNrNjBwNy1qNGRGR2dmaXFvMzlNVHB4VEVYOGtRb0MtYndBQ0JoYmNMZXQxM0c0VHhkRVJndW1Kd2dHREVIdXF3Y0d5ZGtOSWxtTEItYV9VdTdXTHhUUmVnRWNrOWxZVUhaa3hBTHFTU01PNjlEVndRVWFkV2MtQU1jWXJPeDlvcEUzT3Fad0dYQ1FjZFJsQklkc29kd0gyQ1Y0STZBLWZmT1JfZ0lnaUk4?oc=5",
+          "date": "Thu, 12 Sep 2019 07:00:00 GMT",
+          "query": "\"Floraplex\" complaint OR recall OR warning"
+        }
+      ],
+      "reviews": {
+        "trustpilot": null,
+        "bbb": null
+      },
+      "website": {
+        "status": null,
+        "prices": [],
+        "hiring": false,
+        "new_products": [],
+        "error": "HTTPSConnectionPool(host='floraplex.com', port=443): Max retries exceeded with u"
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 0,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF delivers consistency Floraplex can't at competitive volume pricing",
+        "dft_angle": "DFT offers authentic strain profiles without the synthetic aftertaste at comparable pricing",
+        "actionable_leads": 0
+      }
+    },
+    "Denver Terpenes": {
+      "competitor": "Denver Terpenes",
+      "info": {
+        "domain": "denverterpenes.com",
+        "reddit_terms": [
+          "denver terpenes",
+          "denverterpenes"
+        ],
+        "pricing_botanical": "$60-120/L",
+        "pricing_cdt": "N/A",
+        "known_weaknesses": [
+          "limited strain selection",
+          "can't scale",
+          "regional only",
+          "small team"
+        ],
+        "market_position": "Regional CO supplier",
+        "tbf_angle": "TBF offers national scale and consistency Denver can't match",
+        "dft_angle": "DFT has 3x the strain library with exotic/hype profiles Denver doesn't offer"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "I Take Cannabis Terpenes Instead of Smoking Weed, and Here's Why - Bon App\u00e9tit",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE91TVJOVG5zSGNUQmJqSDhIVXNhWjMzWEV5US1GV1pXR01nMTIyZlAwbU0xQzBGd1h0cTdBZ2lJcGtKS0hGbzV4OGxLN05tcWU2OU16MDdPZ3RienZuLXlZ?oc=5",
+          "date": "Wed, 11 Jul 2018 07:00:00 GMT",
+          "query": "\"Denver Terpenes\" terpene"
+        },
+        {
+          "title": "Altered Plates uses terpenes to simulate a marijuana-like experience without THC or CBD - Nation\u2019s Restaurant News",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQYXJlWFV5cEYtMkMtMFIyazl5MVRvdjUxOXUtTWY1OWxYUTV4X3B1TVZIV1ZUZ3dQRU9nTHluTWVOSDVNajFDT1hDUTBOTlZJTHh3bTJZZV96dk92Q1ltWmpUZTl0RUlqbmY4NVJwT3dlbkg4ZDVPUzI3aDJNMjhyODFJV082U3RiNkhPMWZ5MFc3Zl9fY1pwVzFoaHJlWl9wQ1lyRGV5aFRtNWc4YnpPbDJEeDVmY1NsSEJkelE2NEJGNGNwRmJHMw?oc=5",
+          "date": "Mon, 10 Feb 2020 08:00:00 GMT",
+          "query": "\"Denver Terpenes\" terpene"
+        }
+      ],
+      "reviews": {
+        "trustpilot": {
+          "rating": null,
+          "review_count": 0,
+          "url": "https://www.trustpilot.com/review/denverterpenes.com"
+        },
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [
+          "$15.00"
+        ],
+        "hiring": false,
+        "new_products": [],
+        "new_products_signals": true
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 0,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF offers national scale and consistency Denver can't match",
+        "dft_angle": "DFT has 3x the strain library with exotic/hype profiles Denver doesn't offer",
+        "actionable_leads": 0
+      }
+    },
+    "Peak Supply Co": {
+      "competitor": "Peak Supply Co",
+      "info": {
+        "domain": "peaksupplyco.com",
+        "reddit_terms": [
+          "peak supply",
+          "peaksupplyco",
+          "peak supply co"
+        ],
+        "pricing_botanical": "$50-90/L",
+        "pricing_cdt": "N/A",
+        "known_weaknesses": [
+          "limited B2B infrastructure",
+          "DTC focused",
+          "inconsistent availability"
+        ],
+        "market_position": "DTC terpene supplier",
+        "tbf_angle": "TBF offers real B2B infrastructure, dedicated account management, volume pricing",
+        "dft_angle": "DFT offers better hype strain accuracy and craft-level attention Peak can't provide"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "Supps Creatine Review Peak Supply Co.: Camphene Terpene Isolate Dewalt Dxaeps14 Charger - bussmagasinet.no",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBCb2JHRV82WWFwLWNqdDdBWVd2MEVVcUgtSERPM0ViY0NDUzIzUENnM0FoQmtZOFNRU1Iwa3B4WWZWR0JjQzV4Mi1oU1R3TGxORTVjMUpwTEtlNHVjXzJSX2h0VVFaSDQ5cmJoSjJmdUM?oc=5",
+          "date": "Sun, 15 Feb 2026 08:04:33 GMT",
+          "query": "\"Peak Supply Co\" terpene"
+        }
+      ],
+      "reviews": {
+        "trustpilot": {
+          "rating": 3.7,
+          "review_count": 8,
+          "url": "https://www.trustpilot.com/review/peaksupplyco.com"
+        },
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [],
+        "hiring": false,
+        "new_products": [],
+        "new_products_signals": false
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 2,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF offers real B2B infrastructure, dedicated account management, volume pricing",
+        "dft_angle": "DFT offers better hype strain accuracy and craft-level attention Peak can't provide",
+        "actionable_leads": 0
+      }
+    },
+    "Terps USA": {
+      "competitor": "Terps USA",
+      "info": {
+        "domain": "terpsusa.com",
+        "reddit_terms": [
+          "terps usa",
+          "terpsusa"
+        ],
+        "pricing_botanical": "$35-70/L",
+        "pricing_cdt": "N/A",
+        "known_weaknesses": [
+          "bottom-tier quality",
+          "synthetic",
+          "no COAs",
+          "unreliable shipping"
+        ],
+        "market_position": "Budget/discount",
+        "tbf_angle": "TBF provides actual cannabis-origin quality at enterprise pricing",
+        "dft_angle": "DFT delivers real strain profiles at only slight premium over synthetic garbage"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "New Wax Liquidizer Hits Market - Terps USA - WebWire",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBzWklWeks5LWdwdVFJcGRYYnlfQnAzRDBJSXRoRDA4QXVDeW5EUmpzQ2lrNHpvYkpOMVVRb2VSVnZYRnhIRW1zYUMwUmhsS090TXBhY2VTaHJsMW1TQ0hTZw?oc=5",
+          "date": "Sat, 29 Jan 2022 08:00:00 GMT",
+          "query": "\"Terps USA\" terpene"
+        },
+        {
+          "title": "Terps, USA Junior World Cup Preview - University of Maryland Athletics",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNam9kcHhMTEM3VGxQVUxob0k5V2xRUWtGa3lReUI2T2xId0hfSlJxc3UtdHh3eURrNlV4c2VtanpPWXBmcVliVW1hX0tEcFdKWFVBalhmTDUyVmQ2by1ZTGxzMnQ4dUZmTDNUZUdRLTZUcEp3WFQyWmlnZms1YTE4T0pyV1Yxck4zWnpWMmNSZ0s?oc=5",
+          "date": "Mon, 01 Dec 2025 08:00:00 GMT",
+          "query": "\"Terps USA\" review"
+        },
+        {
+          "title": "Terps, USA Field Hockey Olympic Preview - University of Maryland Athletics",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1SRVh1akNhUFBpcVRBaDk3TDZpZUdTNDJWdm1JY19vaU04UlVKbVc1OU9vdFhqOWxQcGNmSVlvNzU1RGp0YkMxY1dVbWNqLV9PYmV5b3NVeUVRdVpvQXltN1N3UHQxOTFmOVlaSy1BanpjUEdKZFhz?oc=5",
+          "date": "Mon, 22 Jul 2024 07:00:00 GMT",
+          "query": "\"Terps USA\" review"
+        }
+      ],
+      "reviews": {
+        "trustpilot": null,
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [
+          "$99.00",
+          "$99.99",
+          "$124.99",
+          "$0.00",
+          "$75,",
+          "$4.99",
+          "$75.99",
+          "$90.99",
+          "$99",
+          "$9.99"
+        ],
+        "hiring": false,
+        "new_products": [],
+        "new_products_signals": true
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 0,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF provides actual cannabis-origin quality at enterprise pricing",
+        "dft_angle": "DFT delivers real strain profiles at only slight premium over synthetic garbage",
+        "actionable_leads": 0
+      }
+    },
+    "Extract Consultants": {
+      "competitor": "Extract Consultants",
+      "info": {
+        "domain": "extractconsultants.com",
+        "reddit_terms": [
+          "extract consultants"
+        ],
+        "pricing_botanical": "$70-120/L",
+        "pricing_cdt": "N/A",
+        "known_weaknesses": [
+          "formulation focused, not production",
+          "limited strain library",
+          "slow innovation"
+        ],
+        "market_position": "Formulation consulting + terpenes",
+        "tbf_angle": "TBF offers comparable formulation support with actual production scale",
+        "dft_angle": "DFT offers fresher, trendier profiles that Extract Consultants' catalog can't match"
+      },
+      "reddit": {
+        "total_mentions": 0,
+        "vulnerabilities": [],
+        "positive_mentions": [],
+        "vulnerability_count": 0
+      },
+      "news": [
+        {
+          "title": "Extract Consultants Launches New Powdered Terpenes Line - BevNET.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQbmQ3S0ptbUhPZHgzRVR6d1lhNFg1OHlmcUUzczhrT2N0ejB0b3VET2d0anRSODhFb2tLWUk1VnJFRE1oNE9UV1JIYnE0TUdGdGJMNzh3Rkx3Z19UVkI5UlhHZXIwckxYWkNlT1BER2ZTQWhLSEg4Mm1hTGpPLXdkbUdTTHpaZTlHSkItSjJjMnlMdjJGN0N6OG1laXYtQjFldUNvb0hn?oc=5",
+          "date": "Tue, 12 Jan 2021 08:00:00 GMT",
+          "query": "\"Extract Consultants\" terpene"
+        },
+        {
+          "title": "Terpenes Market Size, Share, Growth | CAGR of 7.5% - Market.us",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5zQ3VfT0VpWGlDcDJmTkwzUF9VRWFkYkVuWjV6RVNQRWZVRGphcE1QYjByVHVNbnZNeVhnZVpjOThFUUxqTDNTWGY1TWdQYWVEQVJz?oc=5",
+          "date": "Fri, 30 Nov 2018 17:13:52 GMT",
+          "query": "\"Extract Consultants\" terpene"
+        }
+      ],
+      "reviews": {
+        "trustpilot": null,
+        "bbb": null
+      },
+      "website": {
+        "status": 200,
+        "prices": [
+          "$0.00",
+          "$10.00",
+          "$100",
+          "$25.00"
+        ],
+        "hiring": false,
+        "new_products": [],
+        "new_products_signals": true
+      },
+      "vulnerability_summary": {
+        "vulnerability_score": 0,
+        "risk_level": "LOW",
+        "top_vulnerabilities": [],
+        "displacement_opportunity": "TBF offers comparable formulation support with actual production scale",
+        "dft_angle": "DFT offers fresher, trendier profiles that Extract Consultants' catalog can't match",
+        "actionable_leads": 0
+      }
+    }
+  },
+  "ranked_by_vulnerability": [
+    [
+      "True Terpenes",
+      15
+    ],
+    [
+      "Abstrax Tech",
+      5
+    ],
+    [
+      "Peak Supply Co",
+      2
+    ],
+    [
+      "Floraplex",
+      0
+    ],
+    [
+      "Denver Terpenes",
+      0
+    ],
+    [
+      "Terps USA",
+      0
+    ],
+    [
+      "Extract Consultants",
+      0
+    ]
+  ]
+}

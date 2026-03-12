@@ -1,0 +1,3281 @@
+{
+  "entities": {
+    "competitor:true_terpenes": {
+      "type": "competitor",
+      "id": "true_terpenes",
+      "created": "2026-03-04T05:24:56.165145",
+      "last_updated": "2026-03-04T05:50:30.838273",
+      "name": "True Terpenes",
+      "is_competitor": true,
+      "trustpilot_rating": 3.0,
+      "trustpilot_count": 4,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "HIGH",
+      "update_count": 1
+    },
+    "competitor:abstrax_tech": {
+      "type": "competitor",
+      "id": "abstrax_tech",
+      "created": "2026-03-04T05:24:56.165176",
+      "last_updated": "2026-03-04T05:50:30.838381",
+      "name": "Abstrax Tech",
+      "is_competitor": true,
+      "trustpilot_rating": 4.7,
+      "trustpilot_count": 517,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "competitor:floraplex": {
+      "type": "competitor",
+      "id": "floraplex",
+      "created": "2026-03-04T05:24:56.165191",
+      "last_updated": "2026-03-04T05:50:30.838388",
+      "name": "Floraplex",
+      "is_competitor": true,
+      "trustpilot_rating": null,
+      "trustpilot_count": null,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "competitor:denver_terpenes": {
+      "type": "competitor",
+      "id": "denver_terpenes",
+      "created": "2026-03-04T05:24:56.165196",
+      "last_updated": "2026-03-04T05:50:30.838394",
+      "name": "Denver Terpenes",
+      "is_competitor": true,
+      "trustpilot_rating": null,
+      "trustpilot_count": 0,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "competitor:peak_supply_co": {
+      "type": "competitor",
+      "id": "peak_supply_co",
+      "created": "2026-03-04T05:24:56.165200",
+      "last_updated": "2026-03-04T05:50:30.838399",
+      "name": "Peak Supply Co",
+      "is_competitor": true,
+      "trustpilot_rating": 3.7,
+      "trustpilot_count": 8,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "competitor:terps_usa": {
+      "type": "competitor",
+      "id": "terps_usa",
+      "created": "2026-03-04T05:24:56.165214",
+      "last_updated": "2026-03-04T05:50:30.838416",
+      "name": "Terps USA",
+      "is_competitor": true,
+      "trustpilot_rating": null,
+      "trustpilot_count": null,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "competitor:extract_consultants": {
+      "type": "competitor",
+      "id": "extract_consultants",
+      "created": "2026-03-04T05:24:56.165218",
+      "last_updated": "2026-03-04T05:50:30.838422",
+      "name": "Extract Consultants",
+      "is_competitor": true,
+      "trustpilot_rating": null,
+      "trustpilot_count": null,
+      "hiring": false,
+      "vulnerability_score": 0,
+      "risk_level": "LOW",
+      "update_count": 1
+    },
+    "terpene:beta_caryophyllene": {
+      "type": "terpene",
+      "id": "beta_caryophyllene",
+      "created": "2026-03-04T05:24:56.168107",
+      "last_updated": "2026-03-04T05:50:30.841496",
+      "name": "beta-caryophyllene",
+      "effects": {
+        "antioxidant": 1,
+        "anticancer": 1,
+        "anti-inflammatory": 2,
+        "antidepressant": 1,
+        "sedative": 1,
+        "skin_permeation": 1
+      },
+      "total_citations": 7,
+      "paper_count": 3,
+      "update_count": 1
+    },
+    "terpene:alpha_pinene": {
+      "type": "terpene",
+      "id": "alpha_pinene",
+      "created": "2026-03-04T05:24:56.168115",
+      "last_updated": "2026-03-04T05:50:30.841504",
+      "name": "alpha-pinene",
+      "effects": {
+        "anti-inflammatory": 1
+      },
+      "total_citations": 1,
+      "paper_count": 1,
+      "update_count": 1
+    },
+    "terpene:linalool": {
+      "type": "terpene",
+      "id": "linalool",
+      "created": "2026-03-04T05:24:56.168120",
+      "last_updated": "2026-03-04T05:50:30.841510",
+      "name": "linalool",
+      "effects": {
+        "antioxidant": 1,
+        "bioavailability": 1,
+        "antifungal": 1
+      },
+      "total_citations": 3,
+      "paper_count": 1,
+      "update_count": 1
+    },
+    "terpene:beta_pinene": {
+      "type": "terpene",
+      "id": "beta_pinene",
+      "created": "2026-03-04T05:24:56.168124",
+      "last_updated": "2026-03-04T05:50:30.841515",
+      "name": "beta-pinene",
+      "effects": {
+        "antibacterial": 1,
+        "skin_permeation": 1
+      },
+      "total_citations": 2,
+      "paper_count": 2,
+      "update_count": 1
+    },
+    "terpene:caryophyllene_oxide": {
+      "type": "terpene",
+      "id": "caryophyllene_oxide",
+      "created": "2026-03-04T05:24:56.168128",
+      "last_updated": "2026-03-04T05:50:30.841520",
+      "name": "caryophyllene oxide",
+      "effects": {
+        "skin_permeation": 1
+      },
+      "total_citations": 1,
+      "paper_count": 1,
+      "update_count": 1
+    },
+    "company:mellow_fellow": {
+      "type": "company",
+      "id": "mellow_fellow",
+      "created": "2026-03-04T05:28:05.138981",
+      "last_updated": "2026-03-04T05:50:30.836769",
+      "name": "Mellow Fellow",
+      "domain": "mellowfellow.fun",
+      "contacts": 28,
+      "avg_score": 95.3,
+      "top_score": 100,
+      "top_contact": "JJ Coombs",
+      "top_title": "CEO & Co-Founder",
+      "verified_emails": 0,
+      "pipeline_tier": "hot",
+      "source": "apollo_pipeline",
+      "brief_completed": true,
+      "brief_date": "2026-03-04T00:58:42.189057",
+      "brief_file": "/Users/andrewlauchner/.openclaw/skills/nexus-bdr-agent/scripts/outputs/briefs/brief_mellow_fellow_20260304_0058.json",
+      "terpene_relevance": "HIGH \u2014 produces CDT/BDT vape, gummy, and tincture SKUs",
+      "company_type": "Brand|Manufacturer|CPG Company",
+      "description": "<cite index=\"32-1,32-2,11-4,11-5\">Mellow Fellow is a pharmacist-founded hemp cannabinoid brand operating within Arvida Labs, an industry-leading production and product development company. The brand produces a full range of alternative cannabinoids using proprietary formulations and one-of-a-kind blends, with all products pharmacist formulated and every batch of oil undergoing full panel testing to ensure safety and effectiveness.</cite>",
+      "current_supplier": "True Terpenes (likely)",
+      "switching_triggers": [
+        "Batch consistency concerns",
+        "CDT pricing pressure",
+        "Scaling supply needs for national distribution"
+      ],
+      "annual_value": "$180K-360K (estimated)",
+      "priority_score": 92,
+      "update_count": 6
+    },
+    "person:_": {
+      "type": "person",
+      "id": "_",
+      "created": "2026-03-04T05:28:05.138988",
+      "last_updated": "2026-03-04T05:28:05.139802",
+      "name": "",
+      "title": "",
+      "email": "",
+      "score": 25,
+      "company": "Konopan"
+    },
+    "company:cbd_alchemy": {
+      "type": "company",
+      "id": "cbd_alchemy",
+      "created": "2026-03-04T05:28:05.139118",
+      "last_updated": "2026-03-04T05:50:30.834094",
+      "name": "CBD Alchemy",
+      "domain": "cbd-alchemy.com",
+      "contacts": 11,
+      "avg_score": 88.2,
+      "top_score": 100,
+      "top_contact": "",
+      "top_title": "Founder and CEO",
+      "verified_emails": 0,
+      "pipeline_tier": "hot",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cannvital___1": {
+      "type": "company",
+      "id": "cannvital___1",
+      "created": "2026-03-04T05:28:05.139173",
+      "last_updated": "2026-03-04T05:50:30.834102",
+      "name": "Cannvital - 1",
+      "domain": "cannvital.com",
+      "contacts": 4,
+      "avg_score": 89.2,
+      "top_score": 100,
+      "top_contact": "",
+      "top_title": "Manager",
+      "verified_emails": 0,
+      "pipeline_tier": "hot",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:deli_hemp": {
+      "type": "company",
+      "id": "deli_hemp",
+      "created": "2026-03-04T05:28:05.139197",
+      "last_updated": "2026-03-04T05:50:30.834110",
+      "name": "Deli Hemp",
+      "domain": "deli-hemp.fr",
+      "contacts": 9,
+      "avg_score": 78.8,
+      "top_score": 93,
+      "top_contact": "",
+      "top_title": "Digital Marketing Manager",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:kratomworld": {
+      "type": "company",
+      "id": "kratomworld",
+      "created": "2026-03-04T05:28:05.139242",
+      "last_updated": "2026-03-04T05:50:30.834117",
+      "name": "Kratomworld",
+      "domain": "kratomworld.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:c3_clear": {
+      "type": "company",
+      "id": "c3_clear",
+      "created": "2026-03-04T05:28:05.139250",
+      "last_updated": "2026-03-04T05:50:30.834122",
+      "name": "C3 Clear",
+      "domain": "c3clear.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:konopna_farm_liptov": {
+      "type": "company",
+      "id": "konopna_farm_liptov",
+      "created": "2026-03-04T05:28:05.139259",
+      "last_updated": "2026-03-04T05:50:30.834127",
+      "name": "Konopna Farm Liptov",
+      "domain": "konopnafarmaliptov.sk",
+      "contacts": 2,
+      "avg_score": 57.0,
+      "top_score": 66,
+      "top_contact": "",
+      "top_title": "Social Media Marketing Manager",
+      "verified_emails": 0,
+      "pipeline_tier": "cool",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:canadelar___1": {
+      "type": "company",
+      "id": "canadelar___1",
+      "created": "2026-03-04T05:28:05.139275",
+      "last_updated": "2026-03-04T05:50:30.834134",
+      "name": "CanAdelar - 1",
+      "domain": "canadelaar.com",
+      "contacts": 11,
+      "avg_score": 64.7,
+      "top_score": 87,
+      "top_contact": "",
+      "top_title": "Production Manager",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:a_sense": {
+      "type": "company",
+      "id": "a_sense",
+      "created": "2026-03-04T05:28:05.139333",
+      "last_updated": "2026-03-04T05:50:30.834145",
+      "name": "A-Sense",
+      "domain": "a-sense.pl",
+      "contacts": 22,
+      "avg_score": 72.9,
+      "top_score": 89,
+      "top_contact": "",
+      "top_title": "Sales Director",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:phytograde___1": {
+      "type": "company",
+      "id": "phytograde___1",
+      "created": "2026-03-04T05:28:05.139441",
+      "last_updated": "2026-03-04T05:50:30.834153",
+      "name": "Phytograde - 1",
+      "domain": "phytograde.fr",
+      "contacts": 4,
+      "avg_score": 88.5,
+      "top_score": 100,
+      "top_contact": "",
+      "top_title": "CEO & Co-founder",
+      "verified_emails": 0,
+      "pipeline_tier": "hot",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:canna_capital_group___1": {
+      "type": "company",
+      "id": "canna_capital_group___1",
+      "created": "2026-03-04T05:28:05.139464",
+      "last_updated": "2026-03-04T05:50:30.834159",
+      "name": "Canna Capital Group - 1",
+      "domain": "cannacapital.ch",
+      "contacts": 2,
+      "avg_score": 75.0,
+      "top_score": 95,
+      "top_contact": "",
+      "top_title": "Mitglied der Gesch\u00e4ftsleitung & Partner",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:giantec___1": {
+      "type": "company",
+      "id": "giantec___1",
+      "created": "2026-03-04T05:28:05.139477",
+      "last_updated": "2026-03-04T05:50:30.834164",
+      "name": "Giantec - 1",
+      "domain": "giantec.de",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:pura_cbd": {
+      "type": "company",
+      "id": "pura_cbd",
+      "created": "2026-03-04T05:28:05.139486",
+      "last_updated": "2026-03-04T05:50:30.834168",
+      "name": "Pura CBD",
+      "domain": "puracura.com",
+      "contacts": 1,
+      "avg_score": 25.0,
+      "top_score": 25,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:unknown": {
+      "type": "company",
+      "id": "unknown",
+      "created": "2026-03-04T05:28:05.139494",
+      "last_updated": "2026-03-04T05:28:05.139495",
+      "name": "Unknown",
+      "domain": "",
+      "contacts": 1,
+      "avg_score": 23.0,
+      "top_score": 23,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline"
+    },
+    "company:alplant": {
+      "type": "company",
+      "id": "alplant",
+      "created": "2026-03-04T05:28:05.139503",
+      "last_updated": "2026-03-04T05:50:30.834174",
+      "name": "Alplant",
+      "domain": "alplant.ch",
+      "contacts": 4,
+      "avg_score": 71.2,
+      "top_score": 92,
+      "top_contact": "",
+      "top_title": "Executive Partner",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:ferna_trade": {
+      "type": "company",
+      "id": "ferna_trade",
+      "created": "2026-03-04T05:28:05.139528",
+      "last_updated": "2026-03-04T05:50:30.834180",
+      "name": "Ferna Trade",
+      "domain": "fernatrade.com",
+      "contacts": 3,
+      "avg_score": 34.3,
+      "top_score": 45,
+      "top_contact": "",
+      "top_title": "Manager of Sales",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cookies_eu___1": {
+      "type": "company",
+      "id": "cookies_eu___1",
+      "created": "2026-03-04T05:28:05.139547",
+      "last_updated": "2026-03-04T05:50:30.834185",
+      "name": "Cookies EU - 1",
+      "domain": "cookies.eu",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:euphoria___1": {
+      "type": "company",
+      "id": "euphoria___1",
+      "created": "2026-03-04T05:28:05.139557",
+      "last_updated": "2026-03-04T05:50:30.834190",
+      "name": "Euphoria - 1",
+      "domain": "euphoria.eu",
+      "contacts": 3,
+      "avg_score": 70.7,
+      "top_score": 88,
+      "top_contact": "",
+      "top_title": "Managing Director",
+      "verified_emails": 0,
+      "pipeline_tier": "warm",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:canatura___1": {
+      "type": "company",
+      "id": "canatura___1",
+      "created": "2026-03-04T05:28:05.139576",
+      "last_updated": "2026-03-04T05:50:30.834196",
+      "name": "Canatura - 1",
+      "domain": "canatura.com",
+      "contacts": 5,
+      "avg_score": 87.8,
+      "top_score": 100,
+      "top_contact": "",
+      "top_title": "CEO",
+      "verified_emails": 0,
+      "pipeline_tier": "hot",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:vivadzen": {
+      "type": "company",
+      "id": "vivadzen",
+      "created": "2026-03-04T05:28:05.139604",
+      "last_updated": "2026-03-04T05:50:30.834202",
+      "name": "Vivadzen",
+      "domain": "vivadzen.com",
+      "contacts": 2,
+      "avg_score": 39.0,
+      "top_score": 53,
+      "top_contact": "",
+      "top_title": "Regional Director of Sales and Marketing",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:pivo_falkenstejn": {
+      "type": "company",
+      "id": "pivo_falkenstejn",
+      "created": "2026-03-04T05:28:05.139617",
+      "last_updated": "2026-03-04T05:50:30.834207",
+      "name": "Pivo Falkenstejn",
+      "domain": "pivofalkenstejn.cz",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:puffy___1": {
+      "type": "company",
+      "id": "puffy___1",
+      "created": "2026-03-04T05:28:05.139626",
+      "last_updated": "2026-03-04T05:50:30.834212",
+      "name": "Puffy - 1",
+      "domain": "hipuffy.eu",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:the_hemp_labs___1": {
+      "type": "company",
+      "id": "the_hemp_labs___1",
+      "created": "2026-03-04T05:28:05.139635",
+      "last_updated": "2026-03-04T05:50:30.834216",
+      "name": "The Hemp Labs - 1",
+      "domain": "hemp-labs.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cannashock": {
+      "type": "company",
+      "id": "cannashock",
+      "created": "2026-03-04T05:28:05.139644",
+      "last_updated": "2026-03-04T05:50:30.834221",
+      "name": "Cannashock",
+      "domain": "cannashock.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:rollz_wholesale": {
+      "type": "company",
+      "id": "rollz_wholesale",
+      "created": "2026-03-04T05:28:05.139652",
+      "last_updated": "2026-03-04T05:50:30.834226",
+      "name": "Rollz Wholesale",
+      "domain": "rollzwholesale.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:royal_green_distro": {
+      "type": "company",
+      "id": "royal_green_distro",
+      "created": "2026-03-04T05:28:05.139661",
+      "last_updated": "2026-03-04T05:50:30.834231",
+      "name": "Royal Green Distro",
+      "domain": "royalgreenwholesale.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:pivovar": {
+      "type": "company",
+      "id": "pivovar",
+      "created": "2026-03-04T05:28:05.139669",
+      "last_updated": "2026-03-04T05:50:30.834236",
+      "name": "Pivovar",
+      "domain": "pivovarbroumov.cz",
+      "contacts": 1,
+      "avg_score": 25.0,
+      "top_score": 25,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:hfactory___1": {
+      "type": "company",
+      "id": "hfactory___1",
+      "created": "2026-03-04T05:28:05.139678",
+      "last_updated": "2026-03-04T05:50:30.834240",
+      "name": "Hfactory - 1",
+      "domain": "hempfactory.cz",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cannaspace_prague": {
+      "type": "company",
+      "id": "cannaspace_prague",
+      "created": "2026-03-04T05:28:05.139688",
+      "last_updated": "2026-03-04T05:50:30.834245",
+      "name": "Cannaspace Prague",
+      "domain": "cannaspace.cz",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:sativa_sparkle": {
+      "type": "company",
+      "id": "sativa_sparkle",
+      "created": "2026-03-04T05:28:05.139697",
+      "last_updated": "2026-03-04T05:50:30.834250",
+      "name": "Sativa Sparkle",
+      "domain": "sativasparkle.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:eleven_thc": {
+      "type": "company",
+      "id": "eleven_thc",
+      "created": "2026-03-04T05:28:05.139706",
+      "last_updated": "2026-03-04T05:50:30.834254",
+      "name": "Eleven THC",
+      "domain": "elevethc.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:weneed_weed": {
+      "type": "company",
+      "id": "weneed_weed",
+      "created": "2026-03-04T05:28:05.139715",
+      "last_updated": "2026-03-04T05:50:30.834259",
+      "name": "Weneed Weed",
+      "domain": "weneedweed.eu",
+      "contacts": 1,
+      "avg_score": 25.0,
+      "top_score": 25,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:canapa_montana": {
+      "type": "company",
+      "id": "canapa_montana",
+      "created": "2026-03-04T05:28:05.139724",
+      "last_updated": "2026-03-04T05:50:30.834264",
+      "name": "Canapa Montana",
+      "domain": "canapamontana.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:highness_distribution": {
+      "type": "company",
+      "id": "highness_distribution",
+      "created": "2026-03-04T05:28:05.139732",
+      "last_updated": "2026-03-04T05:50:30.834269",
+      "name": "Highness Distribution",
+      "domain": "highnessdistribution.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:hemp_embassy": {
+      "type": "company",
+      "id": "hemp_embassy",
+      "created": "2026-03-04T05:28:05.139741",
+      "last_updated": "2026-03-04T05:50:30.834274",
+      "name": "Hemp Embassy",
+      "domain": "hempembassy.it",
+      "contacts": 2,
+      "avg_score": 55.0,
+      "top_score": 75,
+      "top_contact": "",
+      "top_title": "Business Owner",
+      "verified_emails": 0,
+      "pipeline_tier": "cool",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cali_farms_la": {
+      "type": "company",
+      "id": "cali_farms_la",
+      "created": "2026-03-04T05:28:05.139758",
+      "last_updated": "2026-03-04T05:50:30.834279",
+      "name": "Cali Farms LA",
+      "domain": "califarmshop.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:roican___1": {
+      "type": "company",
+      "id": "roican___1",
+      "created": "2026-03-04T05:28:05.139767",
+      "last_updated": "2026-03-04T05:50:30.834283",
+      "name": "Roican - 1",
+      "domain": "roican.eu",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:weedpassion_bioflower": {
+      "type": "company",
+      "id": "weedpassion_bioflower",
+      "created": "2026-03-04T05:28:05.139776",
+      "last_updated": "2026-03-04T05:50:30.834288",
+      "name": "Weedpassion Bioflower",
+      "domain": "weedpassionbioflower.com",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:cannalab": {
+      "type": "company",
+      "id": "cannalab",
+      "created": "2026-03-04T05:28:05.139784",
+      "last_updated": "2026-03-04T05:50:30.834293",
+      "name": "Cannalab",
+      "domain": "cannalaborganics.gr",
+      "contacts": 1,
+      "avg_score": 15.0,
+      "top_score": 15,
+      "top_contact": "",
+      "top_title": "",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    },
+    "company:konopan": {
+      "type": "company",
+      "id": "konopan",
+      "created": "2026-03-04T05:28:05.139793",
+      "last_updated": "2026-03-04T05:50:30.834298",
+      "name": "Konopan",
+      "domain": "konopan.sk",
+      "contacts": 2,
+      "avg_score": 39.0,
+      "top_score": 53,
+      "top_contact": "",
+      "top_title": "Owner",
+      "verified_emails": 0,
+      "pipeline_tier": "cold",
+      "source": "apollo_pipeline",
+      "update_count": 1
+    }
+  },
+  "signals": [
+    {
+      "id": "a58c853a2580",
+      "type": "reddit_supplier_seeking",
+      "source": "reddit",
+      "entities": [],
+      "data": {
+        "title": "Looking for Hash Recommendations",
+        "subreddit": "TheOCS",
+        "url": "https://reddit.com/r/TheOCS/comments/1rk0ih0/looking_for_hash_recommendations/",
+        "body_preview": "Hello,\n\nI am getting into hash and I'm wanting some recommendations, please. I'd love to try hash with a good flavour that's easy to roll into a snake. Maybe some pinenene or caryophyllene terpenes. ",
+        "competitors_mentioned": [],
+        "complaints": [],
+        "switching_signals": []
+      },
+      "strength": 1,
+      "weight": 10,
+      "timestamp": "2026-03-04T05:24:56.164454",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "3791b88ebbae",
+      "type": "reddit_supplier_seeking",
+      "source": "reddit",
+      "entities": [],
+      "data": {
+        "title": "Anxiety &amp; Sensitivity to THC",
+        "subreddit": "hempflowers",
+        "url": "https://reddit.com/r/hempflowers/comments/1rjqy27/anxiety_sensitivity_to_thc/",
+        "body_preview": "hello! i've been smoking weed (THC) since i was 16, I'm 30 now and during my late 20's i've become super sensitive to THC. it's like it turned on me and suddenly. I was wondering if anyone can recomme",
+        "competitors_mentioned": [],
+        "complaints": [],
+        "switching_signals": []
+      },
+      "strength": 1,
+      "weight": 10,
+      "timestamp": "2026-03-04T05:24:56.164472",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "2cf2b7c10605",
+      "type": "reddit_supplier_seeking",
+      "source": "reddit",
+      "entities": [],
+      "data": {
+        "title": "what to actually look for in COA\u2019s",
+        "subreddit": "FLMedicalTrees",
+        "url": "https://reddit.com/r/FLMedicalTrees/comments/1rk5car/what_to_actually_look_for_in_coas/",
+        "body_preview": "\\^ just trying to figure out what i should truly be looking for with bud and rosin to be like yeah i wanna buy that.",
+        "competitors_mentioned": [],
+        "complaints": [],
+        "switching_signals": []
+      },
+      "strength": 1,
+      "weight": 10,
+      "timestamp": "2026-03-04T05:24:56.164487",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "3dddb2f93b86",
+      "type": "reddit_supplier_seeking",
+      "source": "reddit",
+      "entities": [],
+      "data": {
+        "title": "HUT - Dual Z (RS11 &amp; Souffle) 28g",
+        "subreddit": "TheOCS",
+        "url": "https://reddit.com/r/TheOCS/comments/1rk2jxh/hut_dual_z_rs11_souffle_28g/",
+        "body_preview": "I\u2019ve generally been skeptical of split ounces. More often than not, one half stands out while the other feels like something you work through just to get back to the better half. Unfortunately, that d",
+        "competitors_mentioned": [],
+        "complaints": [],
+        "switching_signals": []
+      },
+      "strength": 1,
+      "weight": 10,
+      "timestamp": "2026-03-04T05:24:56.164502",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "67d5c18df651",
+      "type": "trustpilot_below_3.5",
+      "source": "trustpilot",
+      "entities": [
+        "competitor:true_terpenes"
+      ],
+      "data": {
+        "competitor": "True Terpenes",
+        "rating": 3.0,
+        "count": 4
+      },
+      "strength": 8,
+      "weight": 15,
+      "timestamp": "2026-03-04T05:24:56.165156",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "a2988d17c08f",
+      "type": "hiring_signal",
+      "source": "website",
+      "entities": [
+        "competitor:true_terpenes"
+      ],
+      "data": {
+        "competitor": "True Terpenes",
+        "hiring": true
+      },
+      "strength": 4,
+      "weight": 4,
+      "timestamp": "2026-03-04T05:24:56.165167",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "8b9bf16458d0",
+      "type": "hiring_signal",
+      "source": "website",
+      "entities": [
+        "competitor:abstrax_tech"
+      ],
+      "data": {
+        "competitor": "Abstrax Tech",
+        "hiring": true
+      },
+      "strength": 4,
+      "weight": 4,
+      "timestamp": "2026-03-04T05:24:56.165182",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "f1d6b06ad630",
+      "type": "trustpilot_below_4.0",
+      "source": "trustpilot",
+      "entities": [
+        "competitor:peak_supply_co"
+      ],
+      "data": {
+        "competitor": "Peak Supply Co",
+        "rating": 3.7
+      },
+      "strength": 5,
+      "weight": 8,
+      "timestamp": "2026-03-04T05:24:56.165207",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "f473223f6190",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Reducing severe breathlessness with dronabinol in the group of patients with severe and very severe chronic obstructive ",
+        "journal": "BMJ open",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "anxiolytic",
+          "bronchodilator",
+          "antidepressant",
+          "sedative"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41698715/",
+        "score": 57
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168155",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "85418e0b4fc4",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Therapeutic use of cannabinoids in age-related pain: Current evidence and clinical perspectives.",
+        "journal": "Pharmacological research",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "bioavailability",
+          "anti-inflammatory",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41651319/",
+        "score": 89
+      },
+      "strength": 5,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168173",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "68f41f90e600",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Cannabis sativa in the fight against drug-resistant bacteria and fungi.",
+        "journal": "Folia medica Cracoviensia",
+        "year": "2025",
+        "terpenes": [],
+        "effects": [
+          "antifungal",
+          "anti-inflammatory",
+          "entourage_effect",
+          "antibacterial"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41607163/",
+        "score": 47
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168187",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "1a6169b58bbc",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Cannabidiol-Loaded Mucoadhesive PLGA Nanosphere-Chitosan Hydrogel Patch for Oral Therapeutic Applications.",
+        "journal": "International journal of molecular sciences",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41596768/",
+        "score": 41
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168201",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "9cf0672d168b",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Solanesol Modified Pluronic F127 Triblock Copolymeric Micelles for Anticancer Drug Delivery.",
+        "journal": "Langmuir : the ACS journal of surfaces and colloids",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "bioavailability",
+          "anticancer",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41621060/",
+        "score": 41
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168214",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "fd84559ed684",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.",
+        "journal": "Foods (Basel, Switzerland)",
+        "year": "2026",
+        "terpenes": [
+          "limonene"
+        ],
+        "effects": [],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41596832/",
+        "score": 45
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168226",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "c899ea41a0b2",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Microliter-scale ethanol confinement array with biofluidic triggered release for dual-enhanced precision chemotherapy.",
+        "journal": "Biomaterials",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "bioavailability",
+          "anticancer",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40752287/",
+        "score": 41
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168241",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "4a747bf3b676",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Phytochemistry and pharmacology of Melaleuca alternifolia: Bridging aboriginal heritage with contemporary science.",
+        "journal": "Biochimica et biophysica acta. General subjects",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "anti-inflammatory",
+          "antifungal",
+          "antibacterial",
+          "bioavailability",
+          "bronchodilator",
+          "anticancer",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41679395/",
+        "score": 61
+      },
+      "strength": 4,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168255",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "c6c396ac068a",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Engineering Microalgae for Enhanced Astaxanthin Production: Integrating Metabolic Pathways and Nano-Biotechnologies.",
+        "journal": "Marine drugs",
+        "year": "2025",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "bioavailability",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41440910/",
+        "score": 41
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168267",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "6fabfb7473b7",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "A Randomized, Open-Label Trial to Assess Feasibility and Tolerability of Topical Cannabis Balms for the Treatment of Aro",
+        "journal": "Cannabis and cannabinoid research",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "skin_permeation",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41467893/",
+        "score": 44
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168282",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "e47654985a9f",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Skin Penetration of Caffeine and Cafestol using Liposomes: Exploring the Benefits of a Combined Delivery System.",
+        "journal": "AAPS PharmSciTech",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "skin_permeation",
+          "bioavailability",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41572103/",
+        "score": 44
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168294",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "b0cb405c6973",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Sesquiterpenes from galangal essential oil as potent penetration enhancer: Effect on stratum corneum components and cuta",
+        "journal": "Journal of pharmaceutical sciences",
+        "year": "2026",
+        "terpenes": [
+          "beta-caryophyllene",
+          "caryophyllene oxide",
+          "beta-pinene"
+        ],
+        "effects": [
+          "skin_permeation"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41419158/",
+        "score": 50
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168307",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "40ccaa2093f7",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Cannabinoid Signaling and Autophagy in Oral Disease: Molecular Mechanisms and Therapeutic Implications.",
+        "journal": "International journal of molecular sciences",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "bioavailability",
+          "anticancer",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41516397/",
+        "score": 44
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168321",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "6ee049b5fb39",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Hemp (",
+        "journal": "International journal of molecular sciences",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "anti-inflammatory",
+          "neuroprotective",
+          "antibacterial"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41683571/",
+        "score": 42
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168333",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "8723bfe837c6",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "entities": [],
+      "data": {
+        "title": "Using wastewater analysis to estimate the prevalence of THC and CBD use in a population of Japan during and after the Co",
+        "journal": "Forensic science international",
+        "year": "2026",
+        "terpenes": [],
+        "effects": [
+          "bioavailability"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41108939/",
+        "score": 41
+      },
+      "strength": 3,
+      "weight": 5,
+      "timestamp": "2026-03-04T05:24:56.168345",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "53db9d41c707",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Testing the Addition of an Anti-cancer Drug, Abemaciclib, to the Usual Chemotherapy Treatment (Gemci",
+        "status": "RECRUITING",
+        "nct_id": "NCT06498648",
+        "url": "https://clinicaltrials.gov/study/NCT06498648"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168364",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "b873cf46caa0",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Doxorubicin Hydrochloride, Cyclophosphamide, and Paclitaxel With or Without Bevacizumab in Treating ",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "nct_id": "NCT00433511",
+        "url": "https://clinicaltrials.gov/study/NCT00433511"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168375",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "5b6e05381c36",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Dinutuximab With Chemotherapy, Surgery and Stem Cell Transplantation for the Treatment of Children W",
+        "status": "RECRUITING",
+        "nct_id": "NCT06172296",
+        "url": "https://clinicaltrials.gov/study/NCT06172296"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168386",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "61dc1ba4968d",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Neoadjuvant Inhaled Azacytidine With Platinum-Based Chemotherapy and Durvalumab (MEDI4736) - a Combi",
+        "status": "NOT_YET_RECRUITING",
+        "nct_id": "NCT06694454",
+        "url": "https://clinicaltrials.gov/study/NCT06694454"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168398",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "fa3f643f81b7",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "CA-4948 Added to Standard Chemotherapy to Treat Metastatic or Unresectable Pancreatic Cancer",
+        "status": "RECRUITING",
+        "nct_id": "NCT05685602",
+        "url": "https://clinicaltrials.gov/study/NCT05685602"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168409",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "8f5fbc0000e6",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Induction Pembrolizumab and Chemotherapy Followed by Pembrolizumab Before Chemoradiation and Pembrol",
+        "status": "RECRUITING",
+        "nct_id": "NCT07061977",
+        "url": "https://clinicaltrials.gov/study/NCT07061977"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168420",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "23c4299b5914",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Chemotherapy Combined With Immunotherapy Versus Immunotherapy Alone for Older Adults With Stage IIIB",
+        "status": "RECRUITING",
+        "nct_id": "NCT06096844",
+        "url": "https://clinicaltrials.gov/study/NCT06096844"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168431",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "0584928be127",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Study to Assess the Efficacy of Rina-S Compared to Treatment of Investigator's Choice in Participant",
+        "status": "ACTIVE_NOT_RECRUITING",
+        "nct_id": "NCT06619236",
+        "url": "https://clinicaltrials.gov/study/NCT06619236"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168442",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "abd2e5866a39",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Testing the Addition of an Individualized Vaccine to Durvalumab and Tremelimumab and Chemotherapy in",
+        "status": "RECRUITING",
+        "nct_id": "NCT03606967",
+        "url": "https://clinicaltrials.gov/study/NCT03606967"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168452",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "85a9a1bf7398",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "entities": [],
+      "data": {
+        "title": "Behavioral Pharmacology of THC and Beta-Myrcene",
+        "status": "NOT_YET_RECRUITING",
+        "nct_id": "NCT05432284",
+        "url": "https://clinicaltrials.gov/study/NCT05432284"
+      },
+      "strength": 4,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:24:56.168463",
+      "acted_on": false,
+      "outcome": null
+    },
+    {
+      "id": "ea083b29c7e2",
+      "type": "brief_completed",
+      "source": "brief_engine",
+      "entities": [
+        "company:mellow_fellow"
+      ],
+      "data": {
+        "company": "Mellow Fellow",
+        "phases_complete": 2
+      },
+      "strength": 3,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:28:05.140137",
+      "acted_on": true,
+      "outcome": "meeting"
+    },
+    {
+      "id": "0b93df376df1",
+      "type": "brief_completed",
+      "source": "brief_engine",
+      "entities": [
+        "company:mellow_fellow"
+      ],
+      "data": {
+        "company": "Mellow Fellow",
+        "phases_complete": 0
+      },
+      "strength": 3,
+      "weight": 3,
+      "timestamp": "2026-03-04T05:28:05.140209",
+      "acted_on": true,
+      "outcome": "meeting"
+    },
+    {
+      "id": "5cd6a1584b8e",
+      "type": "trustpilot_below_3.5",
+      "source": "trustpilot",
+      "source_reliability": 0.75,
+      "entities": [
+        "competitor:true_terpenes"
+      ],
+      "data": {
+        "competitor": "True Terpenes",
+        "rating": 3.0
+      },
+      "strength": 8,
+      "base_weight": 15,
+      "effective_weight": 11.25,
+      "timestamp": "2026-03-04T05:50:30.838284",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "0725f1a91f73",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Reducing severe breathlessness with dronabinol in the group of patients with severe and very severe chronic obstructive ",
+        "terpenes": [],
+        "effects": [
+          "anxiolytic",
+          "bronchodilator",
+          "antidepressant",
+          "sedative"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41698715/",
+        "score": 57
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841542",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "90337257d99c",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Therapeutic use of cannabinoids in age-related pain: Current evidence and clinical perspectives.",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "bioavailability",
+          "anti-inflammatory",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41651319/",
+        "score": 89
+      },
+      "strength": 5,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841633",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "2f5c561b76f0",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Cannabis sativa in the fight against drug-resistant bacteria and fungi.",
+        "terpenes": [],
+        "effects": [
+          "antifungal",
+          "anti-inflammatory",
+          "entourage_effect",
+          "antibacterial"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41607163/",
+        "score": 47
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841705",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "6546fc94cc7e",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Cannabidiol-Loaded Mucoadhesive PLGA Nanosphere-Chitosan Hydrogel Patch for Oral Therapeutic Applications.",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41596768/",
+        "score": 41
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841775",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "6b016ba79936",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Solanesol Modified Pluronic F127 Triblock Copolymeric Micelles for Anticancer Drug Delivery.",
+        "terpenes": [],
+        "effects": [
+          "bioavailability",
+          "anticancer",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41621060/",
+        "score": 41
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841837",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "a2c65bba82ba",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.",
+        "terpenes": [
+          "limonene"
+        ],
+        "effects": [],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41596832/",
+        "score": 45
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841901",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "5a1ffe3a3ed9",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Microliter-scale ethanol confinement array with biofluidic triggered release for dual-enhanced precision chemotherapy.",
+        "terpenes": [],
+        "effects": [
+          "bioavailability",
+          "anticancer",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40752287/",
+        "score": 41
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.841961",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "e5b1ad91375a",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Phytochemistry and pharmacology of Melaleuca alternifolia: Bridging aboriginal heritage with contemporary science.",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "anti-inflammatory",
+          "antifungal",
+          "antibacterial",
+          "bioavailability",
+          "bronchodilator",
+          "anticancer",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41679395/",
+        "score": 61
+      },
+      "strength": 4,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842021",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "a45bd968f078",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Engineering Microalgae for Enhanced Astaxanthin Production: Integrating Metabolic Pathways and Nano-Biotechnologies.",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "bioavailability",
+          "entourage_effect"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41440910/",
+        "score": 41
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842086",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "86ac604c8c3f",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "A Randomized, Open-Label Trial to Assess Feasibility and Tolerability of Topical Cannabis Balms for the Treatment of Aro",
+        "terpenes": [],
+        "effects": [
+          "analgesic",
+          "skin_permeation",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41467893/",
+        "score": 44
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842155",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "18d9171bd256",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Skin Penetration of Caffeine and Cafestol using Liposomes: Exploring the Benefits of a Combined Delivery System.",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "skin_permeation",
+          "bioavailability",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41572103/",
+        "score": 44
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842221",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "e71b7272b48e",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Sesquiterpenes from galangal essential oil as potent penetration enhancer: Effect on stratum corneum components and cuta",
+        "terpenes": [
+          "beta-caryophyllene",
+          "caryophyllene oxide",
+          "beta-pinene"
+        ],
+        "effects": [
+          "skin_permeation"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41419158/",
+        "score": 50
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842279",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "1f7b35eb2bea",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Cannabinoid Signaling and Autophagy in Oral Disease: Molecular Mechanisms and Therapeutic Implications.",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "bioavailability",
+          "anticancer",
+          "anti-inflammatory"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41516397/",
+        "score": 44
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842383",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "de67ea36803f",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Hemp (",
+        "terpenes": [],
+        "effects": [
+          "antioxidant",
+          "anti-inflammatory",
+          "neuroprotective",
+          "antibacterial"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41683571/",
+        "score": 42
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842443",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "3a54b18944a0",
+      "type": "research_breakthrough",
+      "source": "pubmed",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Using wastewater analysis to estimate the prevalence of THC and CBD use in a population of Japan during and after the Co",
+        "terpenes": [],
+        "effects": [
+          "bioavailability"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41108939/",
+        "score": 41
+      },
+      "strength": 3,
+      "base_weight": 5,
+      "effective_weight": 4.5,
+      "timestamp": "2026-03-04T05:50:30.842506",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "5ddcf0342eae",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Testing the Addition of an Anti-cancer Drug, Abemaciclib, to the Usual Chemotherapy Treatment (Gemci",
+        "nct_id": "NCT06498648",
+        "url": "https://clinicaltrials.gov/study/NCT06498648"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842572",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "34107c17706c",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Doxorubicin Hydrochloride, Cyclophosphamide, and Paclitaxel With or Without Bevacizumab in Treating ",
+        "nct_id": "NCT00433511",
+        "url": "https://clinicaltrials.gov/study/NCT00433511"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842632",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "d30d1351cfba",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Dinutuximab With Chemotherapy, Surgery and Stem Cell Transplantation for the Treatment of Children W",
+        "nct_id": "NCT06172296",
+        "url": "https://clinicaltrials.gov/study/NCT06172296"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842692",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "8c59d6aa7771",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Neoadjuvant Inhaled Azacytidine With Platinum-Based Chemotherapy and Durvalumab (MEDI4736) - a Combi",
+        "nct_id": "NCT06694454",
+        "url": "https://clinicaltrials.gov/study/NCT06694454"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842753",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "4a6fe4544370",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "CA-4948 Added to Standard Chemotherapy to Treat Metastatic or Unresectable Pancreatic Cancer",
+        "nct_id": "NCT05685602",
+        "url": "https://clinicaltrials.gov/study/NCT05685602"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842814",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "69e849b2be56",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Induction Pembrolizumab and Chemotherapy Followed by Pembrolizumab Before Chemoradiation and Pembrol",
+        "nct_id": "NCT07061977",
+        "url": "https://clinicaltrials.gov/study/NCT07061977"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842873",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "8301f444c59f",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Chemotherapy Combined With Immunotherapy Versus Immunotherapy Alone for Older Adults With Stage IIIB",
+        "nct_id": "NCT06096844",
+        "url": "https://clinicaltrials.gov/study/NCT06096844"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842931",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "8ed291a073fb",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Study to Assess the Efficacy of Rina-S Compared to Treatment of Investigator's Choice in Participant",
+        "nct_id": "NCT06619236",
+        "url": "https://clinicaltrials.gov/study/NCT06619236"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.842992",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "ca84e93172f5",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Testing the Addition of an Individualized Vaccine to Durvalumab and Tremelimumab and Chemotherapy in",
+        "nct_id": "NCT03606967",
+        "url": "https://clinicaltrials.gov/study/NCT03606967"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.843050",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    },
+    {
+      "id": "a590fe1e0b68",
+      "type": "clinical_trial",
+      "source": "clinicaltrials",
+      "source_reliability": 0.9,
+      "entities": [],
+      "data": {
+        "title": "Behavioral Pharmacology of THC and Beta-Myrcene",
+        "nct_id": "NCT05432284",
+        "url": "https://clinicaltrials.gov/study/NCT05432284"
+      },
+      "strength": 4,
+      "base_weight": 3,
+      "effective_weight": 2.7,
+      "timestamp": "2026-03-04T05:50:30.843108",
+      "acted_on": false,
+      "action_ids": [],
+      "outcome": null
+    }
+  ],
+  "connections": [
+    {
+      "from": "company:mellow_fellow",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.138990",
+      "updated": "2026-03-04T05:28:05.139110"
+    },
+    {
+      "from": "company:cbd_alchemy",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139122",
+      "updated": "2026-03-04T05:28:05.139167"
+    },
+    {
+      "from": "company:cannvital___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139177",
+      "updated": "2026-03-04T05:28:05.139191"
+    },
+    {
+      "from": "company:deli_hemp",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139201",
+      "updated": "2026-03-04T05:28:05.139238"
+    },
+    {
+      "from": "company:kratomworld",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139246"
+    },
+    {
+      "from": "company:c3_clear",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139255"
+    },
+    {
+      "from": "company:konopna_farm_liptov",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139264",
+      "updated": "2026-03-04T05:28:05.139269"
+    },
+    {
+      "from": "company:canadelar___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139280",
+      "updated": "2026-03-04T05:28:05.139326"
+    },
+    {
+      "from": "company:a_sense",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139340",
+      "updated": "2026-03-04T05:28:05.139436"
+    },
+    {
+      "from": "company:phytograde___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139446",
+      "updated": "2026-03-04T05:28:05.139460"
+    },
+    {
+      "from": "company:canna_capital_group___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139468",
+      "updated": "2026-03-04T05:28:05.139474"
+    },
+    {
+      "from": "company:giantec___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139482"
+    },
+    {
+      "from": "company:pura_cbd",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139490"
+    },
+    {
+      "from": "company:unknown",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139498"
+    },
+    {
+      "from": "company:alplant",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139508",
+      "updated": "2026-03-04T05:28:05.139524"
+    },
+    {
+      "from": "company:ferna_trade",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139533",
+      "updated": "2026-03-04T05:28:05.139543"
+    },
+    {
+      "from": "company:cookies_eu___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139552"
+    },
+    {
+      "from": "company:euphoria___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139561",
+      "updated": "2026-03-04T05:28:05.139572"
+    },
+    {
+      "from": "company:canatura___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139580",
+      "updated": "2026-03-04T05:28:05.139600"
+    },
+    {
+      "from": "company:vivadzen",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139608",
+      "updated": "2026-03-04T05:28:05.139614"
+    },
+    {
+      "from": "company:pivo_falkenstejn",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139622"
+    },
+    {
+      "from": "company:puffy___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139631"
+    },
+    {
+      "from": "company:the_hemp_labs___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139640"
+    },
+    {
+      "from": "company:cannashock",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139648"
+    },
+    {
+      "from": "company:rollz_wholesale",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139657"
+    },
+    {
+      "from": "company:royal_green_distro",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139665"
+    },
+    {
+      "from": "company:pivovar",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139674"
+    },
+    {
+      "from": "company:hfactory___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139683"
+    },
+    {
+      "from": "company:cannaspace_prague",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139693"
+    },
+    {
+      "from": "company:sativa_sparkle",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139702"
+    },
+    {
+      "from": "company:eleven_thc",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139711"
+    },
+    {
+      "from": "company:weneed_weed",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139719"
+    },
+    {
+      "from": "company:canapa_montana",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139728"
+    },
+    {
+      "from": "company:highness_distribution",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139737"
+    },
+    {
+      "from": "company:hemp_embassy",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139747",
+      "updated": "2026-03-04T05:28:05.139754"
+    },
+    {
+      "from": "company:cali_farms_la",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139762"
+    },
+    {
+      "from": "company:roican___1",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139771"
+    },
+    {
+      "from": "company:weedpassion_bioflower",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139780"
+    },
+    {
+      "from": "company:cannalab",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139789"
+    },
+    {
+      "from": "company:konopan",
+      "to": "person:_",
+      "relationship": "employs",
+      "data": {},
+      "created": "2026-03-04T05:28:05.139798",
+      "updated": "2026-03-04T05:28:05.139804"
+    }
+  ],
+  "timeline": [
+    {
+      "time": "2026-03-04T05:24:56.164454",
+      "event": "[reddit_supplier_seeking] {\"title\": \"Looking for Hash Recommendations\", \"subreddit\": \"TheOCS\", \"url\": \"https://reddit.com/r/Th",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.164472",
+      "event": "[reddit_supplier_seeking] {\"title\": \"Anxiety &amp; Sensitivity to THC\", \"subreddit\": \"hempflowers\", \"url\": \"https://reddit.com",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.164487",
+      "event": "[reddit_supplier_seeking] {\"title\": \"what to actually look for in COA\\u2019s\", \"subreddit\": \"FLMedicalTrees\", \"url\": \"https://",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.164502",
+      "event": "[reddit_supplier_seeking] {\"title\": \"HUT - Dual Z (RS11 &amp; Souffle) 28g\", \"subreddit\": \"TheOCS\", \"url\": \"https://reddit.com",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.165156",
+      "event": "[trustpilot_below_3.5] {\"competitor\": \"True Terpenes\", \"rating\": 3.0, \"count\": 4}",
+      "entities": [
+        "competitor:true_terpenes"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:24:56.165167",
+      "event": "[hiring_signal] {\"competitor\": \"True Terpenes\", \"hiring\": true}",
+      "entities": [
+        "competitor:true_terpenes"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:24:56.165182",
+      "event": "[hiring_signal] {\"competitor\": \"Abstrax Tech\", \"hiring\": true}",
+      "entities": [
+        "competitor:abstrax_tech"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:24:56.165207",
+      "event": "[trustpilot_below_4.0] {\"competitor\": \"Peak Supply Co\", \"rating\": 3.7}",
+      "entities": [
+        "competitor:peak_supply_co"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:24:56.168155",
+      "event": "[research_breakthrough] {\"title\": \"Reducing severe breathlessness with dronabinol in the group of patients with severe and v",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168173",
+      "event": "[research_breakthrough] {\"title\": \"Therapeutic use of cannabinoids in age-related pain: Current evidence and clinical perspe",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168187",
+      "event": "[research_breakthrough] {\"title\": \"Cannabis sativa in the fight against drug-resistant bacteria and fungi.\", \"journal\": \"Fol",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168201",
+      "event": "[research_breakthrough] {\"title\": \"Cannabidiol-Loaded Mucoadhesive PLGA Nanosphere-Chitosan Hydrogel Patch for Oral Therapeu",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168214",
+      "event": "[research_breakthrough] {\"title\": \"Solanesol Modified Pluronic F127 Triblock Copolymeric Micelles for Anticancer Drug Delive",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168226",
+      "event": "[research_breakthrough] {\"title\": \"Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.\", \"j",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168241",
+      "event": "[research_breakthrough] {\"title\": \"Microliter-scale ethanol confinement array with biofluidic triggered release for dual-enh",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168255",
+      "event": "[research_breakthrough] {\"title\": \"Phytochemistry and pharmacology of Melaleuca alternifolia: Bridging aboriginal heritage w",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168267",
+      "event": "[research_breakthrough] {\"title\": \"Engineering Microalgae for Enhanced Astaxanthin Production: Integrating Metabolic Pathway",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168282",
+      "event": "[research_breakthrough] {\"title\": \"A Randomized, Open-Label Trial to Assess Feasibility and Tolerability of Topical Cannabis",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168294",
+      "event": "[research_breakthrough] {\"title\": \"Skin Penetration of Caffeine and Cafestol using Liposomes: Exploring the Benefits of a Co",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168307",
+      "event": "[research_breakthrough] {\"title\": \"Sesquiterpenes from galangal essential oil as potent penetration enhancer: Effect on stra",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168321",
+      "event": "[research_breakthrough] {\"title\": \"Cannabinoid Signaling and Autophagy in Oral Disease: Molecular Mechanisms and Therapeutic",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168333",
+      "event": "[research_breakthrough] {\"title\": \"Hemp (\", \"journal\": \"International journal of molecular sciences\", \"year\": \"2026\", \"terpe",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168345",
+      "event": "[research_breakthrough] {\"title\": \"Using wastewater analysis to estimate the prevalence of THC and CBD use in a population o",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168364",
+      "event": "[clinical_trial] {\"title\": \"Testing the Addition of an Anti-cancer Drug, Abemaciclib, to the Usual Chemotherapy Treat",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168375",
+      "event": "[clinical_trial] {\"title\": \"Doxorubicin Hydrochloride, Cyclophosphamide, and Paclitaxel With or Without Bevacizumab i",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168386",
+      "event": "[clinical_trial] {\"title\": \"Dinutuximab With Chemotherapy, Surgery and Stem Cell Transplantation for the Treatment of",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168398",
+      "event": "[clinical_trial] {\"title\": \"Neoadjuvant Inhaled Azacytidine With Platinum-Based Chemotherapy and Durvalumab (MEDI4736",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168409",
+      "event": "[clinical_trial] {\"title\": \"CA-4948 Added to Standard Chemotherapy to Treat Metastatic or Unresectable Pancreatic Can",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168420",
+      "event": "[clinical_trial] {\"title\": \"Induction Pembrolizumab and Chemotherapy Followed by Pembrolizumab Before Chemoradiation ",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168431",
+      "event": "[clinical_trial] {\"title\": \"Chemotherapy Combined With Immunotherapy Versus Immunotherapy Alone for Older Adults With",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168442",
+      "event": "[clinical_trial] {\"title\": \"Study to Assess the Efficacy of Rina-S Compared to Treatment of Investigator's Choice in ",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168452",
+      "event": "[clinical_trial] {\"title\": \"Testing the Addition of an Individualized Vaccine to Durvalumab and Tremelimumab and Chem",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:24:56.168463",
+      "event": "[clinical_trial] {\"title\": \"Behavioral Pharmacology of THC and Beta-Myrcene\", \"status\": \"NOT_YET_RECRUITING\", \"nct_id",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:28:05.140137",
+      "event": "[brief_completed] {\"company\": \"Mellow Fellow\", \"phases_complete\": 2}",
+      "entities": [
+        "company:mellow_fellow"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:28:05.140209",
+      "event": "[brief_completed] {\"company\": \"Mellow Fellow\", \"phases_complete\": 0}",
+      "entities": [
+        "company:mellow_fellow"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:50:30.838284",
+      "event": "[trustpilot_below_3.5] {\"competitor\": \"True Terpenes\", \"rating\": 3.0}",
+      "entities": [
+        "competitor:true_terpenes"
+      ]
+    },
+    {
+      "time": "2026-03-04T05:50:30.841542",
+      "event": "[research_breakthrough] {\"title\": \"Reducing severe breathlessness with dronabinol in the group of patients with severe and v",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841633",
+      "event": "[research_breakthrough] {\"title\": \"Therapeutic use of cannabinoids in age-related pain: Current evidence and clinical perspe",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841705",
+      "event": "[research_breakthrough] {\"title\": \"Cannabis sativa in the fight against drug-resistant bacteria and fungi.\", \"terpenes\": [],",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841775",
+      "event": "[research_breakthrough] {\"title\": \"Cannabidiol-Loaded Mucoadhesive PLGA Nanosphere-Chitosan Hydrogel Patch for Oral Therapeu",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841837",
+      "event": "[research_breakthrough] {\"title\": \"Solanesol Modified Pluronic F127 Triblock Copolymeric Micelles for Anticancer Drug Delive",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841901",
+      "event": "[research_breakthrough] {\"title\": \"Selective Permeability of Volatile Organic Compounds in Candelilla Wax Edible Films.\", \"t",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.841961",
+      "event": "[research_breakthrough] {\"title\": \"Microliter-scale ethanol confinement array with biofluidic triggered release for dual-enh",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842021",
+      "event": "[research_breakthrough] {\"title\": \"Phytochemistry and pharmacology of Melaleuca alternifolia: Bridging aboriginal heritage w",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842086",
+      "event": "[research_breakthrough] {\"title\": \"Engineering Microalgae for Enhanced Astaxanthin Production: Integrating Metabolic Pathway",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842155",
+      "event": "[research_breakthrough] {\"title\": \"A Randomized, Open-Label Trial to Assess Feasibility and Tolerability of Topical Cannabis",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842221",
+      "event": "[research_breakthrough] {\"title\": \"Skin Penetration of Caffeine and Cafestol using Liposomes: Exploring the Benefits of a Co",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842279",
+      "event": "[research_breakthrough] {\"title\": \"Sesquiterpenes from galangal essential oil as potent penetration enhancer: Effect on stra",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842383",
+      "event": "[research_breakthrough] {\"title\": \"Cannabinoid Signaling and Autophagy in Oral Disease: Molecular Mechanisms and Therapeutic",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842443",
+      "event": "[research_breakthrough] {\"title\": \"Hemp (\", \"terpenes\": [], \"effects\": [\"antioxidant\", \"anti-inflammatory\", \"neuroprotective",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842506",
+      "event": "[research_breakthrough] {\"title\": \"Using wastewater analysis to estimate the prevalence of THC and CBD use in a population o",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842572",
+      "event": "[clinical_trial] {\"title\": \"Testing the Addition of an Anti-cancer Drug, Abemaciclib, to the Usual Chemotherapy Treat",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842632",
+      "event": "[clinical_trial] {\"title\": \"Doxorubicin Hydrochloride, Cyclophosphamide, and Paclitaxel With or Without Bevacizumab i",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842692",
+      "event": "[clinical_trial] {\"title\": \"Dinutuximab With Chemotherapy, Surgery and Stem Cell Transplantation for the Treatment of",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842753",
+      "event": "[clinical_trial] {\"title\": \"Neoadjuvant Inhaled Azacytidine With Platinum-Based Chemotherapy and Durvalumab (MEDI4736",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842814",
+      "event": "[clinical_trial] {\"title\": \"CA-4948 Added to Standard Chemotherapy to Treat Metastatic or Unresectable Pancreatic Can",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842873",
+      "event": "[clinical_trial] {\"title\": \"Induction Pembrolizumab and Chemotherapy Followed by Pembrolizumab Before Chemoradiation ",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842931",
+      "event": "[clinical_trial] {\"title\": \"Chemotherapy Combined With Immunotherapy Versus Immunotherapy Alone for Older Adults With",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.842992",
+      "event": "[clinical_trial] {\"title\": \"Study to Assess the Efficacy of Rina-S Compared to Treatment of Investigator's Choice in ",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.843050",
+      "event": "[clinical_trial] {\"title\": \"Testing the Addition of an Individualized Vaccine to Durvalumab and Tremelimumab and Chem",
+      "entities": []
+    },
+    {
+      "time": "2026-03-04T05:50:30.843108",
+      "event": "[clinical_trial] {\"title\": \"Behavioral Pharmacology of THC and Beta-Myrcene\", \"nct_id\": \"NCT05432284\", \"url\": \"https:",
+      "entities": []
+    }
+  ],
+  "learning": {
+    "action_log": [
+      {
+        "id": "5d8b61e81e0e",
+        "type": "outreach_priority",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "score": 52.6,
+          "reasons": [
+            "Brief completed \u2014 ready for outreach",
+            "Signal: brief_completed (weight: 3)",
+            "Signal: brief_completed (weight: 3)"
+          ]
+        },
+        "recommended_by": "war_room",
+        "timestamp": "2026-03-04T05:28:05.147650",
+        "status": "pending",
+        "outcome": null,
+        "outcome_date": null
+      },
+      {
+        "id": "938682339039",
+        "type": "outreach_priority",
+        "target": "company:cannvital___1",
+        "data": {
+          "company": "Cannvital - 1",
+          "score": 26.8,
+          "reasons": []
+        },
+        "recommended_by": "war_room",
+        "timestamp": "2026-03-04T05:28:05.147653",
+        "status": "pending",
+        "outcome": null,
+        "outcome_date": null
+      },
+      {
+        "id": "72e21a3dadc9",
+        "type": "outreach_priority",
+        "target": "company:phytograde___1",
+        "data": {
+          "company": "Phytograde - 1",
+          "score": 26.6,
+          "reasons": []
+        },
+        "recommended_by": "war_room",
+        "timestamp": "2026-03-04T05:28:05.147656",
+        "status": "pending",
+        "outcome": null,
+        "outcome_date": null
+      },
+      {
+        "id": "0b41a5ab1ae1",
+        "type": "outreach_priority",
+        "target": "company:cbd_alchemy",
+        "data": {
+          "company": "CBD Alchemy",
+          "score": 26.5,
+          "reasons": []
+        },
+        "recommended_by": "war_room",
+        "timestamp": "2026-03-04T05:28:05.147658",
+        "status": "pending",
+        "outcome": null,
+        "outcome_date": null
+      },
+      {
+        "id": "1b30575126af",
+        "type": "outreach_priority",
+        "target": "company:canatura___1",
+        "data": {
+          "company": "Canatura - 1",
+          "score": 26.3,
+          "reasons": []
+        },
+        "recommended_by": "war_room",
+        "timestamp": "2026-03-04T05:28:05.147660",
+        "status": "pending",
+        "outcome": null,
+        "outcome_date": null
+      },
+      {
+        "id": "c8e6718267be",
+        "type": "verify_emails",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "score": 61.3,
+          "reason": "pipeline_score:95.3; brief_completed; signal:brief_completed(w=2.5); signal:brief_completed(w=2.5); signal_fresh_24h",
+          "angle": "value_proposition",
+          "next_step": "Run enrich_pipeline_v2.py"
+        },
+        "trigger_signal_ids": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "top_features": [
+          "pipeline_score:95.3",
+          "brief_completed",
+          "signal:brief_completed(w=2.5)",
+          "signal:brief_completed(w=2.5)",
+          "signal_fresh_24h"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846012",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "c0cfcb4874f6",
+        "type": "run_brief",
+        "target": "company:cannvital___1",
+        "data": {
+          "company": "Cannvital - 1",
+          "score": 26.8,
+          "reason": "pipeline_score:89.2",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:89.2"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846081",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "3fcb15947ed3",
+        "type": "run_brief",
+        "target": "company:phytograde___1",
+        "data": {
+          "company": "Phytograde - 1",
+          "score": 26.6,
+          "reason": "pipeline_score:88.5",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:88.5"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846141",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "2563d29ff8f2",
+        "type": "run_brief",
+        "target": "company:cbd_alchemy",
+        "data": {
+          "company": "CBD Alchemy",
+          "score": 26.5,
+          "reason": "pipeline_score:88.2",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:88.2"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846197",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "ae42700787b3",
+        "type": "run_brief",
+        "target": "company:canatura___1",
+        "data": {
+          "company": "Canatura - 1",
+          "score": 26.3,
+          "reason": "pipeline_score:87.8",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:87.8"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846252",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "59fc0bd6ad85",
+        "type": "run_brief",
+        "target": "company:deli_hemp",
+        "data": {
+          "company": "Deli Hemp",
+          "score": 23.6,
+          "reason": "pipeline_score:78.8",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:78.8"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846309",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "9f49d05fd58c",
+        "type": "run_brief",
+        "target": "company:canna_capital_group___1",
+        "data": {
+          "company": "Canna Capital Group - 1",
+          "score": 22.5,
+          "reason": "pipeline_score:75.0",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:75.0"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846364",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "a8c36947a756",
+        "type": "run_brief",
+        "target": "company:a_sense",
+        "data": {
+          "company": "A-Sense",
+          "score": 21.9,
+          "reason": "pipeline_score:72.9",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:72.9"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846418",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "271beb314072",
+        "type": "run_brief",
+        "target": "company:alplant",
+        "data": {
+          "company": "Alplant",
+          "score": 21.4,
+          "reason": "pipeline_score:71.2",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:71.2"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846471",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "106557bf3cd4",
+        "type": "run_brief",
+        "target": "company:euphoria___1",
+        "data": {
+          "company": "Euphoria - 1",
+          "score": 21.2,
+          "reason": "pipeline_score:70.7",
+          "angle": "value_proposition",
+          "next_step": "Run sales_intel_brief_v4.py"
+        },
+        "trigger_signal_ids": [],
+        "top_features": [
+          "pipeline_score:70.7"
+        ],
+        "timestamp": "2026-03-04T05:50:30.846528",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "de2cedbb7481",
+        "type": "kill_shot_bundle",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "bundle_path": "/Users/andrewlauchner/.openclaw/skills/nexus-bdr-agent/scripts/demo_bundle/mellow_fellow_20260304_0616",
+          "signals_used": 2,
+          "angle": "value_proposition"
+        },
+        "trigger_signal_ids": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "top_features": [
+          "score:95.3",
+          "tier:hot",
+          "no_supplier"
+        ],
+        "timestamp": "2026-03-04T06:16:30.709833",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "9387eb0d51dd",
+        "type": "kill_shot_bundle",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "bundle_path": "/Users/andrewlauchner/.openclaw/skills/nexus-bdr-agent/scripts/demo_bundle/mellow_fellow_20260304_0621",
+          "signals_used": 2,
+          "angle": "supplier_displacement"
+        },
+        "trigger_signal_ids": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "top_features": [
+          "score:95.3",
+          "tier:hot",
+          "supplier:True Terpenes (likely)"
+        ],
+        "timestamp": "2026-03-04T06:21:50.491404",
+        "status": "outcome_recorded",
+        "outcome": "meeting",
+        "outcome_date": "2026-03-04T06:23:43.539835",
+        "notes": ""
+      },
+      {
+        "id": "ef34c038d7c1",
+        "type": "playbook_vape_margin_defense",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "playbook": "VAPE_MARGIN_DEFENSE",
+          "confidence": "HIGH",
+          "signals_used": 2
+        },
+        "trigger_signal_ids": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "top_features": [
+          "playbook:VAPE_MARGIN_DEFENSE",
+          "confidence:HIGH"
+        ],
+        "timestamp": "2026-03-04T06:28:55.118758",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      },
+      {
+        "id": "60f329992a88",
+        "type": "playbook_beverage_innovation",
+        "target": "company:mellow_fellow",
+        "data": {
+          "company": "Mellow Fellow",
+          "playbook": "BEVERAGE_INNOVATION",
+          "confidence": "HIGH (manual override)",
+          "signals_used": 2
+        },
+        "trigger_signal_ids": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "top_features": [
+          "playbook:BEVERAGE_INNOVATION",
+          "confidence:HIGH (manual override)"
+        ],
+        "timestamp": "2026-03-04T06:29:06.663782",
+        "status": "recommended",
+        "outcome": null,
+        "outcome_date": null,
+        "notes": ""
+      }
+    ],
+    "signal_weights": {
+      "reddit_supplier_seeking": 10,
+      "reddit_complaint": 7,
+      "reddit_comparison": 5,
+      "trustpilot_below_3.5": 15,
+      "trustpilot_below_4.0": 8,
+      "hiring_signal": 4,
+      "new_product_launch": 6,
+      "funding_news": 8,
+      "leadership_change": 9,
+      "competitor_weakness": 6,
+      "research_breakthrough": 5,
+      "clinical_trial": 3,
+      "regulatory_change": 12,
+      "price_discussion": 7,
+      "quality_complaint_about_competitor": 12,
+      "brief_completed": 7.33,
+      "email_verified": 2
+    },
+    "outcome_history": [
+      {
+        "action_id": "9387eb0d51dd",
+        "action_type": "kill_shot_bundle",
+        "target": "company:mellow_fellow",
+        "outcome": "meeting",
+        "trigger_signals": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "signals_updated": 2,
+        "multiplier": 1.25,
+        "timestamp": "2026-03-04T06:22:22.871241"
+      },
+      {
+        "action_id": "9387eb0d51dd",
+        "action_type": "kill_shot_bundle",
+        "target": "company:mellow_fellow",
+        "outcome": "meeting",
+        "trigger_signals": [
+          "ea083b29c7e2",
+          "0b93df376df1"
+        ],
+        "signals_updated": 2,
+        "multiplier": 1.25,
+        "timestamp": "2026-03-04T06:23:43.539848"
+      }
+    ],
+    "messaging_effectiveness": {
+      "supplier_displacement": {
+        "sent": 2,
+        "replied": 0,
+        "meetings": 2,
+        "closed": 0
+      }
+    },
+    "best_contact_times": {},
+    "company_profile_patterns": {
+      "converts": [],
+      "bounces": []
+    }
+  },
+  "metadata": {
+    "created": "2026-03-04T05:24:56.162792",
+    "last_ingest": "2026-03-04T05:50:30.843382",
+    "last_decision": "2026-03-04T05:50:30.846673",
+    "ingest_count": 3,
+    "decision_count": 3,
+    "total_signals": 61,
+    "total_entities": 53
+  }
+}

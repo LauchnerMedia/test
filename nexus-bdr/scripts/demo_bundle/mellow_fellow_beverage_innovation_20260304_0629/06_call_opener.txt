@@ -1,0 +1,19 @@
+CALL SCRIPT: Mellow Fellow — BEVERAGE INNOVATION
+
+Contact: JJ Coombs (CEO & Co-Founder)
+
+[OPENER]
+"Hey JJ Coombs — Shareef from Terpene Belt Farms. We work with beverage and functional brands on terpene-enhanced product development.
+
+What we do differently is effects-based profiling — calm, focus, uplift, refresh — with full sensory documentation and GRAS-trajectory ingredients. No health claims, just functional design that your R&D team can work with.
+
+I'd love to send a small effects-profile tasting kit tailored to Mellow Fellow's direction. Would you be the right person to evaluate that?"
+
+[IF INTERESTED]
+"Great. We'll design 3-5 profiles based on your product direction. Each comes with sensory descriptors, flavor pairing notes, formulation guidelines for beverage applications, and GRAS-trajectory documentation for your regulatory team."
+
+[OBJECTION: We already work with flavor houses]
+"Perfect — we're not replacing your flavor work. We're adding a functional layer. Think of terpenes as the effects architecture underneath your flavor profile. Many brands use our CDT profiles alongside their existing flavor systems."
+
+[CLOSE]
+"What's the best way to get a tasting kit to your R&D team?"

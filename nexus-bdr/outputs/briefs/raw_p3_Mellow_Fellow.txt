@@ -1,0 +1,197 @@
+I'll search for decision-makers at Mellow Fellow who would be involved in terpene purchasing decisions.
+Now let me search for more specific information about key people and their roles:
+Based on my research, I've identified key decision-makers at Mellow Fellow who would be involved in terpene purchasing decisions. Let me compile this into the requested JSON format:
+
+```json
+{
+  "decision_makers": [
+    {
+      "name": "JJ Coombs (Gerard Coombs Jr.)",
+      "title": "Co-Founder & CEO / PhD Pharmacist",
+      "role_in_purchase": "Final Decision Maker",
+      "seniority": "C-Suite / Owner",
+      "linkedin_url": "https://www.linkedin.com/in/jj-coombs-76078511/",
+      "email_guess": "jj@mellowfellow.fun or jj@arvidalabs.com",
+      "background": "JJ Coombs holds a Pharm.D. from University of Colorado and B.S. from Florida State University. He co-founded both Arvida Labs (the manufacturing arm) and Mellow Fellow, bringing pharmaceutical expertise to cannabinoid formulation. He oversees all production through Arvida Labs' patent-pending processes and has deep expertise in supply chain management, quality control, and manufacturing from previously founding an innovative vape company.",
+      "communication_style": {
+        "tone": "Technical|Data-driven",
+        "evidence": "Hosts educational webinars (Delta Dayze series) explaining cannabinoid science; presents at industry conferences; LinkedIn posts focus on legislative advocacy and technical cannabinoid research; described as 'PhD Pharmacist' in all company materials emphasizing scientific credibility",
+        "preferred_approach": "Lead with technical specifications, purity data, and how terpenes enhance specific cannabinoid formulations. Emphasize pharmaceutical-grade quality and how your terpenes support his patent-pending processes. Reference Arvida Labs' focus on rare cannabinoids and entourage effect."
+      },
+      "personalization_hooks": [
+        {
+          "hook": "Arvida Labs' patent-pending processes for rare cannabinoid production at scale",
+          "source": "LinkedIn profile and company website describing proprietary methods to modify CBD/CBG into D8, D9, D10, THCv, HHC, etc.",
+          "how_to_use": "Position terpenes as critical to achieving targeted effects in his mood-specific blends (Creativity, Dream, Euphoria, etc.). Discuss terpene profiles that complement rare cannabinoids."
+        },
+        {
+          "hook": "Active industry advocacy and legislative engagement in Florida hemp industry",
+          "source": "Multiple LinkedIn posts about Florida Senate Bills, 420 Bud Bash sponsorships, named 'Cannabis Business Advocate of the Year'",
+          "how_to_use": "Show you understand regulatory compliance; emphasize your company supports the hemp industry; mention shared values around quality standards and consumer safety."
+        },
+        {
+          "hook": "Emphasis on 'pharmacist-formulated' products with full panel testing",
+          "source": "All product descriptions emphasize 'Pharmacist Formulated. PHD Chemist Derived. Lab Tested.'",
+          "how_to_use": "Provide detailed COAs, discuss terpene purity and testing protocols. Show how your terpenes meet pharmaceutical standards and support his quality-first approach."
+        }
+      ],
+      "potential_objections": [
+        "Already has established terpene suppliers - Position as upgrade or specialty provider for new product lines",
+        "Cost concerns for family operation - Emphasize ROI through enhanced product differentiation and consumer experience",
+        "Integration with existing Arvida Labs processes - Demonstrate compatibility with their patent-pending cannabinoid production methods",
+        "Preference for vertically integrated operations - Show how outsourcing terpenes allows them to focus on rare cannabinoid synthesis expertise"
+      ]
+    },
+    {
+      "name": "Lindsey Goldstein",
+      "title": "Co-Founder & CMO (Chief Marketing Officer)",
+      "role_in_purchase": "Champion|Technical Evaluator",
+      "seniority": "C-Suite / Owner",
+      "linkedin_url": "https://www.linkedin.com/in/lindsey-goldstein-352396332/",
+      "email_guess": "lindsey@mellowfellow.fun or l.goldstein@arvidalabs.com",
+      "background": "Lindsey Goldstein is described as JJ Coombs' sister who 'drove cross-country to run marketing' when the family business expanded. She's Co-Founder and CMO/Part Owner with background as 'autodidactic graphic artist, poet, fashion model' plus corporate experience at Royal Caribbean, Macy's, MAC Cosmetics. She emphasizes transparency and 'no B.S., just science' approach to product marketing and leads brand development for Mellow Fellow's mood-based positioning.",
+      "communication_style": {
+        "tone": "Creative|Relationship|Data-driven",
+        "evidence": "LinkedIn shows creative background balanced with business acumen; quoted emphasizing 'transparency has to start from within' and 'open communication and integrity'; active at trade shows networking; focuses on consumer experience and brand storytelling",
+        "preferred_approach": "Connect terpene profiles to consumer-facing benefits and mood-based marketing. Show how terpene sourcing stories enhance brand authenticity. Discuss sensory experience, flavor profiles, and how terpenes support the 'Stay Mellow' lifestyle brand positioning."
+      },
+      "personalization_hooks": [
+        {
+          "hook": "Family business values and cross-country commitment to the brand",
+          "source": "Company origin story mentions she drove cross-country from her previous life to help build the family business",
+          "how_to_use": "Emphasize partnership approach, reliability, and long-term relationship building. Show you understand family-run operations and value loyalty."
+        },
+        {
+          "hook": "Strong presence at CHAMPS trade shows and industry events",
+          "source": "Multiple LinkedIn posts about CHAMPS Atlantic City, Fort Lauderdale, Las Vegas; Arvida Labs Open House events",
+          "how_to_use": "Offer to connect at upcoming trade shows; provide samples for event showcasing; discuss how terpene quality impacts their booth demonstrations and buyer experiences."
+        },
+        {
+          "hook": "Focus on transparent product communication and consumer education",
+          "source": "Press releases about 'product information and testing framework' and maintaining 'easy access to third-party lab testing information'",
+          "how_to_use": "Provide detailed sourcing documentation, transparency reports, and educational materials she can use in marketing campaigns. Offer co-branded educational content about terpene benefits."
+        }
+      ],
+      "potential_objections": [
+        "Marketing impact uncertainty - Show case studies of how premium terpenes enhance consumer perception and reviews",
+        "Brand consistency concerns - Demonstrate batch-to-batch consistency in terpene profiles",
+        "Packaging/labeling requirements - Offer support materials that align with their transparent labeling philosophy",
+        "Cost-benefit for marketing budget - Frame terpenes as product differentiator that supports premium positioning"
+      ]
+    },
+    {
+      "name": "Annie Gallagher",
+      "title": "Director of Operations",
+      "role_in_purchase": "Gatekeeper|Technical Evaluator",
+      "seniority": "Director-level",
+      "linkedin_url": "https://www.linkedin.com/in/anniegallagher/",
+      "email_guess": "annie@mellowfellow.fun or a.gallagher@arvidalabs.com",
+      "background": "Annie Gallagher joined as Director of Operations for Arvida Labs, Mellow Fellow, and LG Wholesale. She has international marketing degree from Hult International Business School and experience at CIE Tours, LT Apparel Group, and World Travel Holdings. She's described as 'experienced and creative minded marketing professional' with skills in B2B/B2C marketing, event planning, and operations management. She appears to handle operational logistics and trade show coordination.",
+      "communication_style": {
+        "tone": "Formal|Data-driven",
+        "evidence": "LinkedIn shows professional operations background; manages logistics for multiple trade shows; coordinates between three company entities (Arvida Labs, Mellow Fellow, LG Wholesale); likely focused on vendor management, supply chain, and operational efficiency",
+        "preferred_approach": "Focus on logistics: lead times, minimum order quantities, shipping reliability, inventory management, and how your ordering system integrates with their operations. Provide clear pricing structures and terms."
+      },
+      "personalization_hooks": [
+        {
+          "hook": "Manages operations across three related entities (Arvida Labs, Mellow Fellow, LG Wholesale)",
+          "source": "LinkedIn announcement mentions all three companies in her Director of Operations role",
+          "how_to_use": "Offer consolidated ordering/invoicing that simplifies vendor management across multiple brands. Discuss volume discounts for combined purchasing."
+        },
+        {
+          "hook": "Active involvement in trade show logistics and event coordination",
+          "source": "LinkedIn posts about CHAMPS shows, PI LIVE Show, and Arvida Labs Open House events",
+          "how_to_use": "Discuss reliable delivery schedules that align with product launch timelines and trade show needs. Offer rush/priority ordering for event-driven production runs."
+        },
+        {
+          "hook": "Background in international marketing and operations",
+          "source": "Master's degree in International Marketing from Hult International Business School; experience at global travel companies",
+          "how_to_use": "If you have international sourcing or can support their potential expansion, emphasize global supply chain capabilities and compliance experience."
+        }
+      ],
+      "potential_objections": [
+        "Vendor onboarding complexity - Streamline paperwork and integration process",
+        "Supply chain risk with new vendor - Provide references from similar-sized operations; offer trial period",
+        "Minimum order requirements too high - Offer flexible terms for family-sized operation",
+        "Payment terms concerns - Be flexible with terms for established relationship; offer net-30 or net-60"
+      ]
+    },
+    {
+      "name": "Blaise Allen",
+      "title": "Sales Director",
+      "role_in_purchase": "Champion",
+      "seniority": "Director-level",
+      "linkedin_url": "https://www.linkedin.com/in/blaise-allen-bb3341203/",
+      "email_guess": "blaise@mellowfellow.fun",
+      "background": "Blaise Allen serves as Sales Director at Mellow Fellow. Limited public information available, but role suggests he interfaces with retail partners and distributors, giving him insight into which product formulations perform best in market. His feedback on terpene profiles that drive sales would influence purchasing decisions.",
+      "communication_style": {
+        "tone": "Relationship|Casual",
+        "evidence": "Sales role suggests relationship-focused approach; likely interfaces with smoke shops, dispensaries, and wholesale buyers who respond to product quality and performance",
+        "preferred_approach": "Emphasize how premium terpenes create competitive advantage in retail environment. Discuss how terpene quality affects repeat purchase rates and customer reviews. Show sales performance data if available."
+      },
+      "personalization_hooks": [
+        {
+          "hook": "Direct feedback from retail partners on product performance",
+          "source": "Sales Director role means he hears from buyers about what sells and what doesn't",
+          "how_to_use": "Ask about current top-sellers and which terpene profiles resonate with their customer base. Position terpenes as way to enhance winning formulations or differentiate new products."
+        }
+      ],
+      "potential_objections": [
+        "Price point impacts retail competitiveness - Show how quality terpenes justify premium pricing and improve margins",
+        "Retailer pushback on new formulations - Offer samples for retail partner testing programs"
+      ]
+    },
+    {
+      "name": "Gerard Coombs Sr.",
+      "title": "Co-Founder / Financial Leadership",
+      "role_in_purchase": "Budget Holder",
+      "seniority": "C-Suite / Owner",
+      "linkedin_url": "N/A - Limited LinkedIn presence",
+      "email_guess": "gerard@arvidalabs.com",
+      "background": "JJ Coombs' father who 'left Mexico to help build the growing business.' Gerard Coombs Sr. served as CFO at Sano Corporation (NASDAQ drug delivery company acquired for $400M) and worked at Price Waterhouse and KPMG Peat Marwick. He brings financial discipline and experience with life science company exits totaling $520M. Likely controls major capital expenditures and vendor contracts.",
+      "communication_style": {
+        "tone": "Formal|Data-driven",
+        "evidence": "CFO and accounting background at Big 4 firms; life sciences M&A experience suggests focus on ROI, financial metrics, and strategic vendor relationships",
+        "preferred_approach": "Lead with financial impact: cost per unit vs. quality premium, impact on COGS, volume discount structures, and payment terms. Show how terpene investment affects gross margins and product positioning."
+      },
+      "personalization_hooks": [
+        {
+          "hook": "Life sciences and pharmaceutical company background",
+          "source": "Arvida Labs website lists experience as CFO at Sano Corporation (drug delivery) and technology/life science exits",
+          "how_to_use": "Speak to pharmaceutical-grade quality standards; discuss long-term vendor partnerships common in life sciences; emphasize GMP compliance and quality systems."
+        },
+        {
+          "hook": "Family business financial stewardship",
+          "source": "Father figure who brought financial expertise to help sons build the business",
+          "how_to_use": "Position as smart investment in product quality that protects family brand reputation. Emphasize reliability and partnership approach vs. transactional vendor relationship."
+        }
+      ],
+      "potential_objections": [
+        "Cost increase vs. current terpene supplier - Provide detailed ROI analysis showing quality impact on sales and customer retention",
+        "Cash flow impact of new vendor terms - Offer flexible payment terms; phase-in approach",
+        "Financial risk of changing suppliers - Provide financial references and demonstrate business stability"
+      ]
+    }
+  ],
+  "email_pattern": {
+    "detected_pattern": "firstinitial+lastname@mellowfellow.fun or firstname@mellowfellow.fun / @arvidalabs.com",
+    "confidence": "MEDIUM",
+    "evidence": "ZoomInfo shows email pattern as ****@mellowfellow.fun for executives. RocketReach suggests patterns like l******@mellowfellow.fun for Lindsey. Company operates both mellowfellow.fun (consumer brand) and arvidalabs.com (B2B manufacturing) domains, so decision-makers may use either depending on context."
+  },
+  "organizational_dynamics": {
+    "decision_process": "Family-owned operation with three co-founders (JJ Coombs, Lindsey Goldstein, Gerard Coombs Sr.) making major decisions collaboratively. JJ Coombs as CEO/Pharmacist has final authority on formulations and technical decisions. Lindsey as CMO influences based on brand/consumer impact. Gerard Sr. likely approves significant vendor contracts and expenditures. Annie Gallagher (Director of Operations) manages vendor relationships day-to-day but escalates major changes. Decision-making appears consensus-based given family structure.",
+    "buying_committee": "Core: JJ Coombs (technical/formulation approval), Lindsey Goldstein (brand impact), Gerard Sr. (financial approval). Supporting: Annie Gallagher (operational feasibility), Blaise Allen (sales impact insights). Given 2-10 employee size and family operation, expect committee to move quickly once consensus reached.",
+    "budget_authority": "Gerard Coombs Sr. (CFO-type role) likely holds ultimate budget authority for major vendor contracts. JJ Coombs as CEO can probably approve smaller purchases independently. For terpene supplier change, expect both Gerard Sr. (financial) and JJ (technical) sign-off required. As co-founder/part owner, Lindsey Goldstein may also have veto power on decisions affecting brand positioning."
+  },
+  "relationship_opportunities": {
+    "trade_shows": [
+      {
+        "event": "CHAMPS Trade Shows",
+        "locations": "Las Vegas (Feb 14-17), Atlantic City (May 7-9), Fort Lauderdale, Chicago (June 4-6), Austin (Sept 9-11)",
+        "evidence": "Mellow Fellow is Platinum Sponsor at CHAMPS Atlantic City 2025; team attends in 'full force'; Lindsey Goldstein and Annie Gallagher actively post about CHAMPS attendance",
+        "approach": "Visit Booth #17079 (Arvida Labs booth number from past shows). Request meeting with JJ and Lindsey to discuss terpene samples. Offer samples for their live product demos at future shows."
+      },
+      {
+        "event": "Arvida Labs Open House",
+        "location": "1291 NW 65th Pl Ste B, Fort Lauderdale, FL 33309",
+        "evidence": "Lindsey Goldstein LinkedIn mentions 'Nov 10th & 13

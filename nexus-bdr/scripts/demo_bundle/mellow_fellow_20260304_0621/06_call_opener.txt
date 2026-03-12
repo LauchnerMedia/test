@@ -1,0 +1,18 @@
+CALL SCRIPT: Mellow Fellow
+Contact: JJ Coombs — CEO & Co-Founder
+
+[OPENER]
+"Hey JJ Coombs — Shareef from Terpene Belt Farms. Quick one.
+
+We track terpene supply signals across brands in your space, and when we see a couple of these triggers together, teams usually start re-checking consistency, lead times, and pricing.
+
+I'm not trying to sell you on anything — but if I send a small R&D kit plus a 2-week validation plan, would you be the right person to run a side-by-side comparison?"
+
+[IF INTERESTED]
+"Great. I'll have our lab team put together 3-5 CDT profiles matched to your current product line. You'll get full COAs, sensory notes, and a validation checklist. Takes about 2 weeks, zero commitment."
+
+[OBJECTION: We're happy with our current supplier]
+"Totally get that. Most of our partners said the same thing — this isn't about replacing anyone. It's about having a documented comparison on file so if consistency, pricing, or lead times ever become an issue, you already have a validated alternative ready to go."
+
+[CLOSE]
+"Can I get the best shipping address for that R&D kit?" 

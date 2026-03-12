@@ -1,0 +1,45 @@
+{
+  "company_key": "company:mellow_fellow",
+  "company_name": "Mellow Fellow",
+  "contact": "JJ Coombs",
+  "title": "CEO & Co-Founder",
+  "domain": "mellowfellow.fun",
+  "playbook": "supplier_displacement",
+  "actions": [
+    {
+      "step": 1,
+      "type": "send_email",
+      "asset": "04_email.txt",
+      "day": 0
+    },
+    {
+      "step": 2,
+      "type": "send_linkedin_dm",
+      "asset": "05_linkedin_dm.txt",
+      "day": 1
+    },
+    {
+      "step": 3,
+      "type": "send_heygen_video",
+      "asset": "07_heygen_script.txt",
+      "day": 3
+    },
+    {
+      "step": 4,
+      "type": "call",
+      "asset": "06_call_opener.txt",
+      "day": 5
+    },
+    {
+      "step": 5,
+      "type": "follow_up_email",
+      "asset": "04_email.txt",
+      "day": 7,
+      "note": "Modify subject to follow-up"
+    }
+  ],
+  "generated_at": "2026-03-04T06:21:50.488832Z",
+  "dry_run": true,
+  "nexus_score": 95.3,
+  "pipeline_tier": "hot"
+}

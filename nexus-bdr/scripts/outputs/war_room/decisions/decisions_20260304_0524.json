@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-03-04T05:24:56.170154",
+  "summary": {
+    "total_entities": 12,
+    "total_signals": 33,
+    "recent_signals": 33,
+    "companies_ranked": 0,
+    "reddit_opportunities": 4,
+    "research_angles": 0,
+    "competitor_vulnerabilities": 2
+  },
+  "priority_companies": [],
+  "reddit_actions": [
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "Looking for Hash Recommendations",
+      "subreddit": "TheOCS",
+      "url": "https://reddit.com/r/TheOCS/comments/1rk0ih0/looking_for_hash_recommendations/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "Anxiety &amp; Sensitivity to THC",
+      "subreddit": "hempflowers",
+      "url": "https://reddit.com/r/hempflowers/comments/1rjqy27/anxiety_sensitivity_to_thc/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "what to actually look for in COA\u2019s",
+      "subreddit": "FLMedicalTrees",
+      "url": "https://reddit.com/r/FLMedicalTrees/comments/1rk5car/what_to_actually_look_for_in_coas/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    },
+    {
+      "type": "reddit_engagement",
+      "priority": 10,
+      "title": "HUT - Dual Z (RS11 &amp; Souffle) 28g",
+      "subreddit": "TheOCS",
+      "url": "https://reddit.com/r/TheOCS/comments/1rk2jxh/hut_dual_z_rs11_souffle_28g/",
+      "reason": "SEEKING SUPPLIER",
+      "suggested_action": "Respond with TBF/DFT positioning, offer sample"
+    }
+  ],
+  "research_angles": [],
+  "competitor_actions": [
+    {
+      "competitor": "True Terpenes",
+      "vulnerability": "Trustpilot 3.0/5",
+      "affected_prospects": [],
+      "suggested_action": "Reach out to prospects using True Terpenes \u2014 lead with quality consistency"
+    },
+    {
+      "competitor": "Peak Supply Co",
+      "vulnerability": "Trustpilot 3.7/5",
+      "affected_prospects": [],
+      "suggested_action": "Reach out to prospects using Peak Supply Co \u2014 lead with quality consistency"
+    }
+  ]
+}

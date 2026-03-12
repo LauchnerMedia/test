@@ -1,0 +1,320 @@
+{
+  "metadata": {
+    "company": "Mellow Fellow",
+    "generated_at": "2026-03-04T00:58:42.189057",
+    "total_seconds": 547.8304998874664,
+    "timings": {
+      "phase_1": 76.77960896492004,
+      "phase_2": 181.03697204589844,
+      "phase_3": 108.38228607177734,
+      "phase_4": 181.03622889518738,
+      "phase_5": 0.34598398208618164,
+      "phase_6": 0.2494199275970459
+    }
+  },
+  "phases": {
+    "phase_1": {
+      "company_name": "Mellow Fellow",
+      "domain": "mellowfellow.fun",
+      "verified": true,
+      "description": "<cite index=\"32-1,32-2,11-4,11-5\">Mellow Fellow is a pharmacist-founded hemp cannabinoid brand operating within Arvida Labs, an industry-leading production and product development company. The brand produces a full range of alternative cannabinoids using proprietary formulations and one-of-a-kind blends, with all products pharmacist formulated and every batch of oil undergoing full panel testing to ensure safety and effectiveness.</cite>",
+      "founded": "2021",
+      "headquarters": "South Florida (Hallandale Beach / Fort Lauderdale area), Florida",
+      "business_model": "<cite index=\"13-7,11-2,32-9\">Mellow Fellow generates revenue through direct-to-consumer e-commerce sales via mellowfellow.fun, affiliate partnerships, and wholesale distribution to retail partners nationwide. The company produces pharmacist-formulated cannabinoid blends in mood-specific formulations (focus, relaxation, energy, recovery) and ships proprietary products across the United States where legally compliant.</cite>",
+      "company_type": "Brand|Manufacturer|CPG Company",
+      "size_estimate": {
+        "employees": "2-10 (per LinkedIn); operates within larger Arvida Labs infrastructure",
+        "revenue_estimate": "Not publicly disclosed; indicators suggest multi-million dollar operation based on national distribution, sophisticated manufacturing capabilities, and brand partnerships",
+        "production_scale": "mid-size",
+        "evidence": "<cite index=\"4-2,32-4,32-5,32-6\">LinkedIn lists 2-10 employees and founded in 2021. The company became a top Delta 8 oil producer and expanded from founders to a family operation, with the pharmacist's sister running marketing and father and brothers joining from Mexico to build the growing business.</cite>"
+      },
+      "markets": {
+        "segments": [
+          "Hemp-derived cannabinoids (Delta-8, Delta-9, Delta-10, THCp, THCv, HHC, CBD, CBG, CBN)",
+          "Alternative cannabinoid consumers",
+          "Wellness-focused cannabis users",
+          "Adult recreational hemp users"
+        ],
+        "states_active": [
+          "Florida",
+          "Nationwide (ships to states where hemp-derived cannabinoids are legal)"
+        ],
+        "multi_state": true,
+        "distribution_channels": [
+          "Direct-to-consumer e-commerce (mellowfellow.fun)",
+          "Wholesale distribution to smoke shops and specialty retailers",
+          "Affiliate partnerships",
+          "Third-party online retailers (CannaBuddy, CBD.co, Green Treez Company, Delta 8 Resellers)"
+        ]
+      },
+      "brand_positioning": "<cite index=\"13-1,13-2,13-3,13-4\">Mellow Fellow is positioned as a pharmacist-founded company redefining modern cannabis with clarity and precision. The company operates with transparency about product contents, intentional formulation for real-life applications, and dedication to building consumer trust through science, distinguishing itself from competitors chasing trends.</cite>",
+      "key_products_overview": [
+        "<cite index=\"1-1,9-4\">Lab-tested Delta 8, 9, 10, THCp, and THCv products including live resin disposable vapes (0.5ml, 1ml, 2ml, 4ml), vape cartridges, and edibles with custom cannabinoid blends designed to match specific moods (focus, creativity, relaxation, euphoria)</cite>",
+        "<cite index=\"13-10,13-11\">Burn Blend powered by THCv - won 2024 Bella Magazine Beauty Award, designed for focus, energy boost, and breaking creative blocks without fog</cite>",
+        "<cite index=\"13-17,13-18\">Rest Blend with CBN in softgels, tinctures, and gummies for calming and unwinding without intoxication, popular among wellness-minded consumers</cite>",
+        "<cite index=\"6-1,6-2,6-3\">Delta 9 THC + CBD Seltzer Beverages (20mg cans with 10mg Delta 9 THC and 10mg CBD for balanced relaxation)</cite>",
+        "<cite index=\"9-1,9-2,9-4\">Live Resin Disposable Vapes crafted with live resin and custom cannabinoid blends using flash-frozen cannabis to preserve terpenes and full-spectrum effects</cite>"
+      ],
+      "recent_news": [
+        {
+          "headline": "Mellow Fellow and Arvida Labs Issue Statement on Federal Hemp THC Ban",
+          "date": "December 10, 2025",
+          "significance": "<cite index=\"53-10\">Company responded to newly enacted federal provision that would effectively ban most intoxicating hemp-derived THC products, indicating regulatory challenges ahead</cite>"
+        },
+        {
+          "headline": "Good Fellows Coalition Formed for Hemp Advocacy",
+          "date": "2024",
+          "significance": "<cite index=\"91-3,91-4,91-18\">Mellow Fellow joined forces with Urb, Zombi, and Pushin P's to form Good Fellows collective, donating 100% of proceeds to Florida Healthy Alternatives Association for hemp advocacy</cite>"
+        },
+        {
+          "headline": "Florida SB 1698 Hemp Industry Challenge",
+          "date": "2024-2025",
+          "significance": "<cite index=\"57-1,57-2\">JJ Coombs and company actively fought proposed Florida legislation threatening 100,000 hemp industry jobs, demonstrating political engagement and industry leadership</cite>"
+        }
+      ],
+      "growth_signals": [
+        "<cite index=\"13-7,13-8\">Brand continues expanding direct-to-consumer reach while growing presence through affiliate and retail partnerships, driven by word-of-mouth, strong reviews, and customer base valuing effect-based cannabis</cite>",
+        "<cite index=\"29-1,29-2\">Company evolved from white-labeling roots to establish proprietary brand offering full range of alternative cannabinoids with unique formulations</cite>",
+        "<cite index=\"64-24,64-25,64-26\">Parent company Arvida Labs launched Precision Fill and Pack co-packing business, Mellow Fellow consumer brand, and Alpha Brands Distribution for end-to-end supply chain control</cite>",
+        "<cite index=\"13-10\">Won 2024 Bella Magazine Beauty Award for Burn Blend THCv product, indicating market recognition and product validation</cite>",
+        "Active promotional strategy with 10+ promo codes launched monthly and 15% off first-time customer offers",
+        "<cite index=\"64-32,64-33,64-34\">Fully integrated operations spanning cultivation, extraction, manufacturing, co-packing, and distribution through parent Arvida Labs ensures consistency and efficiency</cite>"
+      ],
+      "social_media": {
+        "instagram": "@mellowfellowfam (referenced in content)",
+        "linkedin": "linkedin.com/company/mellowfellowfun (401 followers)",
+        "twitter": "@MellowFellowFam",
+        "facebook": "Active (referenced for Delta Dayze events)"
+      },
+      "initial_terpene_relevance": "HIGH",
+      "key_questions": [
+        "What are exact revenue figures and growth rate year-over-year since 2021 founding?",
+        "What is the actual employee count across Mellow Fellow brand vs. Arvida Labs parent company?",
+        "What percentage of revenue comes from DTC vs. wholesale distribution channels?",
+        "What is production capacity and monthly volume output from Arvida Labs facilities?",
+        "Has the company raised any external funding or remains bootstrapped/family-funded?",
+        "What is the customer acquisition cost and lifetime value for DTC channel?",
+        "How does federal hemp regulation (December 2025 ban) impact business model going forward?",
+        "What is the geographic breakdown of sales by state?",
+        "What are the specific patent applications filed by Arvida Labs for cannabinoid production methods?",
+        "What is the relationship structure between Mellow Fellow, Arvida Labs, Alpha Brands, and Precision Fill & Pack entities?"
+      ],
+      "additional_intelligence": {
+        "leadership": {
+          "ceo": "<cite index=\"55-2,55-4,55-5,55-6\">JJ Coombs (Gerard Coombs Jr.) - Co-Founder and CEO with Pharm.D. from University of Colorado and B.S. from Florida State University, combining pharmaceutical expertise with cannabis industry experience</cite>",
+          "cmo": "<cite index=\"35-1,56-2\">Lindsey Goldstein - CMO and co-founder, autodidactic graphic artist with experience from Royal Caribbean and campaigns for Macy's and MAC Cosmetics</cite>",
+          "chief_chemist": "<cite index=\"77-2,64-13\">Benjamin Warner - Chief Chemist and co-founder, PhD chemist from MIT who developed Delta-8 isomerization process</cite>"
+        },
+        "parent_company": {
+          "name": "Arvida Labs",
+          "description": "<cite index=\"61-1,61-2,61-3\">Leading manufacturer of novel cannabinoids producing highest quality and purest cannabinoid extracts with manufacturing solutions at scale</cite>",
+          "capabilities": "<cite index=\"57-23,57-24,57-25\">Creates phytocannabinoids via chemistry vs chromatography at scale, modifying CBD and CBG into rare cannabinoids (D8, D9, D10, THCv, THC-O-Acetate, HHC, CBND, CBC, CBN) using patent-pending processes</cite>",
+          "location": "Fort Lauderdale, Florida"
+        },
+        "competitive_advantages": [
+          "Pharmacist-formulated products with scientific credibility",
+          "Full vertical integration through Arvida Labs parent company",
+          "Patent-pending cannabinoid synthesis processes",
+          "Third-party lab testing and COA transparency for every batch",
+          "Mood-specific product formulations vs. generic potency focus",
+          "Live resin terpene preservation technology"
+        ],
+        "regulatory_position": "<cite index=\"16-6,16-7\">Products remain legal under 2018 Farm Bill, with hemp-derived cannabinoids containing less than 0.3% Delta 9 THC, though company faces federal regulation changes as of December 2025</cite>",
+        "quality_standards": "<cite index=\"32-17,32-18\">All products pharmacist formulated with every batch undergoing full panel testing; company commits to ethical lab practices and consumer health and safety protocols to protect from harmful chemicals</cite>",
+        "hemp_sourcing": "<cite index=\"54-4\">CBD sourced from Kentucky, Colorado, and California</cite>",
+        "customer_base": "<cite index=\"54-1\">Worldwide Mellow Fellow Fam community of cannabis enthusiasts who value quality buzz and consistent experience</cite>"
+      }
+    },
+    "phase_2": {},
+    "phase_3": {
+      "decision_makers": [
+        {
+          "name": "Gerard Coombs Jr. (JJ Coombs)",
+          "title": "Co-Founder & CEO",
+          "role_in_purchase": "Final Decision Maker",
+          "seniority": "C-Level",
+          "linkedin_url": "https://www.linkedin.com/in/jj-coombs-76078511/",
+          "email_guess": "jj@mellowfellow.fun or jj@arvidalabs.com",
+          "background": "Pharm.D. from University of Colorado with B.S. from Florida State University. Founded Mellow Fellow in 2021 with PhD chemist Benjamin Warner. Built expertise in supply chain management, quality control, and manufacturing through founding an innovative vape company (VERElabs). Strong pharmaceutical background with deep understanding of cannabinoid formulation and pharmacist-led product development.",
+          "communication_style": {
+            "tone": "Technical|Data-driven",
+            "evidence": "Hosts educational webinar series 'Delta Dayze' explaining cannabinoid science, speaks at industry conferences including CHAMPS Trade Show regulatory panels, emphasizes pharmacological properties and testing standards in public communications",
+            "preferred_approach": "Lead with scientific data, formulation expertise, and regulatory compliance. Emphasize quality control, third-party testing, and pharmaceutical-grade standards. Reference his Pharm.D. background and patent-pending processes for cannabinoid synthesis."
+          },
+          "personalization_hooks": [
+            {
+              "hook": "Arvida Labs carries cannabis, hemp, and botanical derived terpenes in-house",
+              "source": "LinkedIn post about custom blends and terpenes",
+              "how_to_use": "Position your terpenes as complementing their existing in-house capabilities or offering superior profiles for their proprietary formulations"
+            },
+            {
+              "hook": "Award-winning formulations (Euphoria Blend won Excellence Award, Vigor Blend won Best Tincture, Fit Blend won BELLA Beauty Award)",
+              "source": "Arvida Labs press page",
+              "how_to_use": "Reference their award-winning blends and how premium terpene profiles can elevate their next formulation to win more industry recognition"
+            },
+            {
+              "hook": "Speaking at CHAMPS Trade Show on regulatory compliance and hemp policy",
+              "source": "CHAMPS Chicago panel with JJ Coombs discussing 'Safeguarding Hemp: Navigating Policies'",
+              "how_to_use": "Connect at CHAMPS booth #17079 or reference his thought leadership on quality standards and consumer safety"
+            }
+          ],
+          "potential_objections": [
+            "Already have in-house terpene capabilities - may need to prove superior quality or cost-effectiveness",
+            "Vertically integrated operation - prefer to control entire supply chain",
+            "Price sensitivity given family business origins and focus on accessible products",
+            "Regulatory concerns - will require extensive documentation and compliance verification"
+          ]
+        },
+        {
+          "name": "Lindsey Goldstein",
+          "title": "Co-Founder & Chief Marketing Officer",
+          "role_in_purchase": "Champion|Technical Evaluator",
+          "seniority": "C-Level",
+          "linkedin_url": "https://www.linkedin.com/in/lindsey-goldstein-352396332/",
+          "email_guess": "lindsey@mellowfellow.fun or lindsey@arvidalabs.com",
+          "background": "Part-owner and CMO who drove cross-country to run marketing when the business expanded from founders. Autodidactic graphic artist with experience at Royal Caribbean, Macy's, MAC Cosmetics. Co-hosts 'Delta Dayze' educational series with JJ Coombs. Active in hemp industry advocacy, particularly Texas and Florida hemp regulation. Sister-in-law to JJ Coombs, demonstrating the family business structure.",
+          "communication_style": {
+            "tone": "Relationship|Casual",
+            "evidence": "Uses social media actively, hosts live Q&A sessions, emphasizes community ('Mellow Fellow Fam'), advocates publicly for hemp industry protection, creative marketing background",
+            "preferred_approach": "Emphasize brand differentiation, consumer experience, and how premium terpenes enhance product appeal. Focus on marketing story and competitive advantage in retail."
+          },
+          "personalization_hooks": [
+            {
+              "hook": "Leads product formulation exploration at Arvida Labs Open House events",
+              "source": "LinkedIn posts about Nov 10th & 13th Arvida Labs Open House",
+              "how_to_use": "Request meeting at their Fort Lauderdale facility during open house or similar events to showcase terpene samples"
+            },
+            {
+              "hook": "Texas is one of top two markets for Mellow Fellow",
+              "source": "EIN Presswire statement on Texas hemp legislation",
+              "how_to_use": "If you have Texas market expertise or terpene profiles popular in that region, emphasize market-specific formulation support"
+            },
+            {
+              "hook": "Active at PI LIVE Show, CHAMPS, and affiliate marketing initiatives",
+              "source": "LinkedIn activity showing trade show attendance",
+              "how_to_use": "Connect at trade shows or reference how terpene quality impacts customer reviews and repeat purchases"
+            }
+          ],
+          "potential_objections": [
+            "Marketing-focused - may need to convince on ROI and consumer appeal vs. technical specs",
+            "Protective of brand identity - terpenes must align with 'Mellow Fellow' brand positioning",
+            "Already established suppliers - need compelling differentiation story"
+          ]
+        },
+        {
+          "name": "Annie Gallagher",
+          "title": "Director of Operations",
+          "role_in_purchase": "Gatekeeper|Technical Evaluator",
+          "seniority": "Director-Level",
+          "linkedin_url": "https://www.linkedin.com/in/anniegallagher/",
+          "email_guess": "annie@arvidalabs.com or agallagher@mellowfellow.fun",
+          "background": "Recently joined Arvida Labs, Mellow Fellow and LG Wholesale as Director of Operations. Prior experience in acquisition and growth marketing at LT Apparel Group. Strong background in brand management, market research, and marketing analytics. Described as exceptional collaborator with creative, forward-thinking mindset and data-driven decision making.",
+          "communication_style": {
+            "tone": "Data-driven|Formal",
+            "evidence": "Background in analytics, market research, and operations. Colleagues describe her commitment to data-driven decision making and meeting deadlines",
+            "preferred_approach": "Provide detailed specifications, COAs, pricing matrices, and supply chain reliability data. Focus on operational efficiency and quality consistency."
+          },
+          "personalization_hooks": [
+            {
+              "hook": "New to role - likely evaluating current suppliers and open to new partnerships",
+              "source": "Recent LinkedIn announcement of joining Arvida Labs/Mellow Fellow",
+              "how_to_use": "Position as strategic partner during her operational assessment phase"
+            },
+            {
+              "hook": "Attends CHAMPS Trade Show and PI LIVE Show",
+              "source": "LinkedIn posts about trade show attendance with Mellow Fellow team",
+              "how_to_use": "Schedule booth meetings to present samples and discuss supply agreements"
+            }
+          ],
+          "potential_objections": [
+            "Evaluating existing supplier relationships - need clear competitive advantage",
+            "Operations focus means scrutiny on delivery reliability, consistency, and logistics",
+            "May defer final purchasing decisions to JJ Coombs or technical team"
+          ]
+        },
+        {
+          "name": "Benjamin Warner",
+          "title": "Chief Chemist / PhD Chemist (Co-Founder)",
+          "role_in_purchase": "Technical Evaluator",
+          "seniority": "C-Level / Technical Leadership",
+          "linkedin_url": "Not found in search",
+          "email_guess": "benjamin@arvidalabs.com or bwarner@arvidalabs.com",
+          "background": "PhD chemist from MIT, co-founded Mellow Fellow with JJ Coombs in January 2021. Responsible for cannabinoid synthesis processes and patent-pending methods for creating rare cannabinoids. Over 20 years experience in pharmaceutical industry. Leads oil processing facilities with expertise in research and process chemistry. Created initial Delta-8 THC formulations that launched the company.",
+          "communication_style": {
+            "tone": "Technical",
+            "evidence": "PhD chemist focused on research, process chemistry, and cannabinoid synthesis. Company emphasizes 'PhD Chemist Derived' products",
+            "preferred_approach": "Technical specifications, purity analysis, terpene chemistry compatibility with cannabinoid formulations. Discuss extraction methods, analytical testing, and interaction effects."
+          },
+          "personalization_hooks": [
+            {
+              "hook": "Patent-pending processes for rare cannabinoid synthesis",
+              "source": "Multiple references to proprietary synthesis methods",
+              "how_to_use": "Emphasize how your terpene purity won't interfere with cannabinoid chemistry and can enhance entourage effects"
+            },
+            {
+              "hook": "Working with analytical labs to develop testing standards for rare cannabinoids",
+              "source": "Arvida Labs LinkedIn about developing standards",
+              "how_to_use": "Provide comprehensive analytical data and discuss testing methodologies"
+            }
+          ],
+          "potential_objections": [
+            "Highly technical - will scrutinize terpene chemistry, purity, and analytical methods",
+            "May prefer cannabis-derived terpenes over botanical",
+            "Focused on innovation - needs to see unique value proposition"
+          ]
+        },
+        {
+          "name": "Blaise Allen",
+          "title": "Sales Director",
+          "role_in_purchase": "Champion",
+          "seniority": "Director-Level",
+          "linkedin_url": "https://www.linkedin.com/in/blaise-allen-bb3341203/",
+          "email_guess": "blaise@mellowfellow.fun",
+          "background": "Sales Director at Mellow Fellow Inc. Previously served as Operations Manager. Likely involved in B2B relationships and wholesale accounts given sales leadership role.",
+          "communication_style": {
+            "tone": "Relationship|Casual",
+            "evidence": "Sales-focused role suggests relationship-building orientation",
+            "preferred_approach": "Emphasize how quality terpenes improve product differentiation and sales performance. Focus on competitive positioning and wholesale customer feedback."
+          },
+          "personalization_hooks": [
+            {
+              "hook": "Sales leadership role suggests interest in product differentiation",
+              "source": "LinkedIn title",
+              "how_to_use": "Frame terpenes as sales enabler - helping them win retail accounts with superior product quality"
+            }
+          ],
+          "potential_objections": [
+            "May not be involved in raw material purchasing decisions",
+            "Sales focus means concern about pricing impact on margins"
+          ]
+        }
+      ],
+      "email_pattern": {
+        "detected_pattern": "firstname@mellowfellow.fun or firstname@arvidalabs.com",
+        "confidence": "MEDIUM"
+      },
+      "organizational_dynamics": {
+        "decision_process": "Family business structure with tight-knit co-founder team. JJ Coombs (CEO/Pharmacist) and Benjamin Warner (Chief Chemist) make final technical and purchasing decisions. Lindsey Goldstein (CMO/Co-founder) influences brand and formulation decisions. Annie Gallagher (Director of Operations) likely manages supplier relationships and logistics. Decision-making appears collaborative given small team size (2-10 employees) but final authority rests with pharmacist-chemist founding duo.",
+        "buying_committee": "Core buying committee: JJ Coombs (Final Approver), Benjamin Warner (Technical Evaluator), Annie Gallagher (Operations/Gatekeeper), Lindsey Goldstein (Brand/Champion). Family business dynamics suggest consensus-driven approach with emphasis on quality over price.",
+        "budget_authority": "JJ Coombs holds final budget authority as CEO. Operates within Arvida Labs infrastructure which provides production capabilities and financial backing. Recent multi-million dollar operation with national distribution suggests healthy budgets for premium inputs."
+      },
+      "relationship_opportunities": {
+        "trade_shows": [
+          "CHAMPS Trade Show (Las Vegas & Chicago) - Booth #17079 - JJ Coombs speaks on regulatory panels",
+          "PI LIVE Show - Team attends for affiliate marketing",
+          "Alt Pro Expo - Won Excellence Awards for formulations"
+        ],
+        "warm_intro_paths": [
+          "Connect through Florida Hemp Association (FHAA) - Lindsey Goldstein actively involved",
+          "Cannabis Business Insights Magazine - Arvida Labs won Cannabinoid Business Solution of the Year 2025",
+          "High Standard (premium vape hardware partner) - Could provide introduction",
+          "Accurate Labs (3rd-party testing partner) - Mutual relationship",
+          "MC Nutraceuticals / Bret Worley - Co-panelist with JJ Coombs at CHAMPS"
+        ]
+      }
+    },
+    "phase_4": {},
+    "phase_5": {},
+    "phase_6": {}
+  }
+}

@@ -1,0 +1,68 @@
+Now let me search for more specific information about these companies, including decision-makers and employee counts:
+Let me search for more information on Newt Brothers Artisanal to get a fuller list:
+Based on my research, here are 5 real cannabis extraction and concentrate companies in Colorado:
+
+```json
+[
+  {
+    "company_name": "Green Dot Labs",
+    "domain": "greendotlabs.com",
+    "description": "Colorado's leading premium cannabis brand specializing in live resin extracts, concentrates, and small-batch flower with proprietary genetics.",
+    "estimated_employees": 61,
+    "contact_name": "Alana Malone",
+    "contact_title": "Co-Founder & CEO",
+    "city": "Boulder",
+    "state": "Colorado",
+    "prospect_fit": "Top-selling concentrates brand with over 10 years in extraction, actively expanding and needing consistent terpene supply for their award-winning live resin products.",
+    "personalization_hook": "Just launched in Arizona in 2025 with a new 55,000 sq ft facility and refreshed brand identity - perfect timing to lock in terpene supply for multi-state expansion."
+  },
+  {
+    "company_name": "Concentrate Supply Co.",
+    "domain": "concentratesupplyco.com",
+    "description": "Award-winning cannabis refinement company offering extractions, distillations, and water-soluble infusions for recreational and medical markets.",
+    "estimated_employees": 8,
+    "contact_name": "Kyle Williams",
+    "contact_title": "Chief Marketing Officer / Managing Member",
+    "city": "Henderson",
+    "state": "Colorado",
+    "prospect_fit": "Established extraction brand since 2016 doing private label processing and wholesale - needs reliable botanical terpenes to maintain consistency across multiple client runs.",
+    "personalization_hook": "Recently won 2024 Rooster Magazine THC Classic awards and operates umbrella of brands across 4 states - scaling fast and need dependable terpene partner."
+  },
+  {
+    "company_name": "Denver Dab Co.",
+    "domain": "denverdabco.com",
+    "description": "Premium cannabis concentrates company specializing in live resin, terp diamonds, sugar wax, and shatter with focus on terpene education.",
+    "estimated_employees": 35,
+    "contact_name": "Drew Mattison",
+    "contact_title": "Founder & President",
+    "city": "Denver",
+    "state": "Colorado",
+    "prospect_fit": "Education-focused extractor obsessed with terpene profiles and potency - perfect fit for botanical terpenes to enhance their concentrate consistency and terp preservation.",
+    "personalization_hook": "Founded 2015 and consistently ranks top 10 in Colorado concentrates category - their focus on 'terpene education' aligns perfectly with DFT's extractor-to-extractor approach."
+  },
+  {
+    "company_name": "Newt Brothers Artisanal",
+    "domain": "newtbrothers.com",
+    "description": "Family-owned concentrate manufacturer producing BHO extracts including live resin, wax, shatter, and their signature AXOLOTL refined concentrate line.",
+    "estimated_employees": 15,
+    "contact_name": "Patrick Stephenson",
+    "contact_title": "Co-Founder & COO",
+    "city": "Denver",
+    "state": "Colorado",
+    "prospect_fit": "Quality-obsessed family operation doing BHO, PHO, and ice water extractions since 2014 - need consistent terpene source for their connoisseur-grade concentrate lines.",
+    "personalization_hook": "Started by two brothers and their mom who left the corporate cannabis world to 'do better' - anti-establishment vibe matches DFT's rebellious brand positioning perfectly."
+  },
+  {
+    "company_name": "DabTek Premium Concentrates",
+    "domain": "dabtek.com",
+    "description": "Award-winning cannabis extraction company in Pueblo producing wax, shatter, live resin, and RSO with focus on terpene preservation and artisanal quality.",
+    "estimated_employees": 6,
+    "contact_name": "Ryan Griego",
+    "contact_title": "Co-Founder",
+    "city": "Pueblo",
+    "state": "Colorado",
+    "prospect_fit": "Small-batch extractor building dedicated concentrate-focused grow facility - scaling up production and needs reliable terpene supplier for consistency as they expand.",
+    "personalization_hook": "Based in Pueblo (outside Denver metro) and recently acquired by Green Tree Medicinals - growing fast and focusing exclusively on concentrate production with new cultivation buildout."
+  }
+]
+```

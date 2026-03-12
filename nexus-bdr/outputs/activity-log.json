@@ -1,0 +1,117 @@
+[
+  {
+    "timestamp": "2026-03-03T23:26:28.639314",
+    "action": "create_contact",
+    "details": {
+      "contact_id": "CWMoeoI3KaaGXuR4nzhs",
+      "name": "Alana Malone",
+      "email": null,
+      "company": "Green Dot Labs"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:29.394960",
+    "action": "create_opportunity",
+    "details": {
+      "opportunity_id": "oN5XTTio0YYxdfFFWv2W",
+      "name": "Green Dot Labs \u2014 Duty Free Terpenes",
+      "contact_id": "CWMoeoI3KaaGXuR4nzhs",
+      "pipeline_id": "YA64eItHkj1Fe6RxYRIp",
+      "stage_id": "5c18feb6-82f2-479f-8e56-409e1075c905"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:30.064730",
+    "action": "create_contact",
+    "details": {
+      "contact_id": "9hpow0n0m1bFcO2EiHii",
+      "name": "Unknown (Unknown)",
+      "email": null,
+      "company": "DabTek Premium Concentrates"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:30.747709",
+    "action": "create_opportunity",
+    "details": {
+      "opportunity_id": "hbsTLxv5638hHP9RhI7Z",
+      "name": "DabTek Premium Concentrates \u2014 Duty Free Terpenes",
+      "contact_id": "9hpow0n0m1bFcO2EiHii",
+      "pipeline_id": "YA64eItHkj1Fe6RxYRIp",
+      "stage_id": "5c18feb6-82f2-479f-8e56-409e1075c905"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:31.421303",
+    "action": "create_contact",
+    "details": {
+      "contact_id": "zXMnaP9e5OCDHAg7p1ui",
+      "name": "Kyle Williams",
+      "email": null,
+      "company": "Concentrate Supply Co."
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:32.204266",
+    "action": "create_opportunity",
+    "details": {
+      "opportunity_id": "8Zih7z2AYfUUqV4uVcZs",
+      "name": "Concentrate Supply Co. \u2014 Duty Free Terpenes",
+      "contact_id": "zXMnaP9e5OCDHAg7p1ui",
+      "pipeline_id": "YA64eItHkj1Fe6RxYRIp",
+      "stage_id": "5c18feb6-82f2-479f-8e56-409e1075c905"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:32.789442",
+    "action": "create_contact",
+    "details": {
+      "contact_id": "OTxPNK5gghYcLQoQ6J2K",
+      "name": "Andrew Boyens",
+      "email": null,
+      "company": "Concentrate Remedies"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:33.525930",
+    "action": "create_opportunity",
+    "details": {
+      "opportunity_id": "Qa14psdzr2TXNeIWMkJM",
+      "name": "Concentrate Remedies \u2014 Duty Free Terpenes",
+      "contact_id": "OTxPNK5gghYcLQoQ6J2K",
+      "pipeline_id": "YA64eItHkj1Fe6RxYRIp",
+      "stage_id": "5c18feb6-82f2-479f-8e56-409e1075c905"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:34.093436",
+    "action": "create_contact",
+    "details": {
+      "contact_id": "52tjcBfvdWSfCX31ATE4",
+      "name": "Patrick Stephenson",
+      "email": null,
+      "company": "Newt Brothers Artisanal"
+    },
+    "agent": "ghl_sync"
+  },
+  {
+    "timestamp": "2026-03-03T23:26:34.602158",
+    "action": "create_opportunity",
+    "details": {
+      "opportunity_id": "kPAxQ9rh1GAL1iezUxGF",
+      "name": "Newt Brothers Artisanal \u2014 Duty Free Terpenes",
+      "contact_id": "52tjcBfvdWSfCX31ATE4",
+      "pipeline_id": "YA64eItHkj1Fe6RxYRIp",
+      "stage_id": "5c18feb6-82f2-479f-8e56-409e1075c905"
+    },
+    "agent": "ghl_sync"
+  }
+]

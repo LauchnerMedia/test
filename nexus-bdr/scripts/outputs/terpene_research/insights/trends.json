@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-04T09:12:09.924990",
+  "period": {
+    "recent_days": 90,
+    "papers_recent": 426,
+    "papers_older": 0
+  },
+  "terpene_velocity_top": {
+    "ocimene": {
+      "recent": 2,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "alpha-pinene": {
+      "recent": 3,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "beta-pinene": {
+      "recent": 2,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "beta-caryophyllene": {
+      "recent": 5,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "caryophyllene oxide": {
+      "recent": 1,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "alpha-terpineol": {
+      "recent": 1,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "linalool": {
+      "recent": 8,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "limonene": {
+      "recent": 3,
+      "older": 0,
+      "velocity": 1.0
+    }
+  },
+  "effect_velocity_top": {
+    "anticonvulsant": {
+      "recent": 6,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "cb2_agonist": {
+      "recent": 10,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "skin_permeation": {
+      "recent": 20,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "gastroprotective": {
+      "recent": 51,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "bioavailability": {
+      "recent": 101,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "anxiolytic": {
+      "recent": 17,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "appetite": {
+      "recent": 22,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "bone_stimulant": {
+      "recent": 9,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "wound_healing": {
+      "recent": 20,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "antioxidant": {
+      "recent": 188,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "antiviral": {
+      "recent": 9,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "neuroprotective": {
+      "recent": 56,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "bronchodilator": {
+      "recent": 21,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "entourage_effect": {
+      "recent": 52,
+      "older": 0,
+      "velocity": 1.0
+    },
+    "analgesic": {
+      "recent": 20,
+      "older": 0,
+      "velocity": 1.0
+    }
+  },
+  "rigor": {
+    "human_rate_change": 0.704
+  }
+}

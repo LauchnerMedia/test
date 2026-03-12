@@ -1,0 +1,267 @@
+{
+  "Lead Source": {
+    "id": "14pxyvnZQhuwmT6dv1ZO",
+    "key": "contact.lead_source",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Sequence Step": {
+    "id": "1MCgYEqyHEE7PL1zFHWT",
+    "key": "contact.sequence_step",
+    "dataType": "NUMERICAL"
+  },
+  "Response Status": {
+    "id": "3RAQKU20O1MFDC2vhnml",
+    "key": "contact.response_status",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Annual Terpene Volume": {
+    "id": "3aZZL8UV10Wqk1Wj5NK3",
+    "key": "contact.annual_terpene_volume",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Company Founded": {
+    "id": "3lXEviyGLzpwlmt6bYGp",
+    "key": "contact.company_founded",
+    "dataType": "TEXT"
+  },
+  "Company Domain": {
+    "id": "41wdbF9aEk8tGqCymtUQ",
+    "key": "contact.company_domain",
+    "dataType": "TEXT"
+  },
+  "Mutual Connections": {
+    "id": "6C6F3nKJCq0grmM1x5zv",
+    "key": "contact.mutual_connections",
+    "dataType": "TEXT"
+  },
+  "Decision Maker Level": {
+    "id": "857OYpGxMvd7cNCfFY24",
+    "key": "contact.decision_maker_level",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Estimated Deal Value": {
+    "id": "8hPmaEC0mXVTEukqhInq",
+    "key": "contact.estimated_deal_value",
+    "dataType": "NUMERICAL"
+  },
+  "Recent News": {
+    "id": "AXHOsltxYROJlm0Pftpg",
+    "key": "contact.recent_news",
+    "dataType": "LARGE_TEXT"
+  },
+  "License Type": {
+    "id": "AmaFgxk7QsYVkRo5ysVs",
+    "key": "contact.license_type",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "Production Capacity": {
+    "id": "E1UirvmuYrmc8Eqrqvvx",
+    "key": "contact.production_capacity",
+    "dataType": "TEXT"
+  },
+  "License Number": {
+    "id": "ECuh4sfP69PhXUjgTw9t",
+    "key": "contact.license_number",
+    "dataType": "TEXT"
+  },
+  "Markets Served": {
+    "id": "ERBL4LKSXptG2EzFuy0Z",
+    "key": "contact.markets_served",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "Personalization Hook": {
+    "id": "GHUG6VyFIUBUr6PZyfbf",
+    "key": "contact.personalization_hook",
+    "dataType": "LARGE_TEXT"
+  },
+  "Instagram Handle": {
+    "id": "GJjxIh5uGNmxMFK1PY1o",
+    "key": "contact.instagram_handle",
+    "dataType": "TEXT"
+  },
+  "ICP Tier": {
+    "id": "Kp1hgvpIaHMOWPfnGWt8",
+    "key": "contact.icp_tier",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Data Confidence": {
+    "id": "Nvit6vjHzKrarr5BDUHv",
+    "key": "contact.data_confidence",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Trade Shows": {
+    "id": "OecKb6EERlxAqhjBGwDY",
+    "key": "contact.trade_shows",
+    "dataType": "TEXT"
+  },
+  "Pain Points": {
+    "id": "Qdws6DKeQYBd3ATHsQP6",
+    "key": "contact.pain_points",
+    "dataType": "LARGE_TEXT"
+  },
+  "Prospect Temperature": {
+    "id": "Qhed9DcrUtBv1AN1HLAo",
+    "key": "contact.prospect_temperature",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Company Size": {
+    "id": "W8LpEhpaevDzPLlIbQ8D",
+    "key": "contact.company_size",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Buying Signals": {
+    "id": "WdgBtIEdLNhpvWZZ0SNH",
+    "key": "contact.buying_signals",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "Last Touch Date": {
+    "id": "Xdfrlk1OjymQNUI0V7Pa",
+    "key": "contact.last_touch_date",
+    "dataType": "DATE"
+  },
+  "Total Touches": {
+    "id": "XkGWdR4ogmmqmBjcPelT",
+    "key": "contact.total_touches",
+    "dataType": "NUMERICAL"
+  },
+  "Company Type": {
+    "id": "ZZpIhZayf79iEz61xAib",
+    "key": "contact.company_type",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Terpene Usage": {
+    "id": "Zp8UYDZZO6rHyqk8W9A9",
+    "key": "contact.terpene_usage",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Enrichment Date": {
+    "id": "aqE7F2kkhOTE0s5u2PRL",
+    "key": "contact.enrichment_date",
+    "dataType": "DATE"
+  },
+  "Enrichment Source": {
+    "id": "bs9W5SsIe2mUwCh4X6A0",
+    "key": "contact.enrichment_source",
+    "dataType": "TEXT"
+  },
+  "Social Activity Level": {
+    "id": "eapKcuB108yYjQORcbiy",
+    "key": "contact.social_activity_level",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Meeting Date": {
+    "id": "fXdbouTteYUsI6TCkJtU",
+    "key": "contact.meeting_date",
+    "dataType": "DATE"
+  },
+  "Lead Source Detail": {
+    "id": "inN1qnFyJaE6t1QX6oht",
+    "key": "contact.lead_source_detail",
+    "dataType": "TEXT"
+  },
+  "Product Types": {
+    "id": "iw0LdYPduT3UZr4MtA3I",
+    "key": "contact.product_types",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "License State": {
+    "id": "k6HiLGUvuRWQrzdiEVl2",
+    "key": "contact.license_state",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "LinkedIn URL": {
+    "id": "kGao1dLFfCZjZLm7puh0",
+    "key": "contact.linkedin_url",
+    "dataType": "TEXT"
+  },
+  "Outreach Sequence": {
+    "id": "kYXF3LJf4SV4gXz5VD36",
+    "key": "contact.outreach_sequence",
+    "dataType": "TEXT"
+  },
+  "Meeting Notes": {
+    "id": "mGCVPxaxxVf3CgEZgHIl",
+    "key": "contact.meeting_notes",
+    "dataType": "LARGE_TEXT"
+  },
+  "Equipment Brands": {
+    "id": "nDODP0uQUA5PFU0dLyQq",
+    "key": "contact.equipment_brands",
+    "dataType": "TEXT"
+  },
+  "Instagram Followers": {
+    "id": "ogq4yrXvWaMrkWBlYDmM",
+    "key": "contact.instagram_followers",
+    "dataType": "NUMERICAL"
+  },
+  "Extraction Methods": {
+    "id": "pRzNgjE6KGotFV50S1zt",
+    "key": "contact.extraction_methods",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "First Outreach Date": {
+    "id": "paFNsJ5eTgrD2QhnwvU2",
+    "key": "contact.first_outreach_date",
+    "dataType": "DATE"
+  },
+  "Sample Products": {
+    "id": "pmhyTTJ5mizjpxXjqLL2",
+    "key": "contact.sample_products",
+    "dataType": "TEXT"
+  },
+  "Objection Risk": {
+    "id": "rFP2SMwx0lz8LH1Fm6zi",
+    "key": "contact.objection_risk",
+    "dataType": "MULTIPLE_OPTIONS"
+  },
+  "Current Terpene Supplier": {
+    "id": "sFIzpT9bsijlwBVmfBay",
+    "key": "contact.current_terpene_supplier",
+    "dataType": "TEXT"
+  },
+  "State Count": {
+    "id": "sKJErfxWZnn8uSuaM5dI",
+    "key": "contact.state_count",
+    "dataType": "NUMERICAL"
+  },
+  "Instagram Engagement": {
+    "id": "skG6x3RrGguXFKM34R4y",
+    "key": "contact.instagram_engagement",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Content Themes": {
+    "id": "umxH42V6GM0fmpJg1v1e",
+    "key": "contact.content_themes",
+    "dataType": "TEXT"
+  },
+  "Nexus Lead Score": {
+    "id": "urNTcqWZzdiGckwDyIJr",
+    "key": "contact.nexus_lead_score",
+    "dataType": "NUMERICAL"
+  },
+  "Website Traffic Est": {
+    "id": "uzIZFAalFGSRMy1Qxwhm",
+    "key": "contact.website_traffic_est",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Outreach Channel": {
+    "id": "v1BWGCtK4ypGWDIcRBe2",
+    "key": "contact.outreach_channel",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Company Revenue Est": {
+    "id": "x1SYEm6NL7zp3oektMQ6",
+    "key": "contact.company_revenue_est",
+    "dataType": "NUMERICAL"
+  },
+  "Nexus Brand": {
+    "id": "xDMtVAgoBWX63SYWu1F9",
+    "key": "contact.nexus_brand",
+    "dataType": "SINGLE_OPTIONS"
+  },
+  "Sample Date": {
+    "id": "yYiEBhA7OgIQOtnIW2Zc",
+    "key": "contact.sample_date",
+    "dataType": "DATE"
+  }
+}

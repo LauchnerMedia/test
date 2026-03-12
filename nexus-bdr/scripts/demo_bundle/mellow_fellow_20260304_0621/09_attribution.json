@@ -1,0 +1,13 @@
+{
+  "run_id": "20260304_0621",
+  "action_id": "9387eb0d51dd",
+  "war_room_version": "v2",
+  "company_key": "company:mellow_fellow",
+  "company_name": "Mellow Fellow",
+  "trigger_signal_ids": [
+    "ea083b29c7e2",
+    "0b93df376df1"
+  ],
+  "bundle_path": "/Users/andrewlauchner/.openclaw/skills/nexus-bdr-agent/scripts/demo_bundle/mellow_fellow_20260304_0621",
+  "generated_at": "2026-03-04T06:21:50.488832Z"
+}

@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-03-04T09:12:09.943145",
+  "claims": [
+    {
+      "terpene": "beta-caryophyllene",
+      "claim": "Only dietary terpene broadly described as CB2-active; strong differentiator for inflammation/pain positioning.",
+      "supporting_evidence": {
+        "C": 3,
+        "D": 2
+      },
+      "top_papers": [
+        {
+          "id": "pmid:41170699",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41170699/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41655682",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41655682/",
+          "grade": "D"
+        },
+        {
+          "id": "pmid:41419158",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41419158/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41167414",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41167414/",
+          "grade": "C"
+        },
+        {
+          "id": "pmid:41436201",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/41436201/",
+          "grade": "D"
+        }
+      ]
+    }
+  ]
+}

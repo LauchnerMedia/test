@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "scan_date": "2026-03-04T01:03:43.667566",
+    "total_seconds": 66.74917960166931,
+    "timings": {
+      "Phase 1a": 40.360379695892334,
+      "Phase 1b": 25.13581681251526,
+      "Phase 1c": 0.0001289844512939453,
+      "Phase 2": 0.2551572322845459,
+      "Phase 3": 0.24611520767211914,
+      "Phase 4": 0.2661888599395752,
+      "Phase 5": 0.23447299003601074,
+      "Phase 6": 0.25091981887817383
+    }
+  },
+  "phases": {
+    "reddit_classified": [],
+    "thread_analyses": [],
+    "forums": {},
+    "reviews": {},
+    "social": {},
+    "correlation": {},
+    "digest": {}
+  }
+}
