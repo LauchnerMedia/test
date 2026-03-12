@@ -303,6 +303,9 @@ def build_snapshot():
     # ── Research Intelligence ──
     _load_research_into_snapshot(snapshot)
 
+    # ── Pipeline Stats from scored Apollo data ──
+    _load_pipeline_stats(snapshot)
+
     # ── Event count ──
     if EVENTS_FILE.exists():
         try:
@@ -312,6 +315,43 @@ def build_snapshot():
             pass
 
     return snapshot
+
+
+def _load_pipeline_stats(snapshot):
+    """Load pipeline contact stats from scored Apollo data files."""
+    scored_dir = OUTPUT_DIR.parent / "outputs"  # nexus-bdr/outputs/
+    if not scored_dir.exists():
+        scored_dir = OUTPUT_DIR  # fallback to scripts/outputs/
+    scored_files = sorted(scored_dir.glob("scored_apollo_*.json"), key=lambda x: x.stat().st_mtime, reverse=True)
+    if not scored_files:
+        return
+
+    try:
+        data = json.loads(scored_files[0].read_text())
+        leads = data.get("leads", [])
+        if not leads:
+            return
+
+        total = len(leads)
+        scores = [r.get("nexus_lead_score", r.get("score", 0)) for r in leads]
+        hot = sum(1 for s in scores if s >= 80)
+        warm = sum(1 for s in scores if 60 <= s < 80)
+        cool = sum(1 for s in scores if 40 <= s < 60)
+        cold = sum(1 for s in scores if s < 40)
+        verified = sum(1 for r in leads if r.get("email_status") == "Verified" or r.get("hunter_status") == "valid")
+        companies = len(set(r.get("company_name", "") for r in leads if r.get("company_name")))
+        brands = {}
+        for r in leads:
+            b = r.get("nexus_brand", r.get("brand", "unknown"))
+            brands[b] = brands.get(b, 0) + 1
+
+        snapshot["pipeline"] = {
+            "total": total, "hot": hot, "warm": warm, "cool": cool, "cold": cold,
+            "verified": verified, "companies": companies, "brands": brands,
+            "source": scored_files[0].name,
+        }
+    except Exception as e:
+        print(f"  Warning: pipeline stats load failed: {e}")
 
 
 def _load_research_into_snapshot(snapshot):
@@ -884,6 +924,65 @@ def _fallback_chat(message, brand="nexus"):
 
 
 # ═══════════════════════════════════════════════════════════
+# OUTCOME RECORDING — Updates War Room Learning Loop
+# ═══════════════════════════════════════════════════════════
+
+def _record_outcome_to_graph(outcome, company="", signals=None, playbook="", channel=""):
+    """Record an outcome into the War Room knowledge graph learning loop."""
+    graph_path = WAR_ROOM_DIR / "knowledge_graph" / "war_room_graph.json"
+    if not graph_path.exists():
+        return {}
+
+    try:
+        g = json.loads(graph_path.read_text())
+        learning = g.setdefault("learning", {})
+        sw = learning.setdefault("signal_weights", {})
+        outcomes = learning.setdefault("outcome_history", [])
+        pbwr = learning.setdefault("playbook_win_rates", {})
+
+        # Determine weight adjustment
+        positive = outcome in ("meeting_booked", "reply_positive", "deal_won", "demo_scheduled", "proposal_sent")
+        negative = outcome in ("no_response", "reply_negative", "deal_lost", "unsubscribed")
+        multiplier = 1.15 if positive else (0.90 if negative else 1.0)
+
+        # Update signal weights for involved signals
+        updated = {}
+        for sig in (signals or []):
+            old = sw.get(sig, 5.0)
+            new_w = round(min(max(old * multiplier, 1.0), 20.0), 2)
+            sw[sig] = new_w
+            updated[sig] = {"old": old, "new": new_w, "direction": "up" if positive else "down"}
+
+        # Record outcome
+        outcomes.append({
+            "timestamp": datetime.utcnow().isoformat(),
+            "outcome": outcome,
+            "company": company,
+            "signals": signals or [],
+            "playbook": playbook,
+            "channel": channel,
+            "positive": positive,
+        })
+
+        # Update playbook win rates
+        if playbook:
+            pb = pbwr.setdefault(playbook, {"wins": 0, "losses": 0, "total": 0})
+            pb["total"] += 1
+            if positive:
+                pb["wins"] += 1
+            elif negative:
+                pb["losses"] += 1
+
+        # Save
+        graph_path.write_text(json.dumps(g, indent=2, default=str))
+        return updated
+
+    except Exception as e:
+        print(f"  Warning: outcome recording failed: {e}")
+        return {}
+
+
+# ═══════════════════════════════════════════════════════════
 # JSX SERVING
 # ═══════════════════════════════════════════════════════════
 
@@ -951,6 +1050,7 @@ def get_reef_html(jsx_path):
       run: "/api/reef/run",
       job: "/api/reef/job",
       outcome: "/api/reef/outcome",
+      chat: "/api/reef/chat",
     }};
   </script>
   <script type="text/babel" data-presets="env,react">
@@ -1119,13 +1219,21 @@ class PlatformHandler(BaseHTTPRequestHandler):
             persona = body.get("persona", "")
             playbook = body.get("playbook", "")
             notes = body.get("notes", "")
+            company = body.get("company", "")
+            signals_involved = body.get("signals", [])
             emit_event("OutcomeRecorded", {
                 "action_id": action_id, "outcome": outcome,
                 "channel": channel, "persona": persona,
                 "playbook": playbook, "notes": notes,
+                "company": company,
             })
-            print(f"  📝 Outcome: {action_id} → {outcome} ({channel})")
-            self._json({"status": "recorded", "action_id": action_id, "outcome": outcome})
+            # Update War Room learning loop
+            updated_weights = _record_outcome_to_graph(outcome, company, signals_involved, playbook, channel)
+            print(f"  Outcome: {action_id} -> {outcome} ({channel})")
+            self._json({
+                "status": "recorded", "action_id": action_id, "outcome": outcome,
+                "weights_updated": updated_weights,
+            })
 
         else:
             self._json({"error": "not found"}, 404)
