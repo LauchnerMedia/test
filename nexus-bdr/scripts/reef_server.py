@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NEXUS Platform Server v5
+NEXUS Platform Server v6
 =========================
 Unified server for Reef Mode + Research Intelligence + Event Log.
 
@@ -10,21 +10,27 @@ Implements:
   Epic 3.1 — Signal taxonomy + reliability priors
   Epic 4.1 — Enhanced abstract extraction fields
   Epic 4.4 — Research → Business translation layer
+  Epic 5.0 — Independent company dossiers
+  Epic 5.1 — Enhanced pipeline with stages + forecasting
+  Epic 5.2 — PhD-grade terpene intelligence lab
 
 Endpoints:
-  GET  /reef                    → Reef Mode UI
-  GET  /api/reef/snapshot       → Versioned snapshot (stable schema)
-  GET  /api/reef/research       → PhD-grade research intelligence
-  GET  /api/reef/signals        → Signal feed with taxonomy + decay
-  GET  /api/events              → Event log (polling, ?since=cursor)
-  GET  /api/agents              → Agent registry
-  GET  /health                  → Health check
-  POST /api/reef/run            → Trigger agent commands
-  POST /api/reef/outcome        → Record outcomes
+  GET  /reef                        → Reef Mode UI
+  GET  /api/reef/snapshot           → Versioned snapshot (stable schema)
+  GET  /api/reef/research           → PhD-grade research intelligence
+  GET  /api/reef/signals            → Signal feed with taxonomy + decay
+  GET  /api/reef/companies          → All companies with independent data
+  GET  /api/reef/company/<name>     → Full company dossier
+  GET  /api/reef/pipeline           → Enhanced pipeline with stages + forecast
+  GET  /api/events                  → Event log (polling, ?since=cursor)
+  GET  /api/agents                  → Agent registry
+  GET  /health                      → Health check
+  POST /api/reef/run                → Trigger agent commands
+  POST /api/reef/outcome            → Record outcomes
 
 Usage:
-  python3 reef_server_v5.py                  # port 3142
-  python3 reef_server_v5.py --port 3141      # custom port
+  python3 reef_server.py                  # port 3142
+  python3 reef_server.py --port 3141      # custom port
 """
 
 import os, sys, json, argparse, time, hashlib, re, subprocess, threading
@@ -73,7 +79,11 @@ EVENTS_DIR = OUTPUT_DIR / "events"
 EVENTS_DIR.mkdir(parents=True, exist_ok=True)
 EVENTS_FILE = EVENTS_DIR / "events.jsonl"
 
-SCHEMA_VERSION = "5.0"
+SCHEMA_VERSION = "7.0"
+BRIEFS_DIR = OUTPUT_DIR / "briefs"
+SOCIAL_DIR = OUTPUT_DIR / "social_intel"
+COMPETITOR_DIR = OUTPUT_DIR / "competitor_intel"
+DEMO_BUNDLE_DIR = SCRIPT_DIR / "demo_bundle"
 
 
 # ═══════════════════════════════════════════════════════════
@@ -884,17 +894,486 @@ def _fallback_chat(message, brand="nexus"):
 
 
 # ═══════════════════════════════════════════════════════════
+# EPIC 5.3 — COMPETITOR INTELLIGENCE DEEP DIVE
+# ═══════════════════════════════════════════════════════════
+
+def build_competitor_intel():
+    """Build comprehensive competitor intelligence from war room + research."""
+    snapshot = build_snapshot()
+    competitors = snapshot.get("competitors", [])
+    competitive_claims = snapshot.get("competitiveIntel", [])
+
+    # Load competitor vulnerability scan if available
+    vuln_dir = OUTPUT_DIR / "competitor_intel"
+    if not vuln_dir.exists():
+        vuln_dir = OUTPUT_DIR.parent / "outputs" / "competitor_intel"
+    vuln_data = {}
+    if vuln_dir.exists():
+        for f in sorted(vuln_dir.glob("*.json"), key=lambda x: x.stat().st_mtime, reverse=True)[:1]:
+            try:
+                raw = json.loads(f.read_text())
+                comps_raw = raw.get("competitors_scanned", raw.get("competitors", {}))
+                if isinstance(comps_raw, dict):
+                    vuln_data = comps_raw
+                elif isinstance(comps_raw, list):
+                    for item in comps_raw:
+                        if isinstance(item, dict) and item.get("name"):
+                            vuln_data[item["name"]] = item
+            except Exception:
+                pass
+
+    # Merge all competitor data
+    comp_map = {}
+    for c in competitors:
+        name = c.get("name", "")
+        if name:
+            comp_map[name] = {**c, "signals": [], "displacement_angles": []}
+
+    # Add vulnerability scan data
+    for name, v_data in vuln_data.items():
+        if isinstance(v_data, dict):
+            if name in comp_map:
+                comp_map[name].update({k: val for k, val in v_data.items() if k not in comp_map[name] or not comp_map[name][k]})
+            else:
+                comp_map[name] = {"name": name, **v_data, "signals": [], "displacement_angles": []}
+
+    # Known competitor profiles (enriched with domain knowledge)
+    COMPETITOR_DB = {
+        "True Terpenes": {"pricing": "$80-150/L botanical, $2K-4K/L CDT", "weakness": "Slow custom orders (4-6 weeks), quality complaints, price increases", "tbf_angle": "Faster turnaround, better consistency, competitive pricing at scale", "dft_angle": "Hype strains they don't carry, faster shipping, no minimum BS", "market_position": "Market leader", "trustpilot_est": 3.0},
+        "Abstrax Tech": {"pricing": "Premium CDT, $3K-6K/L", "weakness": "Expensive, complex ordering, slow response", "tbf_angle": "Match scientific rigor with simpler ordering", "dft_angle": "Great terps without PhD-level process", "market_position": "Premium/R&D focused", "trustpilot_est": 4.2},
+        "Floraplex": {"pricing": "$30-60/L botanical", "weakness": "Inconsistent quality, synthetic undertones, no custom blending", "tbf_angle": "Consistency at volume pricing", "dft_angle": "Authentic profiles without synthetic taste", "market_position": "Budget botanical", "trustpilot_est": 3.8},
+        "Denver Terpenes": {"pricing": "$50-100/L", "weakness": "Limited selection, regional only", "tbf_angle": "National reach + wider catalog", "dft_angle": "More strain options, same pricing", "market_position": "Regional player", "trustpilot_est": 3.5},
+        "Peak Supply Co": {"pricing": "$40-80/L", "weakness": "Limited B2B, inconsistent availability", "tbf_angle": "Enterprise-grade supply chain", "dft_angle": "Reliable stock, no backorders", "market_position": "Mid-market", "trustpilot_est": 3.2},
+        "Terps USA": {"pricing": "$25-50/L", "weakness": "Bottom-tier, no COAs, suspected synthetic", "tbf_angle": "Full COA transparency", "dft_angle": "Real botanical vs synthetic garbage", "market_position": "Bottom-tier", "trustpilot_est": 2.8},
+        "Extract Consultants": {"pricing": "$60-120/L", "weakness": "Formulation-focused, slow innovation", "tbf_angle": "Faster R&D pipeline", "dft_angle": "No consulting fees, just great terps", "market_position": "Consulting/formulation", "trustpilot_est": 3.9},
+    }
+
+    for name, profile in COMPETITOR_DB.items():
+        if name not in comp_map:
+            comp_map[name] = {"name": name, "signals": [], "displacement_angles": []}
+        comp_map[name].update({k: v for k, v in profile.items() if k not in comp_map[name] or not comp_map[name][k]})
+
+    # Attach competitor signals from war room
+    for sig in snapshot.get("signals", []):
+        for name in comp_map:
+            if name.lower() in sig.get("summary", "").lower() or name.lower() in str(sig.get("entities", [])).lower():
+                comp_map[name]["signals"].append(sig)
+
+    result = list(comp_map.values())
+    result.sort(key=lambda x: x.get("trustpilot_est", x.get("trustpilot", 5) or 5))
+    return {
+        "competitors": result,
+        "claims": competitive_claims,
+        "total": len(result),
+    }
+
+
+# ═══════════════════════════════════════════════════════════
+# EPIC 5.4 — SYSTEM ANALYTICS + PERFORMANCE
+# ═══════════════════════════════════════════════════════════
+
+def build_analytics():
+    """Build system analytics: pipeline health, costs, agent performance."""
+    snapshot = build_snapshot()
+    companies, _ = build_company_list()
+
+    # Pipeline health metrics
+    total = len(companies)
+    stages = {"new": 0, "scored": 0, "enriched": 0, "researched": 0, "outreach_ready": 0}
+    brands = {"TBF": 0, "DFT": 0}
+    temps = {"Hot": 0, "Warm": 0, "Cool": 0, "Cold": 0}
+    score_sum = 0
+    contacts_sum = 0
+    emails_sum = 0
+    verified_sum = 0
+    briefs_done = 0
+    with_outreach = 0
+    regions = {}
+
+    for co in companies:
+        stages[co.get("stage", "new")] = stages.get(co.get("stage", "new"), 0) + 1
+        brands[co.get("brand", "DFT")] = brands.get(co.get("brand", "DFT"), 0) + 1
+        temps[co.get("temperature", "Cold")] = temps.get(co.get("temperature", "Cold"), 0) + 1
+        score_sum += co.get("avg_score", 0)
+        contacts_sum += co.get("contact_count", 0)
+        emails_sum += co.get("emails_total", 0)
+        verified_sum += co.get("emails_verified", 0)
+        if co.get("brief_status") == "complete":
+            briefs_done += 1
+        if co.get("outreach_bundle"):
+            with_outreach += 1
+        region = co.get("country", co.get("state", "Unknown"))
+        regions[region] = regions.get(region, 0) + 1
+
+    # Signal analytics
+    signals = snapshot.get("signals", [])
+    signal_by_cat = {}
+    for s in signals:
+        cat = s.get("category", "unknown")
+        signal_by_cat[cat] = signal_by_cat.get(cat, 0) + 1
+
+    # Research metrics
+    research_papers = snapshot["systemStatus"]["researchPapers"]
+    insights_count = len(snapshot.get("synthesisInsights", []))
+    business_insights = len(snapshot.get("businessInsights", []))
+    regulatory_hits = len(snapshot.get("regulatoryHits", []))
+
+    # Agent registry
+    agent_count = len(AGENT_REGISTRY)
+
+    # Learning metrics
+    learning = snapshot.get("learning", {})
+    signal_weights = learning.get("signalWeights", {})
+    playbook_wins = learning.get("playbookWinRates", {})
+
+    return {
+        "pipeline": {
+            "total_companies": total,
+            "total_contacts": contacts_sum,
+            "total_emails": emails_sum,
+            "verified_emails": verified_sum,
+            "avg_score": round(score_sum / total) if total else 0,
+            "briefs_complete": briefs_done,
+            "outreach_ready": with_outreach,
+            "stages": stages,
+            "brands": brands,
+            "temperatures": temps,
+            "regions": dict(sorted(regions.items(), key=lambda x: -x[1])[:15]),
+            "pipeline_velocity": {
+                "new_to_scored_pct": round(stages.get("scored", 0) / max(total, 1) * 100),
+                "scored_to_enriched_pct": round(stages.get("enriched", 0) / max(stages.get("scored", 1), 1) * 100),
+                "enriched_to_researched_pct": round(stages.get("researched", 0) / max(stages.get("enriched", 1), 1) * 100),
+                "researched_to_outreach_pct": round(stages.get("outreach_ready", 0) / max(stages.get("researched", 1), 1) * 100),
+            },
+        },
+        "intelligence": {
+            "entities_tracked": snapshot["systemStatus"]["entitiesTracked"],
+            "competitors_tracked": snapshot["systemStatus"]["competitorsTracked"],
+            "signals_total": len(signals),
+            "signals_today": snapshot["systemStatus"]["signalsToday"],
+            "signals_by_category": signal_by_cat,
+            "research_papers": research_papers,
+            "synthesis_insights": insights_count,
+            "business_insights": business_insights,
+            "regulatory_hits": regulatory_hits,
+        },
+        "system": {
+            "agents": agent_count,
+            "signal_weights": len(signal_weights) if isinstance(signal_weights, dict) else 0,
+            "outcomes_recorded": snapshot["systemStatus"]["outcomesRecordedToday"],
+            "events_total": snapshot["systemStatus"]["eventsTotal"],
+            "actions_queued": snapshot["systemStatus"]["actionsQueued"],
+        },
+        "learning": {
+            "signal_weights": snapshot.get("signalWeights", []),
+            "playbook_win_rates": playbook_wins,
+        },
+    }
+
+
+# ═══════════════════════════════════════════════════════════
+# EPIC 5.0 — INDEPENDENT COMPANY DOSSIERS
+# ═══════════════════════════════════════════════════════════
+
+def _load_pipeline_leads():
+    """Load scored/enriched pipeline data, preferring most recent."""
+    for prefix in ("scored_apollo_", "enriched_", "imported_"):
+        files = sorted(OUTPUT_DIR.glob(f"{prefix}*.json"), key=lambda x: x.stat().st_mtime, reverse=True)
+        if files:
+            try:
+                data = json.loads(files[0].read_text())
+                return data.get("leads", []), str(files[0].name)
+            except Exception:
+                continue
+    return [], ""
+
+
+def _load_briefs():
+    """Load all company briefs keyed by company name."""
+    briefs = {}
+    if not BRIEFS_DIR.exists():
+        return briefs
+    for f in sorted(BRIEFS_DIR.glob("brief_*.json"), key=lambda x: x.stat().st_mtime, reverse=True):
+        try:
+            data = json.loads(f.read_text())
+            company = data.get("metadata", {}).get("company", "")
+            if company and company not in briefs:
+                briefs[company] = data
+        except Exception:
+            continue
+    return briefs
+
+
+def _load_demo_bundles():
+    """Load demo bundle data keyed by company name."""
+    bundles = {}
+    if not DEMO_BUNDLE_DIR.exists():
+        return bundles
+    for d in DEMO_BUNDLE_DIR.iterdir():
+        if not d.is_dir():
+            continue
+        company_key = d.name.rsplit("_", 2)[0].replace("_", " ").title()
+        bundle = {"files": [], "outreach": {}}
+        for f in sorted(d.iterdir()):
+            bundle["files"].append(f.name)
+            if f.suffix in (".txt", ".md"):
+                try:
+                    content = f.read_text(encoding="utf-8")[:3000]
+                    key = f.stem.split("_", 1)[-1] if "_" in f.stem else f.stem
+                    bundle["outreach"][key] = content
+                except Exception:
+                    pass
+            elif f.suffix == ".json":
+                try:
+                    content = json.loads(f.read_text())
+                    key = f.stem.split("_", 1)[-1] if "_" in f.stem else f.stem
+                    bundle["outreach"][key] = content
+                except Exception:
+                    pass
+        if company_key not in bundles:
+            bundles[company_key] = bundle
+    return bundles
+
+
+def build_company_list():
+    """Build independent company profiles from pipeline + briefs + signals."""
+    leads, source = _load_pipeline_leads()
+    briefs = _load_briefs()
+    bundles = _load_demo_bundles()
+    snapshot = build_snapshot()
+    signals = snapshot.get("signals", [])
+
+    # Group leads by company
+    company_map = {}
+    for lead in leads:
+        co = lead.get("company_name", "Unknown")
+        if co == "Unknown" or not co:
+            continue
+        if co not in company_map:
+            company_map[co] = {
+                "name": co,
+                "domain": lead.get("domain", ""),
+                "state": lead.get("state", ""),
+                "country": lead.get("country", ""),
+                "industry": lead.get("industry", ""),
+                "employees": lead.get("employees", ""),
+                "company_size": lead.get("company_size", ""),
+                "company_linkedin": lead.get("company_linkedin", ""),
+                "brand": lead.get("nexus_brand", "DFT"),
+                "brand_reason": lead.get("brand_reason", ""),
+                "keywords": lead.get("keywords", ""),
+                "technologies": lead.get("technologies", ""),
+                "contacts": [],
+                "scores": [],
+                "emails_verified": 0,
+                "emails_total": 0,
+                "extraction_methods": [],
+                "product_types": [],
+            }
+        c = company_map[co]
+        score = lead.get("nexus_lead_score", 0)
+        c["scores"].append(score)
+        contact = {
+            "name": lead.get("contact_name", ""),
+            "title": lead.get("title", ""),
+            "email": lead.get("email", ""),
+            "phone": lead.get("phone", ""),
+            "linkedin": lead.get("linkedin", lead.get("linkedin_url", "")),
+            "seniority": lead.get("seniority", ""),
+            "department": lead.get("department", lead.get("departments", "")),
+            "decision_maker_level": lead.get("decision_maker_level", ""),
+            "score": score,
+            "score_reasons": lead.get("score_reasons", []),
+            "temperature": lead.get("prospect_temperature", ""),
+            "email_status": lead.get("email_status", ""),
+            "icp_tier": lead.get("icp_tier", ""),
+        }
+        if lead.get("email"):
+            c["emails_total"] += 1
+            if lead.get("email_status") in ("Valid", "Verified", "valid"):
+                c["emails_verified"] += 1
+        c["contacts"].append(contact)
+        for m in lead.get("extraction_methods", []):
+            if m not in c["extraction_methods"]:
+                c["extraction_methods"].append(m)
+        for p in lead.get("product_types", []):
+            if p not in c["product_types"]:
+                c["product_types"].append(p)
+
+    # Enrich with brief data
+    for co_name, co in company_map.items():
+        brief = briefs.get(co_name)
+        if brief:
+            phases = brief.get("phases", {})
+            p1 = phases.get("phase_1", {})
+            p4 = phases.get("phase_4", {})
+            p6 = phases.get("phase_6", {})
+            co["brief_status"] = "complete"
+            co["brief_data"] = {
+                "description": p1.get("description", ""),
+                "founded": p1.get("founded", ""),
+                "headquarters": p1.get("headquarters", ""),
+                "business_model": p1.get("business_model", ""),
+                "company_type": p1.get("company_type", ""),
+                "brand_positioning": p1.get("brand_positioning", ""),
+                "key_products": p1.get("key_products_overview", []),
+                "recent_news": p1.get("recent_news", []),
+                "growth_signals": p1.get("growth_signals", []),
+                "social_media": p1.get("social_media", {}),
+                "terpene_relevance": p1.get("initial_terpene_relevance", ""),
+                "size_estimate": p1.get("size_estimate", {}),
+                "markets": p1.get("markets", {}),
+            }
+            co["supplier_intel"] = p4.get("current_supplier_assessment", {})
+            co["displacement_strategy"] = p4.get("displacement_strategy", {})
+            co["pricing_intel"] = p4.get("pricing_intelligence", {})
+            co["executive_summary"] = p6.get("executive_summary", {})
+            co["objections"] = p6.get("objections", [])
+            co["outreach_sequence"] = p6.get("outreach_sequence", [])
+            co["sample_kit"] = p6.get("sample_kit", {})
+            co["deal_model"] = p6.get("deal_model", phases.get("phase_5", {}).get("deal_model", {}))
+        else:
+            co["brief_status"] = "pending"
+
+        # Attach bundle outreach
+        for bundle_key, bundle in bundles.items():
+            if bundle_key.lower().replace(" ", "") in co_name.lower().replace(" ", ""):
+                co["outreach_bundle"] = bundle.get("outreach", {})
+                break
+
+        # Attach relevant signals
+        co_signals = []
+        for sig in signals:
+            entities = sig.get("entities", [])
+            summary = sig.get("summary", "").lower()
+            if any(co_name.lower() in str(e).lower() for e in entities) or co_name.lower() in summary:
+                co_signals.append(sig)
+        co["signals"] = co_signals[:20]
+
+    # Build sorted list
+    companies = []
+    for co in company_map.values():
+        avg_score = round(sum(co["scores"]) / len(co["scores"])) if co["scores"] else 0
+        top_score = max(co["scores"]) if co["scores"] else 0
+        co["avg_score"] = avg_score
+        co["top_score"] = top_score
+        co["contact_count"] = len(co["contacts"])
+        co["temperature"] = "Hot" if avg_score >= 80 else "Warm" if avg_score >= 60 else "Cool" if avg_score >= 40 else "Cold"
+        # Sort contacts: highest score first, then by decision maker level
+        dm_order = {"C-Suite": 0, "VP": 1, "Director": 2, "Manager": 3, "Individual": 4}
+        co["contacts"].sort(key=lambda x: (-x["score"], dm_order.get(x["decision_maker_level"], 5)))
+        co["top_contact"] = co["contacts"][0] if co["contacts"] else None
+        # Determine pipeline stage
+        if co.get("outreach_bundle"):
+            co["stage"] = "outreach_ready"
+        elif co.get("brief_status") == "complete":
+            co["stage"] = "researched"
+        elif co["emails_verified"] > 0:
+            co["stage"] = "enriched"
+        elif co["contact_count"] > 0:
+            co["stage"] = "scored"
+        else:
+            co["stage"] = "new"
+        del co["scores"]
+        companies.append(co)
+
+    companies.sort(key=lambda x: -x["avg_score"])
+    return companies, source
+
+
+def build_pipeline_data():
+    """Build enhanced pipeline with stages, forecasting, and velocity."""
+    companies, source = build_company_list()
+
+    # Stage counts
+    stages = {"new": [], "scored": [], "enriched": [], "researched": [], "outreach_ready": [], "engaged": [], "meeting": [], "proposal": [], "won": []}
+    for co in companies:
+        stage = co.get("stage", "new")
+        if stage in stages:
+            stages[stage].append(co["name"])
+
+    # Temperature distribution
+    temps = {"Hot": 0, "Warm": 0, "Cool": 0, "Cold": 0}
+    total_contacts = 0
+    total_emails = 0
+    total_verified = 0
+    brand_split = {"TBF": 0, "DFT": 0}
+    for co in companies:
+        temps[co["temperature"]] = temps.get(co["temperature"], 0) + 1
+        total_contacts += co["contact_count"]
+        total_emails += co["emails_total"]
+        total_verified += co["emails_verified"]
+        brand_split[co.get("brand", "DFT")] = brand_split.get(co.get("brand", "DFT"), 0) + 1
+
+    # Revenue forecast (from deal models)
+    forecast = {"conservative": 0, "likely": 0, "upside": 0}
+    for co in companies:
+        dm = co.get("deal_model", {})
+        if dm:
+            for tier in ("conservative", "likely", "upside"):
+                tier_data = dm.get(tier, {})
+                val = tier_data.get("annual_value", tier_data.get("annual_revenue", ""))
+                if isinstance(val, str):
+                    nums = re.findall(r'[\d,]+', val.replace(",", ""))
+                    if nums:
+                        try:
+                            forecast[tier] += int(nums[0])
+                        except ValueError:
+                            pass
+                elif isinstance(val, (int, float)):
+                    forecast[tier] += int(val)
+
+    # Hot list: top 5 with next actions
+    hot_list = []
+    for co in companies[:10]:
+        if co["temperature"] in ("Hot", "Warm"):
+            next_action = "Run sales intel brief" if co["brief_status"] == "pending" else \
+                         "Generate kill shot bundle" if not co.get("outreach_bundle") else \
+                         "Send outreach sequence"
+            hot_list.append({
+                "company": co["name"],
+                "score": co["avg_score"],
+                "brand": co.get("brand", ""),
+                "contacts": co["contact_count"],
+                "verified_emails": co["emails_verified"],
+                "top_contact": co["top_contact"]["name"] if co.get("top_contact") else "",
+                "top_title": co["top_contact"]["title"] if co.get("top_contact") else "",
+                "stage": co["stage"],
+                "next_action": next_action,
+                "brief_status": co["brief_status"],
+            })
+            if len(hot_list) >= 5:
+                break
+
+    return {
+        "source": source,
+        "total_companies": len(companies),
+        "total_contacts": total_contacts,
+        "total_emails": total_emails,
+        "total_verified": total_verified,
+        "temperatures": temps,
+        "brand_split": brand_split,
+        "stages": {k: {"count": len(v), "companies": v} for k, v in stages.items()},
+        "forecast": forecast,
+        "hot_list": hot_list,
+        "companies": companies,
+    }
+
+
+# ═══════════════════════════════════════════════════════════
 # JSX SERVING
 # ═══════════════════════════════════════════════════════════
 
 def find_reef_jsx():
     """Find the dashboard JSX file (prefer unified nexus_dashboard)."""
     candidates = [
+        SCRIPT_DIR / "nexus_v5.jsx",
         SCRIPT_DIR / "nexus_dashboard.jsx",
         SCRIPT_DIR / "reef_mode.jsx",
         SCRIPT_DIR / "reef_mode_v5.jsx",
         SCRIPT_DIR / "reef_mode_v4.jsx",
         SCRIPT_DIR / "reef_mode_v3.jsx",
+        SCRIPT_DIR.parent / "scripts" / "nexus_v5.jsx",
         SCRIPT_DIR.parent / "scripts" / "nexus_dashboard.jsx",
         SCRIPT_DIR.parent / "scripts" / "reef_mode.jsx",
     ]
@@ -1062,6 +1541,43 @@ class PlatformHandler(BaseHTTPRequestHandler):
         elif path == "/api/agents":
             self._json({"agents": AGENT_REGISTRY})
 
+        # ── Companies list (Epic 5.0) ──
+        elif path == "/api/reef/companies":
+            companies, source = build_company_list()
+            self._json({"schema_version": SCHEMA_VERSION, "source": source, "companies": companies})
+
+        # ── Single company dossier (Epic 5.0) ──
+        elif path.startswith("/api/reef/company/"):
+            company_name = path.split("/api/reef/company/", 1)[1]
+            company_name = company_name.replace("%20", " ").replace("+", " ")
+            companies, _ = build_company_list()
+            match = None
+            for co in companies:
+                if co["name"].lower() == company_name.lower():
+                    match = co
+                    break
+            if not match:
+                for co in companies:
+                    if company_name.lower() in co["name"].lower():
+                        match = co
+                        break
+            if match:
+                self._json({"schema_version": SCHEMA_VERSION, "company": match})
+            else:
+                self._json({"error": f"Company '{company_name}' not found"}, 404)
+
+        # ── Enhanced pipeline (Epic 5.1) ──
+        elif path == "/api/reef/pipeline":
+            self._json({"schema_version": SCHEMA_VERSION, **build_pipeline_data()})
+
+        # ── Competitor intelligence (Epic 5.3) ──
+        elif path == "/api/reef/competitors":
+            self._json({"schema_version": SCHEMA_VERSION, **build_competitor_intel()})
+
+        # ── Analytics (Epic 5.4) ──
+        elif path == "/api/reef/analytics":
+            self._json({"schema_version": SCHEMA_VERSION, **build_analytics()})
+
         # ── Job status ──
         elif path == "/api/reef/job":
             job_id = (qs.get("job_id") or [""])[0]
@@ -1111,6 +1627,48 @@ class PlatformHandler(BaseHTTPRequestHandler):
             except Exception as e:
                 print(f"  ⚠️ Chat error: {e}")
                 self._json({"response": f"Error processing command: {str(e)}", "agents_activated": []})
+
+        elif path == "/api/reef/campaign/generate":
+            name = body.get("name", "Untitled Campaign")
+            ctype = body.get("type", "product_launch")
+            audience = body.get("audience", "enterprise")
+            terpenes = body.get("terpenes", [])
+            message = body.get("message", "")
+            tone = body.get("tone", "professional")
+            brand = body.get("brand", "TBF")
+
+            terp_str = ", ".join(terpenes) if terpenes else "Myrcene, Limonene, Beta-Caryophyllene"
+            brand_name = "Terpene Belt Farms" if brand in ("TBF", "BOTH") else "Duty Free Terpenes"
+            primary_color = "#2D5016" if brand == "TBF" else "#1a1a2e"
+            accent_color = "#D4A843" if brand == "TBF" else "#ec4899"
+
+            result = {
+                "campaign": body,
+                "landing_page": {
+                    "title": name,
+                    "headline": message or f"Experience the Future of Terpenes with {brand_name}",
+                    "subheadline": f"Precision-crafted botanical terpene blends featuring {terp_str}",
+                    "hero_cta": "Request Sample Kit",
+                    "sections": [
+                        {"title": f"Why {brand_name}", "content": "Industry-leading purity, consistency, and compliance. Every batch third-party tested. Farm-to-formula traceability."},
+                        {"title": "Featured Terpenes", "content": terp_str},
+                        {"title": "The Science", "content": "Backed by 400+ peer-reviewed papers. Evidence-graded formulation guidance. Compliance-safe claims."},
+                        {"title": "Quality Guarantee", "content": "ISO-certified extraction. Full COA on every batch. Dedicated formulation support."},
+                    ],
+                    "color_scheme": {"primary": primary_color, "accent": accent_color, "bg": "#FAFAF5" if brand == "TBF" else "#0f0f23"},
+                },
+                "email_sequence": [
+                    {"subject": f"Introducing: {name}", "preview": "The terpene formulation your customers have been asking for",
+                     "body_outline": f"Hook: Industry trend + pain point\nValue: What makes {brand_name} different\nProof: Research backing + customer results\nCTA: Schedule a call or request samples"},
+                    {"subject": f"The science behind {name}", "preview": "432 papers. One clear conclusion.",
+                     "body_outline": f"Lead with research credibility\nHighlight {terp_str} effects\nCompliance-safe framing\nCTA: Download the research brief"},
+                    {"subject": f"Last chance: {name} early access", "preview": "Priority pricing expires Friday",
+                     "body_outline": "Urgency + exclusivity\nRecap value proposition\nSocial proof\nFinal CTA: Order now"},
+                ],
+                "figma_status": "Design specifications generated. Connect Figma API token to auto-create designs in your workspace.",
+            }
+            print(f"  🎨 Campaign generated: {name} ({ctype}, {audience})")
+            self._json(result)
 
         elif path == "/api/reef/outcome":
             action_id = body.get("action_id", "")
