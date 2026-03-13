@@ -79,7 +79,7 @@ EVENTS_DIR = OUTPUT_DIR / "events"
 EVENTS_DIR.mkdir(parents=True, exist_ok=True)
 EVENTS_FILE = EVENTS_DIR / "events.jsonl"
 
-SCHEMA_VERSION = "6.0"
+SCHEMA_VERSION = "7.0"
 BRIEFS_DIR = OUTPUT_DIR / "briefs"
 SOCIAL_DIR = OUTPUT_DIR / "social_intel"
 COMPETITOR_DIR = OUTPUT_DIR / "competitor_intel"
@@ -894,6 +894,184 @@ def _fallback_chat(message, brand="nexus"):
 
 
 # ═══════════════════════════════════════════════════════════
+# EPIC 5.3 — COMPETITOR INTELLIGENCE DEEP DIVE
+# ═══════════════════════════════════════════════════════════
+
+def build_competitor_intel():
+    """Build comprehensive competitor intelligence from war room + research."""
+    snapshot = build_snapshot()
+    competitors = snapshot.get("competitors", [])
+    competitive_claims = snapshot.get("competitiveIntel", [])
+
+    # Load competitor vulnerability scan if available
+    vuln_dir = OUTPUT_DIR / "competitor_intel"
+    if not vuln_dir.exists():
+        vuln_dir = OUTPUT_DIR.parent / "outputs" / "competitor_intel"
+    vuln_data = {}
+    if vuln_dir.exists():
+        for f in sorted(vuln_dir.glob("*.json"), key=lambda x: x.stat().st_mtime, reverse=True)[:1]:
+            try:
+                raw = json.loads(f.read_text())
+                comps_raw = raw.get("competitors_scanned", raw.get("competitors", {}))
+                if isinstance(comps_raw, dict):
+                    vuln_data = comps_raw
+                elif isinstance(comps_raw, list):
+                    for item in comps_raw:
+                        if isinstance(item, dict) and item.get("name"):
+                            vuln_data[item["name"]] = item
+            except Exception:
+                pass
+
+    # Merge all competitor data
+    comp_map = {}
+    for c in competitors:
+        name = c.get("name", "")
+        if name:
+            comp_map[name] = {**c, "signals": [], "displacement_angles": []}
+
+    # Add vulnerability scan data
+    for name, v_data in vuln_data.items():
+        if isinstance(v_data, dict):
+            if name in comp_map:
+                comp_map[name].update({k: val for k, val in v_data.items() if k not in comp_map[name] or not comp_map[name][k]})
+            else:
+                comp_map[name] = {"name": name, **v_data, "signals": [], "displacement_angles": []}
+
+    # Known competitor profiles (enriched with domain knowledge)
+    COMPETITOR_DB = {
+        "True Terpenes": {"pricing": "$80-150/L botanical, $2K-4K/L CDT", "weakness": "Slow custom orders (4-6 weeks), quality complaints, price increases", "tbf_angle": "Faster turnaround, better consistency, competitive pricing at scale", "dft_angle": "Hype strains they don't carry, faster shipping, no minimum BS", "market_position": "Market leader", "trustpilot_est": 3.0},
+        "Abstrax Tech": {"pricing": "Premium CDT, $3K-6K/L", "weakness": "Expensive, complex ordering, slow response", "tbf_angle": "Match scientific rigor with simpler ordering", "dft_angle": "Great terps without PhD-level process", "market_position": "Premium/R&D focused", "trustpilot_est": 4.2},
+        "Floraplex": {"pricing": "$30-60/L botanical", "weakness": "Inconsistent quality, synthetic undertones, no custom blending", "tbf_angle": "Consistency at volume pricing", "dft_angle": "Authentic profiles without synthetic taste", "market_position": "Budget botanical", "trustpilot_est": 3.8},
+        "Denver Terpenes": {"pricing": "$50-100/L", "weakness": "Limited selection, regional only", "tbf_angle": "National reach + wider catalog", "dft_angle": "More strain options, same pricing", "market_position": "Regional player", "trustpilot_est": 3.5},
+        "Peak Supply Co": {"pricing": "$40-80/L", "weakness": "Limited B2B, inconsistent availability", "tbf_angle": "Enterprise-grade supply chain", "dft_angle": "Reliable stock, no backorders", "market_position": "Mid-market", "trustpilot_est": 3.2},
+        "Terps USA": {"pricing": "$25-50/L", "weakness": "Bottom-tier, no COAs, suspected synthetic", "tbf_angle": "Full COA transparency", "dft_angle": "Real botanical vs synthetic garbage", "market_position": "Bottom-tier", "trustpilot_est": 2.8},
+        "Extract Consultants": {"pricing": "$60-120/L", "weakness": "Formulation-focused, slow innovation", "tbf_angle": "Faster R&D pipeline", "dft_angle": "No consulting fees, just great terps", "market_position": "Consulting/formulation", "trustpilot_est": 3.9},
+    }
+
+    for name, profile in COMPETITOR_DB.items():
+        if name not in comp_map:
+            comp_map[name] = {"name": name, "signals": [], "displacement_angles": []}
+        comp_map[name].update({k: v for k, v in profile.items() if k not in comp_map[name] or not comp_map[name][k]})
+
+    # Attach competitor signals from war room
+    for sig in snapshot.get("signals", []):
+        for name in comp_map:
+            if name.lower() in sig.get("summary", "").lower() or name.lower() in str(sig.get("entities", [])).lower():
+                comp_map[name]["signals"].append(sig)
+
+    result = list(comp_map.values())
+    result.sort(key=lambda x: x.get("trustpilot_est", x.get("trustpilot", 5) or 5))
+    return {
+        "competitors": result,
+        "claims": competitive_claims,
+        "total": len(result),
+    }
+
+
+# ═══════════════════════════════════════════════════════════
+# EPIC 5.4 — SYSTEM ANALYTICS + PERFORMANCE
+# ═══════════════════════════════════════════════════════════
+
+def build_analytics():
+    """Build system analytics: pipeline health, costs, agent performance."""
+    snapshot = build_snapshot()
+    companies, _ = build_company_list()
+
+    # Pipeline health metrics
+    total = len(companies)
+    stages = {"new": 0, "scored": 0, "enriched": 0, "researched": 0, "outreach_ready": 0}
+    brands = {"TBF": 0, "DFT": 0}
+    temps = {"Hot": 0, "Warm": 0, "Cool": 0, "Cold": 0}
+    score_sum = 0
+    contacts_sum = 0
+    emails_sum = 0
+    verified_sum = 0
+    briefs_done = 0
+    with_outreach = 0
+    regions = {}
+
+    for co in companies:
+        stages[co.get("stage", "new")] = stages.get(co.get("stage", "new"), 0) + 1
+        brands[co.get("brand", "DFT")] = brands.get(co.get("brand", "DFT"), 0) + 1
+        temps[co.get("temperature", "Cold")] = temps.get(co.get("temperature", "Cold"), 0) + 1
+        score_sum += co.get("avg_score", 0)
+        contacts_sum += co.get("contact_count", 0)
+        emails_sum += co.get("emails_total", 0)
+        verified_sum += co.get("emails_verified", 0)
+        if co.get("brief_status") == "complete":
+            briefs_done += 1
+        if co.get("outreach_bundle"):
+            with_outreach += 1
+        region = co.get("country", co.get("state", "Unknown"))
+        regions[region] = regions.get(region, 0) + 1
+
+    # Signal analytics
+    signals = snapshot.get("signals", [])
+    signal_by_cat = {}
+    for s in signals:
+        cat = s.get("category", "unknown")
+        signal_by_cat[cat] = signal_by_cat.get(cat, 0) + 1
+
+    # Research metrics
+    research_papers = snapshot["systemStatus"]["researchPapers"]
+    insights_count = len(snapshot.get("synthesisInsights", []))
+    business_insights = len(snapshot.get("businessInsights", []))
+    regulatory_hits = len(snapshot.get("regulatoryHits", []))
+
+    # Agent registry
+    agent_count = len(AGENT_REGISTRY)
+
+    # Learning metrics
+    learning = snapshot.get("learning", {})
+    signal_weights = learning.get("signalWeights", {})
+    playbook_wins = learning.get("playbookWinRates", {})
+
+    return {
+        "pipeline": {
+            "total_companies": total,
+            "total_contacts": contacts_sum,
+            "total_emails": emails_sum,
+            "verified_emails": verified_sum,
+            "avg_score": round(score_sum / total) if total else 0,
+            "briefs_complete": briefs_done,
+            "outreach_ready": with_outreach,
+            "stages": stages,
+            "brands": brands,
+            "temperatures": temps,
+            "regions": dict(sorted(regions.items(), key=lambda x: -x[1])[:15]),
+            "pipeline_velocity": {
+                "new_to_scored_pct": round(stages.get("scored", 0) / max(total, 1) * 100),
+                "scored_to_enriched_pct": round(stages.get("enriched", 0) / max(stages.get("scored", 1), 1) * 100),
+                "enriched_to_researched_pct": round(stages.get("researched", 0) / max(stages.get("enriched", 1), 1) * 100),
+                "researched_to_outreach_pct": round(stages.get("outreach_ready", 0) / max(stages.get("researched", 1), 1) * 100),
+            },
+        },
+        "intelligence": {
+            "entities_tracked": snapshot["systemStatus"]["entitiesTracked"],
+            "competitors_tracked": snapshot["systemStatus"]["competitorsTracked"],
+            "signals_total": len(signals),
+            "signals_today": snapshot["systemStatus"]["signalsToday"],
+            "signals_by_category": signal_by_cat,
+            "research_papers": research_papers,
+            "synthesis_insights": insights_count,
+            "business_insights": business_insights,
+            "regulatory_hits": regulatory_hits,
+        },
+        "system": {
+            "agents": agent_count,
+            "signal_weights": len(signal_weights) if isinstance(signal_weights, dict) else 0,
+            "outcomes_recorded": snapshot["systemStatus"]["outcomesRecordedToday"],
+            "events_total": snapshot["systemStatus"]["eventsTotal"],
+            "actions_queued": snapshot["systemStatus"]["actionsQueued"],
+        },
+        "learning": {
+            "signal_weights": snapshot.get("signalWeights", []),
+            "playbook_win_rates": playbook_wins,
+        },
+    }
+
+
+# ═══════════════════════════════════════════════════════════
 # EPIC 5.0 — INDEPENDENT COMPANY DOSSIERS
 # ═══════════════════════════════════════════════════════════
 
@@ -1392,6 +1570,14 @@ class PlatformHandler(BaseHTTPRequestHandler):
         elif path == "/api/reef/pipeline":
             self._json({"schema_version": SCHEMA_VERSION, **build_pipeline_data()})
 
+        # ── Competitor intelligence (Epic 5.3) ──
+        elif path == "/api/reef/competitors":
+            self._json({"schema_version": SCHEMA_VERSION, **build_competitor_intel()})
+
+        # ── Analytics (Epic 5.4) ──
+        elif path == "/api/reef/analytics":
+            self._json({"schema_version": SCHEMA_VERSION, **build_analytics()})
+
         # ── Job status ──
         elif path == "/api/reef/job":
             job_id = (qs.get("job_id") or [""])[0]
@@ -1441,6 +1627,48 @@ class PlatformHandler(BaseHTTPRequestHandler):
             except Exception as e:
                 print(f"  ⚠️ Chat error: {e}")
                 self._json({"response": f"Error processing command: {str(e)}", "agents_activated": []})
+
+        elif path == "/api/reef/campaign/generate":
+            name = body.get("name", "Untitled Campaign")
+            ctype = body.get("type", "product_launch")
+            audience = body.get("audience", "enterprise")
+            terpenes = body.get("terpenes", [])
+            message = body.get("message", "")
+            tone = body.get("tone", "professional")
+            brand = body.get("brand", "TBF")
+
+            terp_str = ", ".join(terpenes) if terpenes else "Myrcene, Limonene, Beta-Caryophyllene"
+            brand_name = "Terpene Belt Farms" if brand in ("TBF", "BOTH") else "Duty Free Terpenes"
+            primary_color = "#2D5016" if brand == "TBF" else "#1a1a2e"
+            accent_color = "#D4A843" if brand == "TBF" else "#ec4899"
+
+            result = {
+                "campaign": body,
+                "landing_page": {
+                    "title": name,
+                    "headline": message or f"Experience the Future of Terpenes with {brand_name}",
+                    "subheadline": f"Precision-crafted botanical terpene blends featuring {terp_str}",
+                    "hero_cta": "Request Sample Kit",
+                    "sections": [
+                        {"title": f"Why {brand_name}", "content": "Industry-leading purity, consistency, and compliance. Every batch third-party tested. Farm-to-formula traceability."},
+                        {"title": "Featured Terpenes", "content": terp_str},
+                        {"title": "The Science", "content": "Backed by 400+ peer-reviewed papers. Evidence-graded formulation guidance. Compliance-safe claims."},
+                        {"title": "Quality Guarantee", "content": "ISO-certified extraction. Full COA on every batch. Dedicated formulation support."},
+                    ],
+                    "color_scheme": {"primary": primary_color, "accent": accent_color, "bg": "#FAFAF5" if brand == "TBF" else "#0f0f23"},
+                },
+                "email_sequence": [
+                    {"subject": f"Introducing: {name}", "preview": "The terpene formulation your customers have been asking for",
+                     "body_outline": f"Hook: Industry trend + pain point\nValue: What makes {brand_name} different\nProof: Research backing + customer results\nCTA: Schedule a call or request samples"},
+                    {"subject": f"The science behind {name}", "preview": "432 papers. One clear conclusion.",
+                     "body_outline": f"Lead with research credibility\nHighlight {terp_str} effects\nCompliance-safe framing\nCTA: Download the research brief"},
+                    {"subject": f"Last chance: {name} early access", "preview": "Priority pricing expires Friday",
+                     "body_outline": "Urgency + exclusivity\nRecap value proposition\nSocial proof\nFinal CTA: Order now"},
+                ],
+                "figma_status": "Design specifications generated. Connect Figma API token to auto-create designs in your workspace.",
+            }
+            print(f"  🎨 Campaign generated: {name} ({ctype}, {audience})")
+            self._json(result)
 
         elif path == "/api/reef/outcome":
             action_id = body.get("action_id", "")
