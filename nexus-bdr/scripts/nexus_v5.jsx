@@ -1042,16 +1042,31 @@ function ResearchLab({ data }) {
                 <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 12 }}>TERPENE x EFFECT EVIDENCE MATRIX</div>
                 <div style={{ fontSize: 10, color: C.textDim, marginBottom: 12 }}>Cell values = paper count. Color intensity = evidence strength. Click cells to explore.</div>
                 {(() => {
-                  const terpenes = Object.keys(matrix).sort((a, b) => {
-                    const aTotal = Object.values(matrix[a] || {}).reduce((s, v) => s + v, 0);
-                    const bTotal = Object.values(matrix[b] || {}).reduce((s, v) => s + v, 0);
+                  // Normalize matrix: could be {terpene: {effect: count}} OR {matrix: [{terpene: "x", effect1: n, ...}]} OR [{terpene: "x", ...}]
+                  var matrixMap = {};
+                  var rawMatrix = matrix;
+                  if (rawMatrix && rawMatrix.matrix && Array.isArray(rawMatrix.matrix)) rawMatrix = rawMatrix.matrix;
+                  if (Array.isArray(rawMatrix)) {
+                    rawMatrix.forEach(function(row) {
+                      var name = row.terpene || "unknown";
+                      matrixMap[name] = {};
+                      Object.keys(row).forEach(function(k) { if (k !== "terpene" && typeof row[k] === "number") matrixMap[name][k] = row[k]; });
+                    });
+                  } else if (rawMatrix && typeof rawMatrix === "object") {
+                    Object.keys(rawMatrix).forEach(function(k) {
+                      if (typeof rawMatrix[k] === "object" && rawMatrix[k] !== null && !Array.isArray(rawMatrix[k])) matrixMap[k] = rawMatrix[k];
+                    });
+                  }
+                  const terpenes = Object.keys(matrixMap).sort(function(a, b) {
+                    var aTotal = Object.values(matrixMap[a] || {}).reduce(function(s, v) { return s + (typeof v === "number" ? v : 0); }, 0);
+                    var bTotal = Object.values(matrixMap[b] || {}).reduce(function(s, v) { return s + (typeof v === "number" ? v : 0); }, 0);
                     return bTotal - aTotal;
                   });
                   if (terpenes.length === 0) return <EmptyState message="No matrix data available." />;
                   const allEffects = new Set();
-                  terpenes.forEach(t => Object.keys(matrix[t] || {}).forEach(e => allEffects.add(e)));
+                  terpenes.forEach(function(t) { Object.keys(matrixMap[t] || {}).forEach(function(e) { allEffects.add(e); }); });
                   const effects = Array.from(allEffects).sort();
-                  const maxVal = Math.max(1, ...terpenes.flatMap(t => effects.map(e => (matrix[t] || {})[e] || 0)));
+                  const maxVal = Math.max(1, Math.max.apply(null, terpenes.reduce(function(acc, t) { return acc.concat(effects.map(function(e) { return (matrixMap[t] || {})[e] || 0; })); }, [1])));
                   return (
                     <div style={{ overflowX: "auto" }}>
                       <table style={{ borderCollapse: "collapse", width: "100%", minWidth: effects.length * 80 }}>
@@ -1074,7 +1089,7 @@ function ResearchLab({ data }) {
                                 {terp.replace(/_/g, " ")}
                               </td>
                               {effects.map(eff => {
-                                const val = (matrix[terp] || {})[eff] || 0;
+                                const val = (matrixMap[terp] || {})[eff] || 0;
                                 const intensity = val / maxVal;
                                 const bg = val > 0 ? "rgba(0, 224, 154, " + (0.06 + intensity * 0.4) + ")" : "transparent";
                                 return (
