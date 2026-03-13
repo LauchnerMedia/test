@@ -186,6 +186,173 @@ ACTION_TYPES = {
 
 
 # ═══════════════════════════════════════════════════════════
+# WORKFLOW RULES — Cross-Department Triggers & Side-Effects
+# ═══════════════════════════════════════════════════════════
+
+# When an action is recorded, these rules fire notifications
+# to other departments and define what happens on completion.
+WORKFLOW_RULES = {
+    # ── BDR Actions ──
+    "outreach": [
+        {
+            "notify": ["marketing"],
+            "priority": "normal",
+            "message_template": "{actor} from {department} sent outreach to {context}",
+            "suggested_actions": ["create_content", "launch_campaign"],
+        },
+    ],
+    "run_brief": [
+        {
+            "notify": ["rd", "marketing"],
+            "priority": "normal",
+            "message_template": "{department} generated a sales brief for {context}",
+            "suggested_actions": ["update_profile", "create_content"],
+        },
+    ],
+    "schedule_demo": [
+        {
+            "notify": ["marketing", "executive"],
+            "priority": "high",
+            "message_template": "{actor} scheduled a demo with {context}",
+            "suggested_actions": ["create_content"],
+        },
+    ],
+    "update_stage": [
+        {
+            "notify": ["executive", "ops"],
+            "priority": "normal",
+            "message_template": "Pipeline stage updated for {context}",
+            "suggested_actions": [],
+            "on_complete": [
+                {"type": "update_property", "target_type": "company", "property": "pipeline_updated", "value": True},
+            ],
+        },
+    ],
+
+    # ── R&D Actions ──
+    "request_formulation": [
+        {
+            "notify": ["ops", "compliance", "marketing"],
+            "priority": "high",
+            "message_template": "{actor} from R&D requested a new formulation: {context}",
+            "suggested_actions": ["schedule_batch", "request_review", "create_content"],
+        },
+    ],
+    "run_stability_test": [
+        {
+            "notify": ["ops", "compliance"],
+            "priority": "normal",
+            "message_template": "R&D started stability testing on {context}",
+            "suggested_actions": [],
+        },
+    ],
+    "publish_finding": [
+        {
+            "notify": ["bdr", "marketing", "compliance", "executive"],
+            "priority": "high",
+            "message_template": "R&D published a new finding on {context} — may unlock new sales angles",
+            "suggested_actions": ["outreach", "create_content", "request_review"],
+        },
+    ],
+    "update_profile": [
+        {
+            "notify": ["bdr", "marketing"],
+            "priority": "normal",
+            "message_template": "R&D updated the terpene profile for {context}",
+            "suggested_actions": ["create_content"],
+        },
+    ],
+
+    # ── Marketing Actions ──
+    "launch_campaign": [
+        {
+            "notify": ["bdr", "executive"],
+            "priority": "high",
+            "message_template": "Marketing launched a campaign targeting {context}",
+            "suggested_actions": ["outreach"],
+            "on_complete": [
+                {"type": "create_action", "action_type": "outreach", "department": "bdr"},
+            ],
+        },
+    ],
+    "create_content": [
+        {
+            "notify": ["bdr"],
+            "priority": "normal",
+            "message_template": "Marketing created new content about {context} — available for outreach",
+            "suggested_actions": ["outreach"],
+        },
+    ],
+    "update_positioning": [
+        {
+            "notify": ["bdr", "executive"],
+            "priority": "normal",
+            "message_template": "Marketing updated positioning for {context}",
+            "suggested_actions": [],
+        },
+    ],
+
+    # ── Ops Actions ──
+    "create_order": [
+        {
+            "notify": ["bdr", "executive"],
+            "priority": "high",
+            "message_template": "Ops created a new order for {context}",
+            "suggested_actions": [],
+            "on_complete": [
+                {"type": "update_property", "target_type": "company", "property": "has_active_order", "value": True},
+            ],
+        },
+    ],
+    "schedule_batch": [
+        {
+            "notify": ["rd"],
+            "priority": "normal",
+            "message_template": "Ops scheduled a production batch for {context}",
+            "suggested_actions": ["run_stability_test"],
+        },
+    ],
+    "update_inventory": [
+        {
+            "notify": ["bdr", "marketing"],
+            "priority": "normal",
+            "message_template": "Inventory updated for {context} — check availability for outreach",
+            "suggested_actions": ["outreach", "create_content"],
+        },
+    ],
+
+    # ── Compliance Actions ──
+    "flag_regulatory": [
+        {
+            "notify": ["rd", "marketing", "executive"],
+            "priority": "urgent",
+            "message_template": "COMPLIANCE ALERT: {actor} flagged a regulatory issue affecting {context}",
+            "suggested_actions": ["request_review", "update_positioning"],
+        },
+    ],
+    "request_review": [
+        {
+            "notify": ["rd", "marketing"],
+            "priority": "high",
+            "message_template": "Compliance requested a review for {context}",
+            "suggested_actions": ["update_profile", "update_positioning"],
+        },
+    ],
+    "approve_claim": [
+        {
+            "notify": ["marketing", "bdr"],
+            "priority": "high",
+            "message_template": "Compliance approved a claim for {context} — cleared for marketing and sales use",
+            "suggested_actions": ["create_content", "outreach"],
+            "on_complete": [
+                {"type": "update_property", "target_type": "product", "property": "claim_approved", "value": True},
+            ],
+        },
+    ],
+}
+
+
+# ═══════════════════════════════════════════════════════════
 # OBJECT REGISTRY — In-Memory Store + File Persistence
 # ═══════════════════════════════════════════════════════════
 
@@ -287,6 +454,7 @@ class ObjectRegistry:
         self.objects = {}       # id → OntologyObject
         self.by_type = defaultdict(dict)   # type → {id: OntologyObject}
         self.actions = []       # action log
+        self.notifications = [] # cross-department notifications
         self._persistence_path = self.output_dir / "ontology" / "registry.json"
 
     def _make_id(self, obj_type, name_or_key):
@@ -400,7 +568,27 @@ class ObjectRegistry:
 
         # Also register as an ontology object so it's searchable
         self.register("action", action["id"], action, source=department)
+
+        # Generate cross-department notifications
+        notifications = self._generate_notifications(action)
+        for n in notifications:
+            self.notifications.append(n)
+
         return action
+
+    def complete_action(self, action_id, outcome=None):
+        """Mark an action as completed and trigger downstream workflows."""
+        for a in self.actions:
+            if a["id"] == action_id:
+                a["status"] = "completed"
+                a["completed_at"] = datetime.utcnow().isoformat()
+                if outcome:
+                    a["outcome"] = outcome
+
+                # Trigger workflow side-effects
+                effects = self._execute_workflow(a)
+                return {"action": a, "effects": effects}
+        return None
 
     def get_actions(self, department=None, status=None, limit=50):
         """Get actions, optionally filtered."""
@@ -411,6 +599,84 @@ class ObjectRegistry:
             results = [a for a in results if a["status"] == status]
         return results[-limit:]
 
+    # ── Notifications ──
+
+    def get_notifications(self, department=None, since=None, limit=50):
+        """Get cross-department notifications."""
+        results = self.notifications
+        if department:
+            results = [n for n in results if department in n.get("to_departments", [])]
+        if since:
+            results = [n for n in results if n.get("created_at", "") > since]
+        return results[-limit:]
+
+    def _generate_notifications(self, action):
+        """Generate notifications for other departments based on an action."""
+        notifications = []
+        rules = WORKFLOW_RULES.get(action["action_type"], [])
+
+        for rule in rules:
+            # Resolve target object names for context
+            target_names = []
+            for tid in action.get("target_ids", []):
+                obj = self.objects.get(tid)
+                if obj:
+                    target_names.append(obj.properties.get("name", obj.properties.get("title", tid)))
+
+            context = ", ".join(target_names) if target_names else "unknown"
+            message = rule["message_template"].format(
+                actor=action.get("actor", "System"),
+                context=context,
+                department=DEPARTMENTS.get(action["department"], {}).get("label", action["department"]),
+            )
+
+            notifications.append({
+                "id": hashlib.md5(f"{action['id']}{rule['notify']}".encode()).hexdigest()[:12],
+                "from_department": action["department"],
+                "to_departments": rule["notify"],
+                "action_id": action["id"],
+                "action_type": action["action_type"],
+                "priority": rule.get("priority", "normal"),
+                "message": message,
+                "suggested_actions": rule.get("suggested_actions", []),
+                "created_at": datetime.utcnow().isoformat(),
+                "read_by": [],
+            })
+
+        return notifications
+
+    # ── Workflow Engine ──
+
+    def _execute_workflow(self, action):
+        """Execute side-effects when an action completes."""
+        effects = []
+        rules = WORKFLOW_RULES.get(action["action_type"], [])
+
+        for rule in rules:
+            if "on_complete" not in rule:
+                continue
+
+            for effect_def in rule["on_complete"]:
+                if effect_def["type"] == "update_property":
+                    for tid in action.get("target_ids", []):
+                        obj = self.objects.get(tid)
+                        if obj and obj.type == effect_def.get("target_type", obj.type):
+                            obj.properties[effect_def["property"]] = effect_def["value"]
+                            obj.updated_at = datetime.utcnow().isoformat()
+                            effects.append({"type": "property_updated", "object_id": tid, "property": effect_def["property"], "value": effect_def["value"]})
+
+                elif effect_def["type"] == "create_action":
+                    new_action = self.record_action(
+                        effect_def["action_type"],
+                        effect_def["department"],
+                        "workflow",
+                        action.get("target_ids", []),
+                        notes=f"Auto-created from {action['action_type']} completion",
+                    )
+                    effects.append({"type": "action_created", "action": new_action})
+
+        return effects
+
     def stats(self):
         """Summary statistics for the ontology."""
         type_counts = {t: len(objs) for t, objs in self.by_type.items() if objs}
@@ -420,6 +686,7 @@ class ObjectRegistry:
             "total_objects": len(self.objects),
             "total_links": total_links,
             "total_actions": len(self.actions),
+            "total_notifications": len(self.notifications),
             "by_type": type_counts,
             "departments": list(DEPARTMENTS.keys()),
             "object_types": list(OBJECT_TYPES.keys()),
@@ -433,6 +700,8 @@ class ObjectRegistry:
             "available_actions": ACTION_TYPES.get(department, []),
             "object_counts": {},
             "recent_actions": self.get_actions(department=department, limit=10),
+            "notifications": self.get_notifications(department=department, limit=20),
+            "unread_notifications": len([n for n in self.notifications if department in n.get("to_departments", []) and department not in n.get("read_by", [])]),
         }
         for obj_type, type_def in OBJECT_TYPES.items():
             if department in type_def.get("departments", []):
@@ -449,6 +718,7 @@ class ObjectRegistry:
             "saved_at": datetime.utcnow().isoformat(),
             "objects": {oid: o.to_dict() for oid, o in self.objects.items()},
             "actions": self.actions,
+            "notifications": self.notifications,
         }
         self._persistence_path.write_text(json.dumps(data, default=str, indent=2))
 
@@ -466,6 +736,7 @@ class ObjectRegistry:
                 self.objects[oid] = obj
                 self.by_type[obj.type][oid] = obj
             self.actions = data.get("actions", [])
+            self.notifications = data.get("notifications", [])
             return True
         except Exception as e:
             print(f"  Warning: ontology load failed: {e}")

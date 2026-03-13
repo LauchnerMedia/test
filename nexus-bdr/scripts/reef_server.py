@@ -1700,6 +1700,14 @@ class PlatformHandler(BaseHTTPRequestHandler):
             actions = REGISTRY.get_actions(department=dept, status=status, limit=limit)
             self._json({"ontology_version": ONTOLOGY_VERSION, "count": len(actions), "actions": actions})
 
+        # GET /api/ontology/notifications?department=rd&since=2026-01-01
+        elif path == "/api/ontology/notifications":
+            dept = (qs.get("department") or [None])[0]
+            since = (qs.get("since") or [None])[0]
+            limit = int((qs.get("limit") or ["50"])[0])
+            notifications = REGISTRY.get_notifications(department=dept, since=since, limit=limit)
+            self._json({"ontology_version": ONTOLOGY_VERSION, "count": len(notifications), "notifications": notifications})
+
         # GET /api/ontology/reindex — Force re-index from data files
         elif path == "/api/ontology/reindex":
             REGISTRY.objects.clear()
@@ -1810,6 +1818,34 @@ class PlatformHandler(BaseHTTPRequestHandler):
             emit_event("OntologyAction", {"action": action})
             REGISTRY.save()
             self._json({"ontology_version": ONTOLOGY_VERSION, "action": action})
+
+        # ── Ontology: Complete action (triggers workflows) ──
+        elif path == "/api/ontology/actions/complete":
+            action_id = body.get("action_id", "")
+            outcome = body.get("outcome")
+            if not action_id:
+                self._json({"error": "action_id required"}, 400)
+                return
+            result = REGISTRY.complete_action(action_id, outcome)
+            if result:
+                emit_event("OntologyActionCompleted", {"action_id": action_id, "effects": len(result["effects"])})
+                REGISTRY.save()
+                self._json({"ontology_version": ONTOLOGY_VERSION, **result})
+            else:
+                self._json({"error": f"Action '{action_id}' not found"}, 404)
+
+        # ── Ontology: Mark notification read ──
+        elif path == "/api/ontology/notifications/read":
+            notification_id = body.get("notification_id", "")
+            department = body.get("department", "")
+            if not notification_id or not department:
+                self._json({"error": "notification_id and department required"}, 400)
+                return
+            for n in REGISTRY.notifications:
+                if n["id"] == notification_id and department not in n.get("read_by", []):
+                    n.setdefault("read_by", []).append(department)
+            REGISTRY.save()
+            self._json({"status": "ok"})
 
         else:
             self._json({"error": "not found"}, 404)

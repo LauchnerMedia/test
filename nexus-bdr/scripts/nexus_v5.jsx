@@ -2291,6 +2291,355 @@ const BOOT_LINES = [
   { text: "================================", color: "#d4a843" },
 ];
 
+// ═══════════════════════════════════════════════════════════════════════════════
+// ONTOLOGY HUB — Company-Wide Cross-Department View
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const DEPT_META = {
+  bdr:        { label: "Business Dev",  color: "#00E09A", icon: "\uD83C\uDFAF" },
+  rd:         { label: "R&D",           color: "#00D4FF", icon: "\uD83E\uDDEA" },
+  marketing:  { label: "Marketing",     color: "#C5A55A", icon: "\uD83C\uDFA8" },
+  ops:        { label: "Operations",    color: "#FF6B6B", icon: "\u2699\uFE0F" },
+  compliance: { label: "Compliance",    color: "#B388FF", icon: "\u2696\uFE0F" },
+  executive:  { label: "Executive",     color: "#FFFFFF", icon: "\uD83D\uDCCA" },
+};
+
+function OntologyHub() {
+  const [department, setDepartment] = useState("executive");
+  const [ontologyData, setOntologyData] = useState(null);
+  const [deptData, setDeptData] = useState(null);
+  const [notifications, setNotifications] = useState([]);
+  const [selectedType, setSelectedType] = useState(null);
+  const [objects, setObjects] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedObject, setSelectedObject] = useState(null);
+  const [actionForm, setActionForm] = useState(null);
+
+  // Load ontology overview
+  useEffect(function() {
+    fetch("/api/ontology").then(function(r) { return r.json(); }).then(function(d) { setOntologyData(d); }).catch(function() {});
+  }, []);
+
+  // Load department data when department changes
+  useEffect(function() {
+    fetch("/api/ontology/department/" + department).then(function(r) { return r.json(); }).then(function(d) {
+      setDeptData(d);
+      setNotifications(d.notifications || []);
+    }).catch(function() {});
+    setSelectedType(null);
+    setObjects([]);
+    setSelectedObject(null);
+  }, [department]);
+
+  // Load objects when type selected
+  useEffect(function() {
+    if (!selectedType) { setObjects([]); return; }
+    var url = "/api/ontology/objects?type=" + selectedType + "&department=" + department + "&limit=100";
+    fetch(url).then(function(r) { return r.json(); }).then(function(d) { setObjects(d.objects || []); }).catch(function() {});
+  }, [selectedType, department]);
+
+  // Search
+  var doSearch = useCallback(function() {
+    if (!searchQuery.trim()) return;
+    fetch("/api/ontology/objects?q=" + encodeURIComponent(searchQuery) + "&department=" + department + "&limit=50")
+      .then(function(r) { return r.json(); })
+      .then(function(d) { setObjects(d.objects || []); setSelectedType(null); })
+      .catch(function() {});
+  }, [searchQuery, department]);
+
+  // Load object detail
+  var selectObject = useCallback(function(objId) {
+    fetch("/api/ontology/object/" + objId + "?department=" + department)
+      .then(function(r) { return r.json(); })
+      .then(function(d) { if (d.object) setSelectedObject(d.object); })
+      .catch(function() {});
+  }, [department]);
+
+  // Record action
+  var recordAction = useCallback(function(actionType, targetIds) {
+    fetch("/api/ontology/actions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action_type: actionType, department: department, actor: "user", target_ids: targetIds, notes: "" }),
+    }).then(function(r) { return r.json(); }).then(function(d) {
+      setActionForm(null);
+      // Refresh department data
+      fetch("/api/ontology/department/" + department).then(function(r) { return r.json(); }).then(function(d2) {
+        setDeptData(d2);
+        setNotifications(d2.notifications || []);
+      });
+    }).catch(function() {});
+  }, [department]);
+
+  var deptInfo = DEPT_META[department] || {};
+  var unread = (deptData || {}).unread_notifications || 0;
+
+  return (
+    <div style={{ padding: 20, height: "calc(100vh - 48px)", overflow: "auto" }}>
+      {/* Department Switcher */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 20, flexWrap: "wrap" }}>
+        {Object.keys(DEPT_META).map(function(d) {
+          var meta = DEPT_META[d];
+          var isActive = department === d;
+          var deptNotifs = notifications.filter(function(n) { return d === department && !n.read_by.includes(d); }).length;
+          return (
+            <div key={d} onClick={function() { setDepartment(d); }}
+              style={{ padding: "8px 16px", borderRadius: 8, cursor: "pointer", background: isActive ? meta.color + "20" : C.surface, border: "1px solid " + (isActive ? meta.color + "60" : C.border), transition: "all 0.2s", display: "flex", alignItems: "center", gap: 6 }}>
+              <span style={{ fontSize: 14 }}>{meta.icon}</span>
+              <span style={{ fontSize: 11, fontWeight: isActive ? 700 : 500, color: isActive ? meta.color : C.textDim, fontFamily: font, letterSpacing: 0.5 }}>{meta.label.toUpperCase()}</span>
+              {isActive && unread > 0 && (
+                <span style={{ background: "#FF6B6B", color: "#fff", fontSize: 9, fontWeight: 700, padding: "1px 5px", borderRadius: 8, fontFamily: font }}>{unread}</span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 16, minHeight: 0 }}>
+        {/* Left Panel: Object Types + Notifications */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {/* Search */}
+          <Card padding={12}>
+            <div style={{ display: "flex", gap: 6 }}>
+              <input value={searchQuery} onChange={function(e) { setSearchQuery(e.target.value); }}
+                onKeyDown={function(e) { if (e.key === "Enter") doSearch(); }}
+                placeholder={"Search " + deptInfo.label + "..."}
+                style={{ flex: 1, background: C.void, border: "1px solid " + C.border, borderRadius: 6, padding: "6px 10px", color: C.text, fontSize: 12, fontFamily: font, outline: "none" }} />
+              <div onClick={doSearch} style={{ padding: "6px 10px", background: deptInfo.color + "20", border: "1px solid " + deptInfo.color + "40", borderRadius: 6, cursor: "pointer", fontSize: 12, color: deptInfo.color, fontFamily: font }}>Go</div>
+            </div>
+          </Card>
+
+          {/* Object Types */}
+          <Card padding={12}>
+            <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1.5, marginBottom: 8 }}>OBJECTS</div>
+            {deptData && Object.keys(deptData.object_counts || {}).map(function(otype) {
+              var count = deptData.object_counts[otype];
+              var isActive = selectedType === otype;
+              var typeDef = (ontologyData || {}).object_types || {};
+              var label = (typeDef[otype] || {}).label || otype;
+              return (
+                <div key={otype} onClick={function() { setSelectedType(isActive ? null : otype); setSelectedObject(null); }}
+                  style={{ padding: "8px 10px", borderRadius: 6, cursor: "pointer", background: isActive ? deptInfo.color + "15" : "transparent", display: "flex", justifyContent: "space-between", alignItems: "center", transition: "all 0.15s" }}>
+                  <span style={{ fontSize: 12, color: isActive ? deptInfo.color : C.text, fontWeight: isActive ? 600 : 400 }}>{label}</span>
+                  <Badge color={isActive ? deptInfo.color : C.textDim} size="xs">{count}</Badge>
+                </div>
+              );
+            })}
+          </Card>
+
+          {/* Notifications */}
+          <Card padding={12}>
+            <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1.5, marginBottom: 8 }}>
+              NOTIFICATIONS {unread > 0 && <span style={{ color: "#FF6B6B" }}>({unread} new)</span>}
+            </div>
+            <div style={{ maxHeight: 300, overflow: "auto" }}>
+              {notifications.length === 0 && <div style={{ fontSize: 11, color: C.textMuted, padding: 8 }}>No notifications</div>}
+              {notifications.slice(0, 15).map(function(n) {
+                var fromMeta = DEPT_META[n.from_department] || {};
+                var isUnread = !n.read_by.includes(department);
+                return (
+                  <div key={n.id} style={{ padding: "8px 0", borderBottom: "1px solid " + C.border + "40", opacity: isUnread ? 1 : 0.6 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 4, marginBottom: 3 }}>
+                      <Badge color={fromMeta.color || C.textDim} size="xs">{(fromMeta.label || n.from_department).toUpperCase()}</Badge>
+                      {n.priority === "urgent" && <Badge color="#FF6B6B" size="xs">URGENT</Badge>}
+                      {n.priority === "high" && <Badge color="#FF8C00" size="xs">HIGH</Badge>}
+                    </div>
+                    <div style={{ fontSize: 11, color: C.text, lineHeight: 1.4 }}>{n.message}</div>
+                    {n.suggested_actions && n.suggested_actions.length > 0 && (
+                      <div style={{ display: "flex", gap: 4, marginTop: 4, flexWrap: "wrap" }}>
+                        {n.suggested_actions.map(function(sa) {
+                          return <span key={sa} onClick={function() { setActionForm({ actionType: sa, targetIds: [] }); }} style={{ fontSize: 9, color: deptInfo.color, background: deptInfo.color + "15", padding: "2px 6px", borderRadius: 4, cursor: "pointer", fontFamily: font }}>{sa.replace(/_/g, " ")}</span>;
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+
+          {/* Available Actions */}
+          {deptData && deptData.available_actions && deptData.available_actions.length > 0 && (
+            <Card padding={12}>
+              <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1.5, marginBottom: 8 }}>ACTIONS</div>
+              {deptData.available_actions.map(function(a) {
+                return (
+                  <div key={a.id} onClick={function() { setActionForm({ actionType: a.id, targetIds: selectedObject ? [selectedObject.id] : [] }); }}
+                    style={{ padding: "6px 10px", borderRadius: 6, cursor: "pointer", fontSize: 11, color: C.text, display: "flex", justifyContent: "space-between", alignItems: "center", transition: "background 0.15s" }}
+                    onMouseEnter={function(e) { e.currentTarget.style.background = deptInfo.color + "10"; }}
+                    onMouseLeave={function(e) { e.currentTarget.style.background = "transparent"; }}>
+                    <span>{a.label}</span>
+                    <span style={{ fontSize: 9, color: C.textMuted }}>{a.targets.join(", ")}</span>
+                  </div>
+                );
+              })}
+            </Card>
+          )}
+        </div>
+
+        {/* Right Panel: Object List + Detail */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {/* Action Form Modal */}
+          {actionForm && (
+            <Card padding={16} glow={deptInfo.color}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: deptInfo.color, fontFamily: font, letterSpacing: 1 }}>{actionForm.actionType.replace(/_/g, " ").toUpperCase()}</div>
+                <span onClick={function() { setActionForm(null); }} style={{ cursor: "pointer", color: C.textDim, fontSize: 16 }}>\u2715</span>
+              </div>
+              <div style={{ fontSize: 11, color: C.textDim, marginBottom: 12 }}>
+                {actionForm.targetIds.length > 0 ? "Target: " + actionForm.targetIds.join(", ") : "No target selected — select an object first, or proceed without target"}
+              </div>
+              <div style={{ display: "flex", gap: 8 }}>
+                <div onClick={function() { recordAction(actionForm.actionType, actionForm.targetIds); }}
+                  style={{ padding: "8px 16px", background: deptInfo.color + "20", border: "1px solid " + deptInfo.color + "60", borderRadius: 6, cursor: "pointer", fontSize: 11, fontWeight: 600, color: deptInfo.color, fontFamily: font }}>
+                  Record Action
+                </div>
+                <div onClick={function() { setActionForm(null); }}
+                  style={{ padding: "8px 16px", background: C.surface, border: "1px solid " + C.border, borderRadius: 6, cursor: "pointer", fontSize: 11, color: C.textDim, fontFamily: font }}>
+                  Cancel
+                </div>
+              </div>
+            </Card>
+          )}
+
+          {/* Object Detail */}
+          {selectedObject && (
+            <Card padding={16}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+                <div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{selectedObject.properties.name || selectedObject.properties.title || selectedObject.id}</div>
+                  <div style={{ display: "flex", gap: 4, marginTop: 4 }}>
+                    <Badge color={deptInfo.color}>{(selectedObject.label || selectedObject.type).toUpperCase()}</Badge>
+                    {selectedObject.department && <Badge color={C.textDim}>VIEW: {selectedObject.department.toUpperCase()}</Badge>}
+                  </div>
+                </div>
+                <span onClick={function() { setSelectedObject(null); }} style={{ cursor: "pointer", color: C.textDim, fontSize: 16 }}>\u2715</span>
+              </div>
+
+              {/* Properties */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
+                {Object.keys(selectedObject.properties).map(function(key) {
+                  var val = selectedObject.properties[key];
+                  if (val === null || val === undefined || val === "") return null;
+                  if (typeof val === "object") val = JSON.stringify(val);
+                  return (
+                    <div key={key} style={{ padding: "6px 10px", background: C.void, borderRadius: 6 }}>
+                      <div style={{ fontSize: 9, color: C.textMuted, fontFamily: font, letterSpacing: 0.5, textTransform: "uppercase" }}>{key.replace(/_/g, " ")}</div>
+                      <div style={{ fontSize: 12, color: C.text, marginTop: 2, wordBreak: "break-word" }}>{String(val).slice(0, 120)}</div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Available actions for this object */}
+              {selectedObject.actions && selectedObject.actions.length > 0 && (
+                <div style={{ marginBottom: 16 }}>
+                  <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1, marginBottom: 6 }}>AVAILABLE ACTIONS</div>
+                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                    {selectedObject.actions.map(function(a) {
+                      return (
+                        <div key={a} onClick={function() { setActionForm({ actionType: a, targetIds: [selectedObject.id] }); }}
+                          style={{ padding: "5px 10px", background: deptInfo.color + "15", border: "1px solid " + deptInfo.color + "30", borderRadius: 6, cursor: "pointer", fontSize: 10, color: deptInfo.color, fontFamily: font, fontWeight: 600 }}>
+                          {a.replace(/_/g, " ").toUpperCase()}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Linked objects */}
+              {selectedObject.linked_objects && selectedObject.linked_objects.length > 0 && (
+                <div>
+                  <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1, marginBottom: 6 }}>LINKED OBJECTS ({selectedObject.linked_objects.length})</div>
+                  {selectedObject.linked_objects.slice(0, 20).map(function(linked) {
+                    return (
+                      <div key={linked.id} onClick={function() { selectObject(linked.id); }}
+                        style={{ padding: "6px 10px", borderRadius: 6, cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid " + C.border + "30" }}
+                        onMouseEnter={function(e) { e.currentTarget.style.background = C.surface; }}
+                        onMouseLeave={function(e) { e.currentTarget.style.background = "transparent"; }}>
+                        <div>
+                          <span style={{ fontSize: 11, color: C.text }}>{linked.properties.name || linked.properties.title || linked.id}</span>
+                          <span style={{ fontSize: 9, color: C.textMuted, marginLeft: 8 }}>{linked._link_type.replace(/_/g, " ")}</span>
+                        </div>
+                        <Badge color={C.textDim} size="xs">{linked.type}</Badge>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </Card>
+          )}
+
+          {/* Object List */}
+          {objects.length > 0 && (
+            <Card padding={12}>
+              <div style={{ fontSize: 10, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 1.5, marginBottom: 8 }}>
+                {selectedType ? (selectedType.toUpperCase() + "S") : "SEARCH RESULTS"} ({objects.length})
+              </div>
+              <div style={{ maxHeight: selectedObject ? 300 : 600, overflow: "auto" }}>
+                {objects.map(function(obj) {
+                  var name = obj.properties.name || obj.properties.title || obj.id;
+                  var isActive = selectedObject && selectedObject.id === obj.id;
+                  return (
+                    <div key={obj.id} onClick={function() { selectObject(obj.id); }}
+                      style={{ padding: "10px 12px", borderRadius: 6, cursor: "pointer", background: isActive ? deptInfo.color + "12" : "transparent", borderBottom: "1px solid " + C.border + "30", display: "flex", justifyContent: "space-between", alignItems: "center", transition: "all 0.15s" }}
+                      onMouseEnter={function(e) { if (!isActive) e.currentTarget.style.background = C.surface; }}
+                      onMouseLeave={function(e) { if (!isActive) e.currentTarget.style.background = "transparent"; }}>
+                      <div>
+                        <div style={{ fontSize: 12, color: isActive ? deptInfo.color : C.text, fontWeight: isActive ? 600 : 400 }}>{String(name).slice(0, 60)}</div>
+                        {obj.properties.temperature && <span style={{ fontSize: 9, color: C.textMuted }}>{obj.properties.temperature}</span>}
+                        {obj.properties.evidence_grade && <span style={{ fontSize: 9, color: C.textMuted, marginLeft: 4 }}>Grade {obj.properties.evidence_grade}</span>}
+                      </div>
+                      <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+                        <Badge color={C.textDim} size="xs">{obj.type}</Badge>
+                        {obj.links && obj.links.length > 0 && <Badge color={C.textMuted} size="xs">{obj.links.length} links</Badge>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Card>
+          )}
+
+          {/* Empty state */}
+          {objects.length === 0 && !selectedObject && (
+            <Card padding={24}>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 36, marginBottom: 12 }}>{deptInfo.icon}</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 6 }}>{deptInfo.label} Hub</div>
+                <div style={{ fontSize: 12, color: C.textDim, maxWidth: 400, margin: "0 auto", lineHeight: 1.5 }}>
+                  Select an object type from the left panel to browse, or search across all {deptInfo.label} objects. Actions and notifications flow between departments automatically.
+                </div>
+
+                {/* Ontology stats */}
+                {ontologyData && ontologyData.stats && (
+                  <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 20, flexWrap: "wrap" }}>
+                    {[
+                      { label: "Objects", value: ontologyData.stats.total_objects },
+                      { label: "Links", value: ontologyData.stats.total_links },
+                      { label: "Actions", value: ontologyData.stats.total_actions },
+                      { label: "Depts", value: ontologyData.stats.departments.length },
+                    ].map(function(s) {
+                      return (
+                        <div key={s.label} style={{ padding: "10px 16px", background: C.void, borderRadius: 8, border: "1px solid " + C.border }}>
+                          <div style={{ fontSize: 20, fontWeight: 800, color: deptInfo.color, fontFamily: font }}>{s.value}</div>
+                          <div style={{ fontSize: 9, color: C.textDim, fontFamily: font, letterSpacing: 0.5 }}>{s.label.toUpperCase()}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </Card>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function NexusV5() {
   const [booted, setBooted] = useState(false);
   const [bootLines, setBootLines] = useState([]);
@@ -2404,6 +2753,7 @@ export default function NexusV5() {
     { id: "COMPETITORS", label: "COMPETITORS", icon: "\u{1F575}" },
     { id: "SIGNALS", label: "SIGNALS", icon: "\u{1F4E1}" },
     { id: "ANALYTICS", label: "ANALYTICS", icon: "\u{1F4CA}" },
+    { id: "ONTOLOGY", label: "ONTOLOGY", icon: "\uD83C\uDF10" },
     { id: "CAMPAIGNS", label: "CAMPAIGNS", icon: "\u{1F3A8}" },
     { id: "COMMAND", label: "COMMAND", icon: "\u{1F4AC}" },
     { id: "AGENTS", label: "AGENTS", icon: "\u{1F916}" },
@@ -2429,7 +2779,7 @@ export default function NexusV5() {
       <div style={{ padding: "8px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid " + C.border, background: C.void, position: "sticky", top: 0, zIndex: 50 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ fontSize: 22, fontWeight: 800, background: "linear-gradient(135deg, " + C.gold + ", " + C.goldLight + ")", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 4, fontFamily: font }}>NEXUS</span>
-          <span style={{ color: C.textDim, fontSize: 10, fontFamily: font, letterSpacing: 1 }}>BDR INTELLIGENCE v7.0</span>
+          <span style={{ color: C.textDim, fontSize: 10, fontFamily: font, letterSpacing: 1 }}>INTELLIGENCE PLATFORM v7.0</span>
           <div style={{ width: 1, height: 16, background: C.border }} />
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: 3, background: systemStatus.api ? C.green : C.hot, boxShadow: "0 0 6px " + (systemStatus.api ? C.green : C.hot) }} />
@@ -2451,6 +2801,7 @@ export default function NexusV5() {
         {view === "COMPETITORS" && <CompetitorIntel data={competitorData} />}
         {view === "SIGNALS" && <SignalIntel data={signalData} onSelectCompany={handleSelectCompany} />}
         {view === "ANALYTICS" && <AnalyticsDashboard data={analyticsData} />}
+        {view === "ONTOLOGY" && <OntologyHub />}
         {view === "CAMPAIGNS" && <CampaignBuilder />}
         {view === "COMMAND" && <CommandCenter onSelectCompany={handleSelectCompany} />}
         {view === "AGENTS" && <AgentsView agents={agentData} />}
