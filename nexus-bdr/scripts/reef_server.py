@@ -24,6 +24,13 @@ Endpoints:
   GET  /api/reef/pipeline           → Enhanced pipeline with stages + forecast
   GET  /api/events                  → Event log (polling, ?since=cursor)
   GET  /api/agents                  → Agent registry
+  GET  /api/ontology                → Ontology schema + stats
+  GET  /api/ontology/objects        → Query objects (?type=&department=&q=)
+  GET  /api/ontology/object/<id>    → Single object + links (?department=)
+  GET  /api/ontology/department/<d> → Department summary + available actions
+  GET  /api/ontology/actions        → Action log (?department=&status=)
+  GET  /api/ontology/reindex        → Force re-index from data files
+  POST /api/ontology/actions        → Record a new cross-department action
   GET  /health                      → Health check
   POST /api/reef/run                → Trigger agent commands
   POST /api/reef/outcome            → Record outcomes
@@ -44,6 +51,11 @@ try:
     import requests as _requests
 except ImportError:
     _requests = None
+
+from ontology import (
+    ObjectRegistry, index_from_existing_data,
+    OBJECT_TYPES, LINK_TYPES, DEPARTMENTS, ACTION_TYPES, ONTOLOGY_VERSION,
+)
 
 # ═══════════════════════════════════════════════════════════
 # PATH RESOLUTION — find data regardless of where server lives
@@ -80,6 +92,23 @@ EVENTS_DIR.mkdir(parents=True, exist_ok=True)
 EVENTS_FILE = EVENTS_DIR / "events.jsonl"
 
 SCHEMA_VERSION = "7.0"
+
+# ═══════════════════════════════════════════════════════════
+# ONTOLOGY — Company-wide object registry
+# ═══════════════════════════════════════════════════════════
+
+REGISTRY = ObjectRegistry(OUTPUT_DIR)
+
+def _init_ontology():
+    """Initialize the ontology registry from existing data."""
+    loaded = REGISTRY.load()
+    if not loaded:
+        counts = index_from_existing_data(REGISTRY, OUTPUT_DIR)
+        REGISTRY.save()
+        print(f"  Ontology: indexed {sum(counts.values())} objects from existing data: {dict(counts)}")
+    else:
+        print(f"  Ontology: loaded {len(REGISTRY.objects)} objects from disk")
+
 BRIEFS_DIR = OUTPUT_DIR / "briefs"
 SOCIAL_DIR = OUTPUT_DIR / "social_intel"
 COMPETITOR_DIR = OUTPUT_DIR / "competitor_intel"
@@ -320,6 +349,9 @@ def build_snapshot():
                 snapshot["systemStatus"]["eventsTotal"] = sum(1 for _ in f)
         except Exception:
             pass
+
+    # ── Ontology stats ──
+    snapshot["ontology"] = REGISTRY.stats()
 
     return snapshot
 
@@ -1597,6 +1629,85 @@ class PlatformHandler(BaseHTTPRequestHandler):
                 "events_count": sum(1 for _ in open(EVENTS_FILE)) if EVENTS_FILE.exists() else 0,
             })
 
+        # ══════════════════════════════════════════════════════
+        # ONTOLOGY API — Company-wide object model
+        # ══════════════════════════════════════════════════════
+
+        # GET /api/ontology — Schema + stats overview
+        elif path == "/api/ontology":
+            self._json({
+                "ontology_version": ONTOLOGY_VERSION,
+                "schema_version": SCHEMA_VERSION,
+                "stats": REGISTRY.stats(),
+                "object_types": {k: {"label": v["label"], "departments": v["departments"]} for k, v in OBJECT_TYPES.items()},
+                "link_types": LINK_TYPES,
+                "departments": DEPARTMENTS,
+                "action_types": ACTION_TYPES,
+            })
+
+        # GET /api/ontology/objects?type=company&department=bdr&q=search
+        elif path == "/api/ontology/objects":
+            obj_type = (qs.get("type") or [None])[0]
+            dept = (qs.get("department") or [None])[0]
+            query = (qs.get("q") or [None])[0]
+            limit = int((qs.get("limit") or ["50"])[0])
+
+            if query:
+                results = REGISTRY.search(query, obj_type=obj_type, department=dept, limit=limit)
+            elif obj_type:
+                results = REGISTRY.get_by_type(obj_type, department=dept)[:limit]
+            else:
+                results = [o.to_dict() for o in list(REGISTRY.objects.values())[:limit]]
+
+            self._json({
+                "ontology_version": ONTOLOGY_VERSION,
+                "count": len(results),
+                "objects": results,
+            })
+
+        # GET /api/ontology/object/<id>?department=bdr
+        elif path.startswith("/api/ontology/object/"):
+            obj_id = path.split("/api/ontology/object/", 1)[1]
+            dept = (qs.get("department") or [None])[0]
+            obj = REGISTRY.get(obj_id)
+            if obj:
+                data = obj.project(dept) if dept else obj.to_dict()
+                linked = REGISTRY.get_linked(obj_id, department=dept)
+                if data:
+                    data["linked_objects"] = linked
+                    self._json({"ontology_version": ONTOLOGY_VERSION, "object": data})
+                else:
+                    self._json({"error": f"Object not visible to department '{dept}'"}, 403)
+            else:
+                self._json({"error": "Object not found"}, 404)
+
+        # GET /api/ontology/department/<dept>
+        elif path.startswith("/api/ontology/department/"):
+            dept = path.split("/api/ontology/department/", 1)[1]
+            if dept in DEPARTMENTS:
+                self._json({
+                    "ontology_version": ONTOLOGY_VERSION,
+                    **REGISTRY.department_summary(dept),
+                })
+            else:
+                self._json({"error": f"Unknown department '{dept}'"}, 404)
+
+        # GET /api/ontology/actions?department=bdr&status=pending
+        elif path == "/api/ontology/actions":
+            dept = (qs.get("department") or [None])[0]
+            status = (qs.get("status") or [None])[0]
+            limit = int((qs.get("limit") or ["50"])[0])
+            actions = REGISTRY.get_actions(department=dept, status=status, limit=limit)
+            self._json({"ontology_version": ONTOLOGY_VERSION, "count": len(actions), "actions": actions})
+
+        # GET /api/ontology/reindex — Force re-index from data files
+        elif path == "/api/ontology/reindex":
+            REGISTRY.objects.clear()
+            REGISTRY.by_type.clear()
+            counts = index_from_existing_data(REGISTRY, OUTPUT_DIR)
+            REGISTRY.save()
+            self._json({"ontology_version": ONTOLOGY_VERSION, "reindexed": True, "counts": counts})
+
         else:
             self._json({"error": "not found", "path": path}, 404)
 
@@ -1685,6 +1796,21 @@ class PlatformHandler(BaseHTTPRequestHandler):
             print(f"  📝 Outcome: {action_id} → {outcome} ({channel})")
             self._json({"status": "recorded", "action_id": action_id, "outcome": outcome})
 
+        # ── Ontology: Record action ──
+        elif path == "/api/ontology/actions":
+            action_type = body.get("action_type", "")
+            department = body.get("department", "")
+            actor = body.get("actor", "system")
+            target_ids = body.get("target_ids", [])
+            notes = body.get("notes", "")
+            if not action_type or not department:
+                self._json({"error": "action_type and department required"}, 400)
+                return
+            action = REGISTRY.record_action(action_type, department, actor, target_ids, notes)
+            emit_event("OntologyAction", {"action": action})
+            REGISTRY.save()
+            self._json({"ontology_version": ONTOLOGY_VERSION, "action": action})
+
         else:
             self._json({"error": "not found"}, 404)
 
@@ -1710,6 +1836,9 @@ def main():
     if jsx:
         PlatformHandler.jsx_path = jsx
 
+    # Initialize ontology
+    _init_ontology()
+
     # Emit startup event
     emit_event("ServerStarted", {"port": args.port, "output_dir": str(OUTPUT_DIR)})
 
@@ -1730,14 +1859,17 @@ def main():
         except Exception:
             pass
 
+    ont_stats = REGISTRY.stats()
+
     print(f"\n{'='*55}")
-    print(f"  NEXUS PLATFORM SERVER v5")
-    print(f"  Schema: {SCHEMA_VERSION}")
+    print(f"  NEXUS PLATFORM SERVER v6")
+    print(f"  Schema: {SCHEMA_VERSION}  |  Ontology: {ONTOLOGY_VERSION}")
     print(f"{'='*55}")
     print(f"  UI:       http://localhost:{args.port}/reef")
     print(f"  Snapshot: http://localhost:{args.port}/api/reef/snapshot")
     print(f"  Research: http://localhost:{args.port}/api/reef/research")
     print(f"  Signals:  http://localhost:{args.port}/api/reef/signals")
+    print(f"  Ontology: http://localhost:{args.port}/api/ontology")
     print(f"  Events:   http://localhost:{args.port}/api/events")
     print(f"  Agents:   http://localhost:{args.port}/api/agents")
     print(f"  Health:   http://localhost:{args.port}/health")
@@ -1746,7 +1878,10 @@ def main():
     print(f"    Output dir:  {OUTPUT_DIR}")
     print(f"    Research KB: {kb_papers} papers")
     print(f"    War Room:    {graph_entities} entities")
+    print(f"    Ontology:    {ont_stats['total_objects']} objects, {ont_stats['total_links']} links")
     print(f"    JSX:         {jsx or 'NOT FOUND'}")
+    print(f"{'='*55}")
+    print(f"  Departments: {', '.join(DEPARTMENTS.keys())}")
     print(f"{'='*55}\n")
 
     if kb_papers == 0:
