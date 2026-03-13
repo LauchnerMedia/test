@@ -215,11 +215,10 @@ function PipelineView({ data, onSelectCompany }) {
   const [viewMode, setViewMode] = useState("kanban");
   const [expandedStage, setExpandedStage] = useState(null);
 
-  if (!data) return <EmptyState message="Loading pipeline data..." />;
-
-  const { total_companies, total_contacts, total_emails, total_verified, temperatures, brand_split, stages, forecast, hot_list, companies } = data;
+  const { total_companies, total_contacts, total_emails, total_verified, temperatures, brand_split, stages, forecast, hot_list, companies } = data || {};
 
   const filteredCompanies = useMemo(() => {
+    if (!data) return [];
     let list = companies || [];
     if (search) list = list.filter(c => c.name.toLowerCase().includes(search.toLowerCase()) || (c.domain || "").toLowerCase().includes(search.toLowerCase()));
     if (tempFilter !== "all") list = list.filter(c => c.temperature === tempFilter);
@@ -236,6 +235,8 @@ function PipelineView({ data, onSelectCompany }) {
 
   return (
     <div style={{ padding: 24, overflow: "auto", height: "100%" }}>
+      {!data && <EmptyState message="Loading pipeline data..." />}
+      {data && <div>
       {/* Revenue Intelligence Header */}
       <SectionHeader title="Pipeline War Room" subtitle={"Real-time revenue intelligence across " + (total_companies || 0) + " target companies"} icon={"\u{1F3AF}"} />
 
@@ -469,6 +470,7 @@ function PipelineView({ data, onSelectCompany }) {
         {tempFilter !== "all" && " \u00B7 Filter: " + tempFilter}
         {search && " \u00B7 Search: \"" + search + "\""}
       </div>
+      </div>}
     </div>
   );
 }
@@ -480,8 +482,7 @@ function PipelineView({ data, onSelectCompany }) {
 
 function CompanyDossier({ company, onBack }) {
   const [tab, setTab] = useState("overview");
-  const co = company;
-  if (!co) return null;
+  const co = company || {};
 
   const brief = co.brief_data || {};
   const tabs = [
@@ -948,8 +949,7 @@ function ResearchLab({ data }) {
   const [selectedEffect, setSelectedEffect] = useState(null);
   const [evidenceFilter, setEvidenceFilter] = useState("all");
 
-  if (!data) return <EmptyState message="Loading research data..." />;
-  const { papers_total, highlights, synthesis, trends, gaps, matrix, businessInsights, regulatory } = data;
+  const { papers_total, highlights, synthesis, trends, gaps, matrix, businessInsights, regulatory } = data || {};
 
   const tabs = [
     { id: "matrix", label: "Effect Matrix", icon: "\u{1F9EC}" },
@@ -1508,10 +1508,8 @@ function SignalIntel({ data, onSelectCompany }) {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [search, setSearch] = useState("");
 
-  if (!data) return <EmptyState message="Loading signals..." />;
-
-  const signals = data.signals || [];
-  const signalWeights = data.signal_weights || {};
+  const signals = (data && data.signals) || [];
+  const signalWeights = (data && data.signal_weights) || {};
 
   const categories = useMemo(() => {
     const cats = {};
@@ -1525,6 +1523,8 @@ function SignalIntel({ data, onSelectCompany }) {
     if (search) list = list.filter(s => JSON.stringify(s).toLowerCase().includes(search.toLowerCase()));
     return list.sort((a, b) => (b.decayed_score || 0) - (a.decayed_score || 0));
   }, [signals, categoryFilter, search]);
+
+  if (!data) return <EmptyState message="Loading signals..." />;
 
   const avgDecay = signals.length > 0 ? (signals.reduce((a, s) => a + (s.decayed_score || 0), 0) / signals.length).toFixed(3) : 0;
 
