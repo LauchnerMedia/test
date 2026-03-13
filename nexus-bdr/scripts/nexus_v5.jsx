@@ -2305,11 +2305,12 @@ export default function NexusV5() {
 
   // Boot sequence
   useEffect(() => {
-    let i = 0;
+    let idx = 0;
     const timer = setInterval(() => {
-      if (i < BOOT_LINES.length) {
-        setBootLines(prev => [...prev, BOOT_LINES[i]]);
-        i++;
+      if (idx < BOOT_LINES.length) {
+        const line = BOOT_LINES[idx];
+        idx++;
+        setBootLines(prev => [...prev, line]);
       } else {
         clearInterval(timer);
         setTimeout(() => setBooted(true), 500);
@@ -2377,8 +2378,8 @@ export default function NexusV5() {
           <div style={{ fontSize: 12, color: C.textDim, letterSpacing: 6, textAlign: "center", marginTop: 4 }}>BDR INTELLIGENCE SYSTEM</div>
         </div>
         <div style={{ maxWidth: 550, width: "100%" }}>
-          {bootLines.map((line, i) => (
-            <div key={i} style={{ color: line.color, fontSize: 13, padding: "3px 0", opacity: 0, animation: "fadeIn 0.3s forwards", animationDelay: (i * 0.05) + "s", display: "flex", gap: 8 }}>
+          {bootLines.filter(Boolean).map((line, i) => (
+            <div key={i} style={{ color: (line && line.color) || C.text, fontSize: 13, padding: "3px 0", opacity: 0, animation: "fadeIn 0.3s forwards", animationDelay: (i * 0.05) + "s", display: "flex", gap: 8 }}>
               <span style={{ color: C.textDim, width: 28, textAlign: "right", flexShrink: 0 }}>[{String(i).padStart(2, "0")}]</span>
               <span>{line.text}</span>
             </div>
