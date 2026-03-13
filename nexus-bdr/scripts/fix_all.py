@@ -241,3 +241,63 @@ print(f"\n{'='*50}")
 print(f"Applied {fixes} fixes total")
 print(f"Restart: python3 scripts/reef_server.py")
 print(f"{'='*50}")
+
+# ============================================================
+# FIX: Matrix data format — API sends list-of-objects not dict-of-dicts
+# ============================================================
+with open("scripts/nexus_v5.jsx", "r") as f:
+    code2 = f.read()
+
+old_matrix = '''                {(() => {
+                  const terpenes = Object.keys(matrix).sort((a, b) => {
+                    const aTotal = Object.values(matrix[a] || {}).reduce((s, v) => s + v, 0);
+                    const bTotal = Object.values(matrix[b] || {}).reduce((s, v) => s + v, 0);
+                    return bTotal - aTotal;
+                  });
+                  if (terpenes.length === 0) return <EmptyState message="No matrix data available." />;
+                  const allEffects = new Set();
+                  terpenes.forEach(t => Object.keys(matrix[t] || {}).forEach(e => allEffects.add(e)));
+                  const effects = Array.from(allEffects).sort();
+                  const maxVal = Math.max(1, ...terpenes.flatMap(t => effects.map(e => (matrix[t] || {})[e] || 0)));'''
+
+new_matrix = '''                {(() => {
+                  var matrixMap = {};
+                  var rawMatrix = matrix;
+                  if (rawMatrix && rawMatrix.matrix && Array.isArray(rawMatrix.matrix)) rawMatrix = rawMatrix.matrix;
+                  if (Array.isArray(rawMatrix)) {
+                    rawMatrix.forEach(function(row) {
+                      var name = row.terpene || "unknown";
+                      matrixMap[name] = {};
+                      Object.keys(row).forEach(function(k) { if (k !== "terpene" && typeof row[k] === "number") matrixMap[name][k] = row[k]; });
+                    });
+                  } else if (rawMatrix && typeof rawMatrix === "object") {
+                    Object.keys(rawMatrix).forEach(function(k) {
+                      if (typeof rawMatrix[k] === "object" && rawMatrix[k] !== null && !Array.isArray(rawMatrix[k])) matrixMap[k] = rawMatrix[k];
+                    });
+                  }
+                  const terpenes = Object.keys(matrixMap).sort(function(a, b) {
+                    var aTotal = Object.values(matrixMap[a] || {}).reduce(function(s, v) { return s + (typeof v === "number" ? v : 0); }, 0);
+                    var bTotal = Object.values(matrixMap[b] || {}).reduce(function(s, v) { return s + (typeof v === "number" ? v : 0); }, 0);
+                    return bTotal - aTotal;
+                  });
+                  if (terpenes.length === 0) return <EmptyState message="No matrix data available." />;
+                  const allEffects = new Set();
+                  terpenes.forEach(function(t) { Object.keys(matrixMap[t] || {}).forEach(function(e) { allEffects.add(e); }); });
+                  const effects = Array.from(allEffects).sort();
+                  const maxVal = Math.max(1, Math.max.apply(null, terpenes.reduce(function(acc, t) { return acc.concat(effects.map(function(e) { return (matrixMap[t] || {})[e] || 0; })); }, [1])));'''
+
+if old_matrix in code2:
+    code2 = code2.replace(old_matrix, new_matrix)
+    print("Extra fix: Normalized matrix data format")
+
+# Also fix the cell lookup
+old_cell = 'const val = (matrix[terp] || {})[eff] || 0;'
+new_cell = 'const val = (matrixMap[terp] || {})[eff] || 0;'
+if old_cell in code2:
+    code2 = code2.replace(old_cell, new_cell)
+    print("Extra fix: Updated matrix cell lookup to use matrixMap")
+
+with open("scripts/nexus_v5.jsx", "w") as f:
+    f.write(code2)
+
+print("Matrix fixes applied!")
