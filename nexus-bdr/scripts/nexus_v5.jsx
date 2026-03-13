@@ -228,7 +228,8 @@ function PipelineView({ data, onSelectCompany }) {
   }, [companies, search, tempFilter, stageFilter, sortBy]);
 
   const totalPipelineValue = forecast ? (forecast.conservative || 0) + (forecast.likely || 0) + (forecast.upside || 0) : 0;
-  const conversionRate = total_companies ? ((stages || []).filter(s => s.stage === "won").reduce((a, s) => a + s.count, 0) / total_companies * 100).toFixed(1) : "0";
+  const stagesArray = stages ? Object.entries(stages).map(function(entry) { return { stage: entry[0], count: (entry[1] && entry[1].count) || 0, companies: (entry[1] && entry[1].companies) || [] }; }) : [];
+  const conversionRate = total_companies && stagesArray.length > 0 ? (stagesArray.filter(function(s) { return s.stage === "won"; }).reduce(function(a, s) { return a + s.count; }, 0) / total_companies * 100).toFixed(1) : "0";
   const avgScore = companies && companies.length > 0 ? (companies.reduce((a, c) => a + (c.avg_score || 0), 0) / companies.length).toFixed(0) : 0;
   const hotCount = (temperatures || {}).Hot || 0;
   const warmCount = (temperatures || {}).Warm || 0;
@@ -356,7 +357,7 @@ function PipelineView({ data, onSelectCompany }) {
       {/* KANBAN VIEW */}
       {viewMode === "kanban" && (
         <div style={{ display: "flex", gap: 10, overflow: "auto", paddingBottom: 16, minHeight: 400 }}>
-          {(stages || []).filter(s => s.count > 0).map(stage => {
+          {stagesArray.filter(s => s.count > 0).map(stage => {
             const stageCompanies = filteredCompanies.filter(c => c.stage === stage.stage);
             const isExpanded = expandedStage === stage.stage;
             return (
@@ -1372,7 +1373,7 @@ function CompetitorIntel({ data }) {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 12, marginBottom: 20 }}>
         {competitors.map((comp, i) => {
           const isSelected = selectedCompetitor === comp.name;
-          const threatColor = comp.threat_level === "HIGH" ? C.hot : comp.threat_level === "MEDIUM" ? C.warm : C.green;
+          const threatColor = (comp.threat_level || comp.risk) === "HIGH" ? C.hot : (comp.threat_level || comp.risk) === "MEDIUM" ? C.warm : C.green;
           return (
             <Card key={comp.name} onClick={() => setSelectedCompetitor(isSelected ? null : comp.name)}
               style={{ borderColor: isSelected ? threatColor + "50" : C.border, borderLeft: "4px solid " + threatColor, animation: "fadeIn 0.3s ease-out", animationDelay: i * 0.05 + "s", animationFillMode: "both" }}>
@@ -1381,24 +1382,23 @@ function CompetitorIntel({ data }) {
                   <div style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{comp.name}</div>
                   <div style={{ fontSize: 11, color: C.textDim, marginTop: 2 }}>{comp.category || comp.market_segment || "Terpene Supplier"}</div>
                 </div>
-                <Badge color={threatColor} size="md" glow>{comp.threat_level || "MEDIUM"}</Badge>
+                <Badge color={threatColor} size="md" glow>{comp.threat_level || comp.risk || "MEDIUM"}</Badge>
               </div>
 
               {comp.pricing && (
                 <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-                  {comp.pricing.low && <div style={{ fontSize: 10, color: C.textDim }}>{comp.pricing.low} - {comp.pricing.high}/L</div>}
-                  {comp.pricing.avg && <div style={{ fontSize: 10, color: C.gold }}>Avg: {comp.pricing.avg}/L</div>}
+                  <div style={{ fontSize: 10, color: C.gold }}>{typeof comp.pricing === "string" ? comp.pricing : (comp.pricing.low || "") + " - " + (comp.pricing.high || "")}</div>
                 </div>
               )}
 
-              {comp.weaknesses && comp.weaknesses.length > 0 && (
+              {(comp.weaknesses || comp.weakness) && (
                 <div style={{ marginBottom: 8 }}>
                   <div style={{ fontSize: 9, color: C.hot, fontWeight: 600, marginBottom: 3, fontFamily: font }}>WEAKNESSES</div>
-                  {comp.weaknesses.slice(0, 2).map((w, j) => (
+                  {Array.isArray(comp.weaknesses) ? comp.weaknesses.slice(0, 2).map(function(w, j) { return (
                     <div key={j} style={{ fontSize: 10, color: C.textDim, lineHeight: 1.4, display: "flex", gap: 4 }}>
                       <span style={{ color: C.hot }}>{"\u2022"}</span> {typeof w === "string" ? w : w.weakness || w.description || JSON.stringify(w)}
                     </div>
-                  ))}
+                  ); }) : <div style={{ fontSize: 10, color: C.textDim, lineHeight: 1.4, display: "flex", gap: 4 }}><span style={{ color: C.hot }}>{"\u2022"}</span> {comp.weakness}</div>}
                 </div>
               )}
 
@@ -1428,22 +1428,10 @@ function CompetitorIntel({ data }) {
               {selected.pricing && (
                 <div style={{ padding: 14, background: C.panel, borderRadius: 8 }}>
                   <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 10 }}>PRICING MODEL</div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8 }}>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: 16, fontWeight: 700, color: C.green, fontFamily: font }}>{selected.pricing.low || "?"}</div>
-                      <div style={{ fontSize: 9, color: C.textDim }}>LOW</div>
-                    </div>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: 16, fontWeight: 700, color: C.gold, fontFamily: font }}>{selected.pricing.avg || "?"}</div>
-                      <div style={{ fontSize: 9, color: C.textDim }}>AVG</div>
-                    </div>
-                    <div style={{ textAlign: "center" }}>
-                      <div style={{ fontSize: 16, fontWeight: 700, color: C.hot, fontFamily: font }}>{selected.pricing.high || "?"}</div>
-                      <div style={{ fontSize: 9, color: C.textDim }}>HIGH</div>
-                    </div>
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ fontSize: 18, fontWeight: 700, color: C.gold, fontFamily: font }}>{typeof selected.pricing === "string" ? selected.pricing : JSON.stringify(selected.pricing)}</div>
+                    <div style={{ fontSize: 9, color: C.textDim }}>PRICING RANGE</div>
                   </div>
-                  {selected.pricing.model && <div style={{ fontSize: 11, color: C.textDim, marginTop: 8 }}>Model: {selected.pricing.model}</div>}
-                  {selected.pricing.moq && <div style={{ fontSize: 11, color: C.textDim }}>MOQ: {selected.pricing.moq}</div>}
                 </div>
               )}
 
@@ -1464,14 +1452,14 @@ function CompetitorIntel({ data }) {
               )}
 
               {/* Full Weaknesses */}
-              {selected.weaknesses && selected.weaknesses.length > 0 && (
+              {(selected.weaknesses || selected.weakness) && (
                 <div style={{ padding: 14, background: C.hot + "06", borderRadius: 8, border: "1px solid " + C.hot + "15" }}>
-                  <div style={{ fontSize: 11, color: C.hot, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 10 }}>WEAKNESSES ({selected.weaknesses.length})</div>
-                  {selected.weaknesses.map((w, j) => (
+                  <div style={{ fontSize: 11, color: C.hot, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 10 }}>WEAKNESSES</div>
+                  {Array.isArray(selected.weaknesses) ? selected.weaknesses.map(function(w, j) { return (
                     <div key={j} style={{ fontSize: 11, color: C.text, padding: "4px 0", lineHeight: 1.5, display: "flex", gap: 6 }}>
                       <span style={{ color: C.hot }}>{"\u2022"}</span> {typeof w === "string" ? w : w.weakness || JSON.stringify(w)}
                     </div>
-                  ))}
+                  ); }) : <div style={{ fontSize: 11, color: C.text, padding: "4px 0", lineHeight: 1.5, display: "flex", gap: 6 }}><span style={{ color: C.hot }}>{"\u2022"}</span> {selected.weakness}</div>}
                 </div>
               )}
             </div>
@@ -1610,11 +1598,10 @@ function AnalyticsDashboard({ data }) {
 
   if (!data) return <EmptyState message="Loading analytics..." />;
 
-  const { pipeline_health, intelligence_metrics, system_stats, learning_metrics } = data;
-  const ph = pipeline_health || {};
-  const im = intelligence_metrics || {};
-  const ss = system_stats || {};
-  const lm = learning_metrics || {};
+  const ph = (data && data.pipeline) || (data && data.pipeline_health) || {};
+  const im = (data && data.intelligence) || (data && data.intelligence_metrics) || {};
+  const ss = (data && data.system) || (data && data.system_stats) || {};
+  const lm = (data && data.learning) || (data && data.learning_metrics) || {};
 
   return (
     <div style={{ padding: 24, overflow: "auto", height: "100%" }}>
@@ -1641,8 +1628,8 @@ function AnalyticsDashboard({ data }) {
           {/* Stage Funnel */}
           <Card style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 14 }}>PIPELINE FUNNEL</div>
-            {(ph.stage_breakdown || []).map((stage, i) => {
-              const maxCount = Math.max(...(ph.stage_breakdown || []).map(s => s.count || 0), 1);
+            {(function() { var sb = ph.stage_breakdown || ph.stages; if (!sb) return null; var arr = Array.isArray(sb) ? sb : Object.entries(sb).map(function(e) { return { stage: e[0], count: (e[1] && e[1].count) || (typeof e[1] === "number" ? e[1] : 0) }; }); var maxCount = Math.max.apply(null, arr.map(function(s) { return s.count || 0; }).concat([1])); return arr; })().map((stage, i) => {
+              const maxCount = Math.max.apply(null, (function() { var sb = ph.stage_breakdown || ph.stages; if (!sb) return [1]; var arr = Array.isArray(sb) ? sb : Object.entries(sb).map(function(e) { return { stage: e[0], count: (e[1] && e[1].count) || (typeof e[1] === "number" ? e[1] : 0) }; }); return arr.map(function(s) { return s.count || 0; }).concat([1]); })());
               const pct = ((stage.count || 0) / maxCount) * 100;
               return (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
@@ -1661,9 +1648,9 @@ function AnalyticsDashboard({ data }) {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <Card>
               <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 12 }}>TEMPERATURE DISTRIBUTION</div>
-              {ph.temperature_breakdown && (
+              {(ph.temperature_breakdown || ph.temperatures) && (
                 <div>
-                  {Object.entries(ph.temperature_breakdown).map(([temp, count]) => (
+                  {Object.entries(ph.temperature_breakdown || ph.temperatures || {}).map(([temp, count]) => (
                     <div key={temp} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid " + C.border }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                         <div style={{ width: 12, height: 12, borderRadius: 3, background: tempColor(temp) }} />
@@ -1681,7 +1668,7 @@ function AnalyticsDashboard({ data }) {
 
             <Card>
               <div style={{ fontSize: 11, color: C.gold, fontWeight: 700, fontFamily: font, letterSpacing: 2, marginBottom: 12 }}>BRAND DISTRIBUTION</div>
-              {ph.brand_breakdown && Object.entries(ph.brand_breakdown).map(([brand, count]) => (
+              {(ph.brand_breakdown || ph.brands) && Object.entries(ph.brand_breakdown || ph.brands || {}).map(([brand, count]) => (
                 <div key={brand} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid " + C.border }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <Badge color={brand === "TBF" ? C.purple : C.pink} size="md">{brand}</Badge>
