@@ -2274,6 +2274,21 @@ function CommandCenter({ onSelectCompany }) {
 // MAIN APP — Boot Sequence + Navigation + Data Loading
 // ═══════════════════════════════════════════════════════════════════════════════
 
+const BOOT_LINES = [
+  { text: "NEXUS BDR SYSTEM v7.0 --- INITIALIZING", color: "#d4a843" },
+  { text: "Connecting to Reef API Server...", color: "#e8e8f0" },
+  { text: "Loading agent fleet [12 agents]...", color: "#e8e8f0" },
+  { text: "Building company dossiers [39 companies]...", color: "#e8e8f0" },
+  { text: "Indexing terpene research [432 papers]...", color: "#22d3ee" },
+  { text: "Loading competitor intelligence [7 tracked]...", color: "#e8e8f0" },
+  { text: "Processing signal feed [35 signals]...", color: "#e8e8f0" },
+  { text: "Calculating revenue forecast...", color: "#00e09a" },
+  { text: "Running vulnerability scans...", color: "#ff8c00" },
+  { text: "Campaign builder ready...", color: "#e8e8f0" },
+  { text: "ALL SYSTEMS OPERATIONAL", color: "#00e09a" },
+  { text: "================================", color: "#d4a843" },
+];
+
 export default function NexusV5() {
   const [booted, setBooted] = useState(false);
   const [bootLines, setBootLines] = useState([]);
@@ -2288,35 +2303,21 @@ export default function NexusV5() {
   const [companyCache, setCompanyCache] = useState({});
   const [systemStatus, setSystemStatus] = useState({ api: false, agents: 0, companies: 0 });
 
-  const BOOT_LINES = [
-    { text: "NEXUS BDR SYSTEM v7.0 \u2014 INITIALIZING", color: C.gold, delay: 0 },
-    { text: "Connecting to Reef API Server...", color: C.text, delay: 100 },
-    { text: "Loading agent fleet [12 agents]...", color: C.text, delay: 200 },
-    { text: "Building company dossiers [39 companies]...", color: C.text, delay: 300 },
-    { text: "Indexing terpene research [432 papers]...", color: C.cyan, delay: 400 },
-    { text: "Loading competitor intelligence [7 tracked]...", color: C.text, delay: 500 },
-    { text: "Processing signal feed [35 signals]...", color: C.text, delay: 600 },
-    { text: "Calculating revenue forecast...", color: C.green, delay: 700 },
-    { text: "Running vulnerability scans...", color: C.warm, delay: 800 },
-    { text: "Campaign builder ready...", color: C.text, delay: 900 },
-    { text: "ALL SYSTEMS OPERATIONAL", color: C.green, delay: 1000 },
-    { text: "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501", color: C.gold, delay: 1100 },
-  ];
-
   // Boot sequence
   useEffect(() => {
     let idx = 0;
+    const total = BOOT_LINES.length;
     const timer = setInterval(() => {
-      if (idx < BOOT_LINES.length) {
+      if (idx < total) {
         const line = BOOT_LINES[idx];
         idx++;
-        setBootLines(prev => [...prev, line]);
+        if (line) setBootLines(function(prev) { return prev.concat([line]); });
       } else {
         clearInterval(timer);
-        setTimeout(() => setBooted(true), 500);
+        setTimeout(function() { setBooted(true); }, 500);
       }
     }, 120);
-    return () => clearInterval(timer);
+    return function() { clearInterval(timer); };
   }, []);
 
   // Load all data on boot
@@ -2378,15 +2379,18 @@ export default function NexusV5() {
           <div style={{ fontSize: 12, color: C.textDim, letterSpacing: 6, textAlign: "center", marginTop: 4 }}>BDR INTELLIGENCE SYSTEM</div>
         </div>
         <div style={{ maxWidth: 550, width: "100%" }}>
-          {bootLines.filter(Boolean).map((line, i) => (
-            <div key={i} style={{ color: (line && line.color) || C.text, fontSize: 13, padding: "3px 0", opacity: 0, animation: "fadeIn 0.3s forwards", animationDelay: (i * 0.05) + "s", display: "flex", gap: 8 }}>
-              <span style={{ color: C.textDim, width: 28, textAlign: "right", flexShrink: 0 }}>[{String(i).padStart(2, "0")}]</span>
-              <span>{line.text}</span>
-            </div>
-          ))}
+          {bootLines.map(function(line, i) {
+            if (!line) return null;
+            return (
+              <div key={i} style={{ color: line.color || "#e8e8f0", fontSize: 13, padding: "3px 0", opacity: 0, animation: "fadeIn 0.3s forwards", animationDelay: (i * 0.05) + "s", display: "flex", gap: 8 }}>
+                <span style={{ color: "#888899", width: 28, textAlign: "right", flexShrink: 0 }}>{"[" + String(i).padStart(2, "0") + "]"}</span>
+                <span>{line.text || ""}</span>
+              </div>
+            );
+          })}
         </div>
-        <div style={{ marginTop: 30, width: 200, height: 3, background: C.border, borderRadius: 2, overflow: "hidden" }}>
-          <div style={{ height: "100%", background: "linear-gradient(90deg, " + C.gold + ", " + C.goldLight + ")", width: Math.min((bootLines.length / BOOT_LINES.length) * 100, 100) + "%", transition: "width 0.3s", borderRadius: 2 }} />
+        <div style={{ marginTop: 30, width: 200, height: 3, background: "#1a1a2e", borderRadius: 2, overflow: "hidden" }}>
+          <div style={{ height: "100%", background: "linear-gradient(90deg, #d4a843, #e8c55a)", width: Math.min((bootLines.length / 12) * 100, 100) + "%", transition: "width 0.3s", borderRadius: 2 }} />
         </div>
       </div>
     );
