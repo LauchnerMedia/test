@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sol-001",
+    "title": "Beverage Formulation",
+    "description": "Water-soluble terpene blends engineered for functional beverages. Our nano-emulsion technology ensures stable dispersion, consistent flavor, and rapid bioavailability across sparkling water, kombucha, and spirit-free cocktail applications.",
+    "industries": ["Functional beverages", "Craft brewing", "RTD cocktails", "Wellness drinks"]
+  },
+  {
+    "id": "sol-002",
+    "title": "Cannabis Terpene Innovation",
+    "description": "Strain-specific and effect-targeted terpene profiles for vaporizer cartridges, edibles, and concentrates. Our library of 300+ botanical terpene formulations enables precise sensory and functional customization.",
+    "industries": ["Cannabis processors", "Vape manufacturers", "Edible brands", "Dispensary white-label"]
+  },
+  {
+    "id": "sol-003",
+    "title": "Flavor Systems",
+    "description": "Natural terpene-derived flavor compounds for food and beverage manufacturers. Replace synthetic flavoring with clean-label, plant-derived alternatives that meet consumer demand for transparency and sustainability.",
+    "industries": ["Food manufacturing", "Confectionery", "Snack production", "Flavor houses"]
+  },
+  {
+    "id": "sol-004",
+    "title": "Ingredient R&D",
+    "description": "Custom terpene isolation, characterization, and formulation services. Our analytical chemistry team works alongside your product developers from proof-of-concept through scale-up and regulatory documentation.",
+    "industries": ["Pharmaceutical", "Nutraceutical", "Cosmetics", "Agricultural biotech"]
+  },
+  {
+    "id": "sol-005",
+    "title": "Aroma Engineering",
+    "description": "Precision-crafted scent profiles for personal care, home fragrance, and wellness products. Terpene-based aromatic formulations offer natural alternatives to petrochemical-derived fragrance compounds.",
+    "industries": ["Personal care", "Home fragrance", "Aromatherapy", "Luxury hospitality"]
+  },
+  {
+    "id": "sol-006",
+    "title": "Agricultural Bioactives",
+    "description": "Terpene-based biopesticides and plant growth modulators for sustainable agriculture. Our formulations leverage the natural pest-deterrent and signaling properties of plant terpenes to reduce synthetic chemical dependency.",
+    "industries": ["Organic farming", "Greenhouse cultivation", "Crop protection", "Sustainable agriculture"]
+  },
+  {
+    "id": "sol-007",
+    "title": "Topical & Transdermal Delivery",
+    "description": "Terpene-enhanced penetration systems for topical and transdermal therapeutic products. Specific terpenes increase skin permeability, improving active ingredient absorption without harsh chemical enhancers.",
+    "industries": ["Dermatology", "Sports medicine", "CBD topicals", "Cosmeceuticals"]
+  },
+  {
+    "id": "sol-008",
+    "title": "White-Label Formulation",
+    "description": "Turnkey terpene blend development for brands seeking rapid market entry. From concept through compliance, we provide ready-to-manufacture formulations with full documentation and regulatory support.",
+    "industries": ["Startup brands", "Private label", "DTC wellness", "Retail partnerships"]
+  },
+  {
+    "id": "sol-009",
+    "title": "Analytical Services",
+    "description": "GC-MS terpene profiling, potency testing, and quality assurance for raw materials and finished products. Our ISO-accredited laboratory delivers precise compositional analysis with rapid turnaround.",
+    "industries": ["Cannabis testing", "Quality assurance", "Raw material sourcing", "Regulatory compliance"]
+  },
+  {
+    "id": "sol-010",
+    "title": "Encapsulation Technology",
+    "description": "Microencapsulation and controlled-release systems for volatile terpene compounds. Protect sensitive molecules through processing, extend shelf life, and enable targeted release in the final application.",
+    "industries": ["Nutraceuticals", "Functional foods", "Extended-release supplements", "Industrial applications"]
+  }
+]
