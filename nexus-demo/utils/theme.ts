@@ -1,32 +1,45 @@
-/** Nexus Agriscience — Design Tokens */
+/** Nexus Agriscience — Design Tokens (Dark Biotech Theme) */
 
 export const colors = {
-  /** Primary brand green — biotech / agriculture */
-  primary: "#0B6E4F",
-  primaryLight: "#14A76C",
-  primaryMuted: "rgba(11, 110, 79, 0.08)",
+  /** Primary — deep navy from real brand */
+  primary: "#153872",
+  primaryLight: "#1E4D99",
+  primaryMuted: "rgba(21, 56, 114, 0.15)",
 
-  /** Accent — warm amber for CTAs */
-  accent: "#E8AA42",
-  accentHover: "#D4962E",
+  /** Accent — coral/red from real brand */
+  accent: "#FF462E",
+  accentHover: "#E63B25",
+  accentMuted: "rgba(255, 70, 46, 0.12)",
 
-  /** Neutrals */
+  /** Dark backgrounds */
+  bgDark: "#0A0F1C",
+  bgCard: "#111827",
+  bgCardHover: "#1A2236",
+  bgSurface: "#0E1525",
+
+  /** Light text on dark */
   white: "#FFFFFF",
-  bg: "#F8FAF9",
-  bgCard: "#FFFFFF",
-  border: "#E2E8E5",
-  textPrimary: "#0F1F17",
-  textSecondary: "#4A6358",
-  textMuted: "#8A9E94",
+  textPrimary: "#F1F5F9",
+  textSecondary: "#94A3B8",
+  textMuted: "#64748B",
+
+  /** Borders */
+  border: "rgba(255, 255, 255, 0.08)",
+  borderHover: "rgba(255, 255, 255, 0.15)",
 
   /** Semantic */
-  success: "#14A76C",
-  error: "#D94F4F",
+  success: "#10B981",
+  error: "#EF4444",
 
   /** Gradient stops */
-  gradientStart: "#0B6E4F",
-  gradientMid: "#0E8960",
-  gradientEnd: "#14A76C",
+  gradientStart: "#0A0F1C",
+  gradientMid: "#153872",
+  gradientEnd: "#1E4D99",
+
+  /** Terpene class colors */
+  terpMono: "#3B82F6",
+  terpSesqui: "#8B5CF6",
+  terpDi: "#06B6D4",
 } as const;
 
 export const fonts = {
@@ -39,11 +52,14 @@ export const radii = {
   sm: 6,
   md: 12,
   lg: 20,
+  xl: 24,
   full: 9999,
 } as const;
 
 export const shadows = {
-  sm: "0 1px 2px rgba(15, 31, 23, 0.06)",
-  md: "0 4px 12px rgba(15, 31, 23, 0.08)",
-  lg: "0 12px 32px rgba(15, 31, 23, 0.12)",
+  sm: "0 1px 3px rgba(0, 0, 0, 0.3)",
+  md: "0 4px 16px rgba(0, 0, 0, 0.4)",
+  lg: "0 12px 40px rgba(0, 0, 0, 0.5)",
+  glow: "0 0 40px rgba(21, 56, 114, 0.3)",
+  accentGlow: "0 0 30px rgba(255, 70, 46, 0.25)",
 } as const;

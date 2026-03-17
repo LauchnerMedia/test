@@ -2,81 +2,81 @@
   {
     "id": "terp-001",
     "name": "Myrcene",
-    "aroma": "Earthy, musky, with hints of ripe fruit",
-    "effect": "Relaxation",
-    "description": "The most abundant terpene in modern cannabis cultivars. Myrcene contributes sedative, analgesic, and anti-inflammatory properties. It enhances cellular membrane permeability, allowing faster absorption of beneficial compounds.",
-    "applications": ["Cannabis extracts", "Sleep-aid beverages", "Topical formulations", "Herbal supplements"]
+    "class": "Monoterpene",
+    "aroma": "Earthy, musky, ripe fruit",
+    "description": "The most abundant terpene in hemp cultivars. Key component of Nexus's molecular farming platform with applications across functional beverages and wellness products.",
+    "applications": ["Functional beverages", "Wellness formulations", "Flavor systems", "Natural ingredient replacement"]
   },
   {
     "id": "terp-002",
     "name": "Limonene",
-    "aroma": "Bright citrus, lemon zest, orange peel",
-    "effect": "Energy",
-    "description": "A monocyclic monoterpene prevalent in citrus rinds. Limonene is associated with elevated mood, stress relief, and improved gastric motility. Widely used as a natural flavoring and penetration enhancer.",
-    "applications": ["Citrus beverages", "Mood-enhancing edibles", "Cleaning products", "Flavor systems"]
+    "class": "Monoterpene",
+    "aroma": "Bright citrus, lemon zest",
+    "description": "Monocyclic monoterpene prevalent in citrus rinds. One of the highest-volume natural flavor compounds with broad market applications from beverages to cleaning products.",
+    "applications": ["Citrus flavor systems", "Functional beverages", "Natural cleaning agents", "Fragrance compounds"]
   },
   {
     "id": "terp-003",
     "name": "Linalool",
+    "class": "Monoterpene",
     "aroma": "Floral, lavender, subtle spice",
-    "effect": "Calm",
-    "description": "Found abundantly in lavender and over 200 plant species. Linalool demonstrates anxiolytic, sedative, and anticonvulsant properties. It modulates glutamate and GABA neurotransmitter systems.",
-    "applications": ["Aromatherapy products", "Calming beverages", "Skincare formulations", "Cannabis blends"]
+    "description": "Found in lavender and 200+ plant species. High-value fragrance and functional ingredient with demonstrated calming and anti-inflammatory properties.",
+    "applications": ["Fragrance formulations", "Calming beverages", "Skincare actives", "Aromatherapy"]
   },
   {
     "id": "terp-004",
     "name": "Beta-Caryophyllene",
+    "class": "Sesquiterpene",
     "aroma": "Spicy, peppery, woody",
-    "effect": "Relief",
-    "description": "A sesquiterpene unique in its ability to bind CB2 cannabinoid receptors. Beta-caryophyllene exhibits potent anti-inflammatory and analgesic activity without psychoactive effects, making it a compelling functional ingredient.",
-    "applications": ["Anti-inflammatory supplements", "Spice-forward beverages", "Pain-relief topicals", "Functional foods"]
+    "description": "Unique sesquiterpene with CB2 receptor binding activity. Potent anti-inflammatory compound with significant pharmaceutical and nutraceutical potential.",
+    "applications": ["Pharmaceutical R&D", "Anti-inflammatory supplements", "Functional foods", "Spice-forward flavors"]
   },
   {
     "id": "terp-005",
     "name": "Pinene",
-    "aroma": "Fresh pine, coniferous, herbal",
-    "effect": "Focus",
-    "description": "The most widely encountered terpene in nature, found in pine resin, rosemary, and basil. Alpha-pinene acts as a bronchodilator and acetylcholinesterase inhibitor, supporting memory retention and alertness.",
-    "applications": ["Focus-enhancing beverages", "Respiratory supplements", "Forest-inspired flavors", "Cannabis cultivar design"]
+    "class": "Monoterpene",
+    "aroma": "Fresh pine, herbal",
+    "description": "Most widely encountered terpene in nature. Industrial-scale applications in cleaning, fragrance, and as a bio-based chemical intermediate.",
+    "applications": ["Green chemistry", "Fragrance compounds", "Bio-based solvents", "Focus beverages"]
   },
   {
     "id": "terp-006",
-    "name": "Terpinolene",
-    "aroma": "Piney, floral, herbaceous, slightly citrus",
-    "effect": "Energy",
-    "description": "A multifaceted monoterpene with a complex aromatic profile. Terpinolene shows antioxidant and mildly sedative properties at higher concentrations. Common in nutmeg, tea tree, and select cannabis sativa cultivars.",
-    "applications": ["Uplifting beverage formulations", "Personal care products", "Flavor complexity agents", "Sativa-dominant blends"]
+    "name": "Humulene",
+    "class": "Sesquiterpene",
+    "aroma": "Hoppy, earthy, woody",
+    "description": "Isomer of beta-caryophyllene found in hops and ginseng. Key target in Nexus's cultivation program for functional beverage and supplement markets.",
+    "applications": ["Hop-forward beverages", "Weight management", "Craft flavor profiles", "Anti-inflammatory formulas"]
   },
   {
     "id": "terp-007",
-    "name": "Humulene",
-    "aroma": "Hoppy, earthy, subtle wood",
-    "effect": "Relief",
-    "description": "An isomer of beta-caryophyllene found in hops, sage, and ginseng. Humulene demonstrates appetite-suppressant and anti-inflammatory properties. It is a key contributor to the distinctive aroma of craft beer.",
-    "applications": ["Hop-forward beverages", "Weight management supplements", "Anti-inflammatory formulas", "Craft flavor profiles"]
+    "name": "Terpinolene",
+    "class": "Monoterpene",
+    "aroma": "Piney, floral, herbaceous",
+    "description": "Complex aromatic monoterpene with antioxidant properties. Valuable in personal care, fragrance blending, and specialty flavor applications.",
+    "applications": ["Personal care products", "Fragrance blending", "Specialty flavors", "Antioxidant formulations"]
   },
   {
     "id": "terp-008",
     "name": "Ocimene",
-    "aroma": "Sweet, herbaceous, tropical, woody",
-    "effect": "Energy",
-    "description": "A monoterpene found in mint, parsley, orchids, and mangoes. Ocimene exhibits antiviral, antifungal, and decongestant properties. Its sweet, complex aroma makes it valuable for premium flavor and fragrance applications.",
-    "applications": ["Tropical beverages", "Fragrance blending", "Decongestant formulations", "Exotic flavor systems"]
+    "class": "Monoterpene",
+    "aroma": "Sweet, tropical, woody",
+    "description": "Found in mint, orchids, and mangoes. Antiviral and antifungal properties make it a compelling active ingredient for natural product formulations.",
+    "applications": ["Tropical flavor systems", "Natural fragrance", "Antiviral formulations", "Exotic beverages"]
   },
   {
     "id": "terp-009",
     "name": "Bisabolol",
-    "aroma": "Light floral, sweet, chamomile-like",
-    "effect": "Calm",
-    "description": "A monocyclic sesquiterpene alcohol derived primarily from chamomile. Bisabolol is prized for anti-irritant, anti-inflammatory, and antimicrobial properties. Its gentle profile makes it ideal for sensitive-skin and calming formulations.",
-    "applications": ["Skincare actives", "Calming teas and beverages", "Sensitive-skin topicals", "Nighttime cannabis blends"]
+    "class": "Sesquiterpene",
+    "aroma": "Light floral, chamomile",
+    "description": "Prized anti-irritant derived from chamomile. A staple in cosmetic and skincare formulations, now producible at scale through hemp-based molecular farming.",
+    "applications": ["Skincare actives", "Cosmetic ingredients", "Calming beverages", "Sensitive skin formulations"]
   },
   {
     "id": "terp-010",
     "name": "Geraniol",
+    "class": "Monoterpene",
     "aroma": "Rose, geranium, citronella",
-    "effect": "Focus",
-    "description": "A monoterpenoid alcohol found in rose oil, citronella, and lemongrass. Geraniol functions as a natural insect repellent and shows neuroprotective potential. Its elegant floral aroma is a staple in perfumery and premium beverages.",
-    "applications": ["Floral beverages", "Natural insect repellents", "Premium fragrance compounds", "Neuroprotective research"]
+    "description": "Monoterpenoid alcohol central to the global fragrance industry. A high-value target compound in Nexus's terpene production program.",
+    "applications": ["Premium fragrance", "Natural insect repellent", "Floral beverages", "Perfumery compounds"]
   }
 ]

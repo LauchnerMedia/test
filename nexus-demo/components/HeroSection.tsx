@@ -1,6 +1,5 @@
 import React, { CSSProperties } from "react";
 
-// ─── Framer Property Controls ────────────────────────────────────
 // @framerSupportedLayoutWidth any
 // @framerSupportedLayoutHeight any
 interface Props {
@@ -8,18 +7,26 @@ interface Props {
   subheadline?: string;
   ctaLabel?: string;
   ctaUrl?: string;
-  gradientFrom?: string;
-  gradientTo?: string;
+  stat1Value?: string;
+  stat1Label?: string;
+  stat2Value?: string;
+  stat2Label?: string;
+  stat3Value?: string;
+  stat3Label?: string;
 }
 
 const defaultProps: Required<Props> = {
-  headline: "Nature's Complexity,\nPrecision Delivered.",
+  headline: "Supplanting Petroleum\nSynthetics With Nature.",
   subheadline:
-    "Nexus Agriscience engineers terpene-based ingredient systems for beverages, cannabis, flavor, and wellness brands.",
-  ctaLabel: "Request a Sample",
-  ctaUrl: "#sample-request",
-  gradientFrom: "#0B6E4F",
-  gradientTo: "#14A76C",
+    "Nexus Agriscience's molecular farming platform uses hemp as a biosynthesis engine to produce natural ingredients at commercial scale — a capital-efficient alternative to precision fermentation.",
+  ctaLabel: "Partner With Us",
+  ctaUrl: "#contact",
+  stat1Value: "$37B",
+  stat1Label: "Addressable Market",
+  stat2Value: "240+",
+  stat2Label: "Acres in Production",
+  stat3Value: "100%",
+  stat3Label: "Non-Cannabinoid",
 };
 
 const HeroSection: React.FC<Props> = (rawProps) => {
@@ -28,109 +35,176 @@ const HeroSection: React.FC<Props> = (rawProps) => {
   const containerStyle: CSSProperties = {
     position: "relative",
     width: "100%",
-    minHeight: 600,
+    minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "80px 24px",
-    background: `linear-gradient(135deg, ${props.gradientFrom} 0%, ${props.gradientTo} 60%, #0B6E4F 100%)`,
+    padding: "120px 40px 80px",
+    background: "#0A0F1C",
     overflow: "hidden",
     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
   };
 
-  const orbStyle = (
-    size: number,
-    top: string,
-    left: string,
-    delay: string
-  ): CSSProperties => ({
-    position: "absolute",
-    width: size,
-    height: size,
-    borderRadius: "50%",
-    background: "rgba(255,255,255,0.06)",
-    top,
-    left,
-    animation: `nexusFloat 8s ease-in-out ${delay} infinite alternate`,
-    pointerEvents: "none",
-  });
-
-  const headlineStyle: CSSProperties = {
-    fontSize: 56,
-    fontWeight: 700,
-    color: "#FFFFFF",
-    textAlign: "center",
-    lineHeight: 1.1,
-    margin: 0,
-    maxWidth: 720,
-    whiteSpace: "pre-line",
-    letterSpacing: "-0.02em",
-  };
-
-  const subStyle: CSSProperties = {
-    fontSize: 20,
-    fontWeight: 400,
-    color: "rgba(255,255,255,0.82)",
-    textAlign: "center",
-    lineHeight: 1.6,
-    margin: "24px 0 40px",
-    maxWidth: 560,
-  };
-
-  const ctaStyle: CSSProperties = {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "16px 36px",
-    fontSize: 16,
-    fontWeight: 600,
-    color: "#0F1F17",
-    background: "#E8AA42",
-    border: "none",
-    borderRadius: 9999,
-    cursor: "pointer",
-    textDecoration: "none",
-    transition: "background 0.2s ease, transform 0.2s ease",
-    boxShadow: "0 4px 16px rgba(232, 170, 66, 0.3)",
-  };
-
   return (
     <div style={containerStyle}>
-      {/* Keyframes injected once */}
       <style>{`
+        @keyframes nexusPulse {
+          0%, 100% { opacity: 0.15; transform: scale(1); }
+          50% { opacity: 0.25; transform: scale(1.05); }
+        }
         @keyframes nexusFloat {
-          0%   { transform: translateY(0) scale(1); }
-          100% { transform: translateY(-30px) scale(1.08); }
+          0% { transform: translateY(0) rotate(0deg); }
+          100% { transform: translateY(-20px) rotate(3deg); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gridMove {
+          0% { transform: perspective(1000px) rotateX(60deg) translateY(0); }
+          100% { transform: perspective(1000px) rotateX(60deg) translateY(-50px); }
         }
       `}</style>
 
-      {/* Animated background orbs */}
-      <div style={orbStyle(320, "-5%", "70%", "0s")} />
-      <div style={orbStyle(200, "60%", "-5%", "2s")} />
-      <div style={orbStyle(160, "40%", "80%", "4s")} />
+      {/* Gradient orbs background */}
+      <div style={{
+        position: "absolute", width: 600, height: 600, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(21, 56, 114, 0.4), transparent 70%)",
+        top: "-10%", right: "-5%", animation: "nexusPulse 6s ease-in-out infinite",
+        pointerEvents: "none",
+      }} />
+      <div style={{
+        position: "absolute", width: 500, height: 500, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255, 70, 46, 0.12), transparent 70%)",
+        bottom: "5%", left: "-5%", animation: "nexusPulse 8s ease-in-out 2s infinite",
+        pointerEvents: "none",
+      }} />
+      <div style={{
+        position: "absolute", width: 300, height: 300, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(30, 77, 153, 0.25), transparent 70%)",
+        top: "40%", left: "50%", animation: "nexusPulse 7s ease-in-out 1s infinite",
+        pointerEvents: "none",
+      }} />
 
-      <h1 style={headlineStyle}>{props.headline}</h1>
-      <p style={subStyle}>{props.subheadline}</p>
-      <a
-        href={props.ctaUrl}
-        style={ctaStyle}
-        onMouseEnter={(e) => {
-          (e.target as HTMLElement).style.background = "#D4962E";
-          (e.target as HTMLElement).style.transform = "translateY(-2px)";
-        }}
-        onMouseLeave={(e) => {
-          (e.target as HTMLElement).style.background = "#E8AA42";
-          (e.target as HTMLElement).style.transform = "translateY(0)";
-        }}
-      >
-        {props.ctaLabel}
-      </a>
+      {/* Grid pattern overlay */}
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+        backgroundSize: "80px 80px",
+        pointerEvents: "none",
+      }} />
+
+      {/* Tag line */}
+      <div style={{
+        display: "inline-flex", alignItems: "center", gap: 8,
+        padding: "8px 20px", borderRadius: 9999,
+        background: "rgba(21, 56, 114, 0.2)",
+        border: "1px solid rgba(21, 56, 114, 0.3)",
+        marginBottom: 32,
+        animation: "fadeInUp 0.8s ease-out",
+      }}>
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#10B981" }} />
+        <span style={{ fontSize: 13, fontWeight: 500, color: "#94A3B8", letterSpacing: "0.02em" }}>
+          Molecular Farming Platform
+        </span>
+      </div>
+
+      <h1 style={{
+        fontSize: 72, fontWeight: 800, color: "#F1F5F9", textAlign: "center",
+        lineHeight: 1.05, margin: 0, maxWidth: 900, whiteSpace: "pre-line",
+        letterSpacing: "-0.03em",
+        animation: "fadeInUp 0.8s ease-out 0.1s both",
+      }}>
+        {props.headline}
+      </h1>
+
+      <p style={{
+        fontSize: 20, fontWeight: 400, color: "#94A3B8", textAlign: "center",
+        lineHeight: 1.65, margin: "28px 0 44px", maxWidth: 640,
+        animation: "fadeInUp 0.8s ease-out 0.2s both",
+      }}>
+        {props.subheadline}
+      </p>
+
+      <div style={{
+        display: "flex", gap: 16, alignItems: "center",
+        animation: "fadeInUp 0.8s ease-out 0.3s both",
+      }}>
+        <a
+          href={props.ctaUrl}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            padding: "16px 36px", fontSize: 16, fontWeight: 600, color: "#fff",
+            background: "#FF462E", border: "none", borderRadius: 12,
+            cursor: "pointer", textDecoration: "none",
+            transition: "all 0.2s ease",
+            boxShadow: "0 0 30px rgba(255, 70, 46, 0.3)",
+          }}
+          onMouseEnter={(e) => {
+            (e.target as HTMLElement).style.background = "#E63B25";
+            (e.target as HTMLElement).style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            (e.target as HTMLElement).style.background = "#FF462E";
+            (e.target as HTMLElement).style.transform = "translateY(0)";
+          }}
+        >
+          {props.ctaLabel}
+        </a>
+        <a
+          href="#platform"
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            padding: "16px 36px", fontSize: 16, fontWeight: 600, color: "#F1F5F9",
+            background: "transparent",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            borderRadius: 12, cursor: "pointer", textDecoration: "none",
+            transition: "all 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            (e.target as HTMLElement).style.background = "rgba(255, 255, 255, 0.05)";
+            (e.target as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.25)";
+          }}
+          onMouseLeave={(e) => {
+            (e.target as HTMLElement).style.background = "transparent";
+            (e.target as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.15)";
+          }}
+        >
+          Explore Platform
+        </a>
+      </div>
+
+      {/* Stats row */}
+      <div style={{
+        display: "flex", gap: 64, marginTop: 80,
+        animation: "fadeInUp 0.8s ease-out 0.5s both",
+      }}>
+        {[
+          { value: props.stat1Value, label: props.stat1Label },
+          { value: props.stat2Value, label: props.stat2Label },
+          { value: props.stat3Value, label: props.stat3Label },
+        ].map((stat, i) => (
+          <div key={i} style={{ textAlign: "center" }}>
+            <div style={{
+              fontSize: 40, fontWeight: 800, color: "#F1F5F9",
+              letterSpacing: "-0.02em", lineHeight: 1,
+            }}>
+              {stat.value}
+            </div>
+            <div style={{
+              fontSize: 13, fontWeight: 500, color: "#64748B",
+              marginTop: 8, textTransform: "uppercase", letterSpacing: "0.06em",
+            }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-// ─── Framer Property Controls ────────────────────────────────────
 if (typeof window !== "undefined" && (window as any).Framer) {
   const { addPropertyControls, ControlType } = require("framer");
   addPropertyControls(HeroSection, {
@@ -138,8 +212,6 @@ if (typeof window !== "undefined" && (window as any).Framer) {
     subheadline: { type: ControlType.String, title: "Subheadline", defaultValue: defaultProps.subheadline },
     ctaLabel: { type: ControlType.String, title: "CTA Label", defaultValue: defaultProps.ctaLabel },
     ctaUrl: { type: ControlType.String, title: "CTA URL", defaultValue: defaultProps.ctaUrl },
-    gradientFrom: { type: ControlType.Color, title: "Gradient Start", defaultValue: defaultProps.gradientFrom },
-    gradientTo: { type: ControlType.Color, title: "Gradient End", defaultValue: defaultProps.gradientTo },
   });
 }
 
